@@ -26,7 +26,7 @@ class CreateValueTable extends Migration
 
             $table->foreign('data_code')
                 ->references('code')
-                ->on('datas');
+                ->on('data');
             
             $table->foreign('profile_stn_code')
                 ->references('stn_code')

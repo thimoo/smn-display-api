@@ -18,14 +18,14 @@ class Data extends Model
      *
      * @var boll
      */
-    protected $incrementing = false;
+    public $incrementing = false;
 
     /**
      * Indicates if the model should be timestamped.
      *
      * @var bool
      */
-    protected $timestamps = false;
+    public $timestamps = false;
 
     /**
      * The attributes that are not mass assignable.

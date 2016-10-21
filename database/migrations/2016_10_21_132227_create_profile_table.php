@@ -17,9 +17,9 @@ class CreateProfileTable extends Migration
             $table->string('stn_code')->unique()->index();
             $table->integer('altitude');
             $table->text('infos');
-            $table->dateTimeTz('last_update');
-            $table->dateTimeTz('last_time_online');
-            $table->boolean('online');
+            $table->dateTimeTz('last_update')->nullable();
+            $table->dateTimeTz('last_time_online')->nullable();
+            $table->boolean('online')->default(true);
             $table->timestamps();
             $table->primary('stn_code');
         });

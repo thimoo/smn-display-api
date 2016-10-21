@@ -11,13 +11,16 @@
 |
 */
 
-$factory->define(App\User::class, function (Faker\Generator $faker) {
-    static $password;
-
+$factory->define(App\Display::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'password' => $password ?: $password = bcrypt('secret'),
-        'remember_token' => str_random(10),
+        'data'       => $faker->boolean,
+        'collection' => $faker->boolean,
+    ];
+});
+
+$factory->define(App\Value::class, function (Faker\Generator $faker) {
+    return [
+        'value' => $faker->randomFloat(2, -10, 100),
+        'tag'   => $faker->randomElement(['original', 'smoothed', 'substituted', 'no-data']),
     ];
 });

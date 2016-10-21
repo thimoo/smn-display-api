@@ -13,7 +13,7 @@ class CreateDataTable extends Migration
      */
     public function up()
     {
-        Schema::create('datas', function (Blueprint $table) {
+        Schema::create('data', function (Blueprint $table) {
             $table->string('code')->unique();
             $table->string('smn_code')->unique()->index();
             $table->primary('code');
@@ -27,6 +27,6 @@ class CreateDataTable extends Migration
      */
     public function down()
     {
-        Schema::drop('datas');
+        Schema::drop('data');
     }
 }

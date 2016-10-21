@@ -18,7 +18,7 @@ class Display extends Model
      *
      * @var boll
      */
-    protected $incrementing = false;
+    public $incrementing = false;
 
     /**
      * The attributes that are mass assignable.

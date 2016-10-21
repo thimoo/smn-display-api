@@ -14,6 +14,13 @@ class Value extends Model
     protected $primaryKey = ['data_code', 'profile_stn_code', 'date'];
 
     /**
+     * Indicate if the primary key is an incermetal int
+     *
+     * @var boll
+     */
+    public $incrementing = false;
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
