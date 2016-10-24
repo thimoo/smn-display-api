@@ -30,4 +30,24 @@ class Value extends Model
     	'value', 
     	'tag'
     ];
+
+    /**
+     * Get the profile that owns the value
+     * 
+     * @return Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function profile()
+    {
+        return $this->hasOne(Profile::class, 'stn_code', 'profile_stn_code');
+    }
+
+    /**
+     * Get the data that owns the value
+     * 
+     * @return Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function data()
+    {
+        return $this->hasOne(Data::class, 'code', 'data_code');
+    }
 }

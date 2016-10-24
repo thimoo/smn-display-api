@@ -12,5 +12,11 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+
+    // return App\Display::first()->data()->first();
+
+    // return App\Profile::find('cha')->values(App\Data::first())->get();
+    // $p = App\Profile::find('cha');
+    // return App\Data::first()->profiles()->get();
+    // return App\Data::with('profiles')->get();
 });

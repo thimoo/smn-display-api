@@ -33,4 +33,46 @@ class Data extends Model
      * @var array
      */
     protected $guarded = ['code', 'smn_code'];
+
+
+    /**
+     * Get the profiles attached to the data 
+     * 
+     * @return Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function profiles()
+    {
+        return $this->belongsToMany(
+                        Profile::class, 
+                        'displays', 
+                        'data_code', 
+                        'profile_stn_code'
+                    )
+                    ->withPivot('data', 'collection')
+                    ->withTimestamps();
+    }
+
+    /**
+     * Get the displays attach between the data and the given profile
+     * 
+     * @param  App\Profile
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function display(Profile $profile)
+    {
+        return $this->hasMany(Display::class, 'data_code')
+                    ->where('profile_stn_code', $profile->stn_code);
+    }
+
+    /**
+     * Get the values attach between the data and the given profile
+     * 
+     * @param  App\Profile
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function values(Profile $profile)
+    {
+        return $this->hasMany(Value::class, 'data_code')
+                    ->where('profile_stn_code', $profile->stn_code);
+    }
 }
