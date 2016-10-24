@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -13,6 +11,13 @@ use Illuminate\Http\Request;
 |
 */
 
-// Route::get('/user', function (Request $request) {
-//     return $request->user();
-// })->middleware('auth:api');
+Route::group(['prefix' => 'v1'], function() {
+
+    Route::get('profiles', 'ProfileController@index')->name('profiles.list');
+    Route::get('profiles/{profile}', 'ProfileController@show')->name('profiles.show');
+    Route::get('profiles/{profile}/update/{date}', 'ProfileController@checkUdpate')->name('profiles.udpate');
+
+    Route::get('profiles/{profile}/data/{data}', 'DataController@showData')->name('profiles.data');
+    Route::get('profiles/{profile}/collections/{data}', 'DataController@showCollection')->name('profiles.collections');
+
+});
