@@ -16,8 +16,8 @@ class DatabaseSeeder extends Seeder
         DB::table('displays')->delete();
         DB::table('values')->delete();
 
-        // $this->call(DatasTableSeeder::class);
-        // $this->call(ProfilesTableSeeder::class);
+        $this->call(DatasTableSeeder::class);
+        $this->call(ProfilesTableSeeder::class);
         // $this->call(DisplaysTableSeeder::class);
         // $this->call(ValuesTableSeeder::class);
     }
