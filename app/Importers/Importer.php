@@ -2,6 +2,8 @@
 
 namespace App\Importers;
 
+use App\Value;
+use App\Events\NewValue;
 use App\Parsers\DataSets\DataSet;
 
 class Importer
@@ -19,10 +21,19 @@ class Importer
     {
         while ($this->dataSet->hasNextValue()) {
             list($profile, $data, $value, $time) = $this->dataSet->getNextValue();
-            var_dump($profile, $data, $value, $time);
+
+            $value = new Value([
+                'profile_stn_code' => $profile,
+                'data_code' => $data,
+                'date' => $time,
+                'value' => $value,
+                'tag' => null,
+            ]);
+
+            event(new NewValue($value));
         }
 
-        var_dump($this->dataSet->count());
+        var_dump("finish ?!? fire value inserted");
 
         return $this;
     }

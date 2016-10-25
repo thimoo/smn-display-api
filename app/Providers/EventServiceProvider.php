@@ -15,6 +15,7 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         'App\Events\NewValue' => [
             'App\Listeners\InsertValue',
+            'App\Listeners\RemoveOldValue',
         ],
         'App\Events\NoValues' => [
             'App\Listeners\InsertNoDataValues',

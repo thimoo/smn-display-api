@@ -61,7 +61,6 @@ class RefreshDatabase extends Command
         } else {
             $this->csvStatusError();
         }
-
     }
 
     private function csvStatusOk($response)
@@ -74,6 +73,8 @@ class RefreshDatabase extends Command
         if ($parser->validateFormat()) {
             // Get the CSV object
             $dataSet = $parser->get();
+
+            // $dataSet->display();
 
             if ($this->databaseMustBeUpdated($dataSet)) {
                 $this->info('Database must be updated!');
@@ -91,13 +92,15 @@ class RefreshDatabase extends Command
 
         if ($this->databaseMustBeUpdated()) {
             // TODO
+            // insert all no-data values
+            $this->info('Inserting no-data values...');
         }
-
-        $this->info('Inserting no-data values...');
     }
 
     private function databaseMustBeUpdated($dataSet = null)
     {
+        return true;
+
         $datetime = Carbon::now();
 
         if ($dataSet)
@@ -116,6 +119,6 @@ class RefreshDatabase extends Command
 
     private function lastUpdate()
     {
-        return DB::table('profiles')->max('last_update');
+        return new Carbon(DB::table('profiles')->max('last_update'));
     }
 }

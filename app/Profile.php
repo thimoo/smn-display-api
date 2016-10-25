@@ -13,6 +13,8 @@ class Profile extends Model
      */
     protected $primaryKey = 'stn_code';
 
+    protected $table = "profiles";
+
     /**
      * Indicate if the primary key is an incermetal int
      *
@@ -62,6 +64,18 @@ class Profile extends Model
                     ->withTimestamps();
     }
 
+    public function dataValue()
+    {
+        return $this->belongsToMany(
+                        Data::class, 
+                        'values', 
+                        'profile_stn_code', 
+                        'data_code'
+                    )
+                    ->withPivot('value', 'date', 'tag')
+                    ->withTimestamps();
+    }
+
     /**
      * Get the display relation between the profile and the given data
      * 
@@ -84,5 +98,25 @@ class Profile extends Model
     {
         return $this->hasMany(Value::class, 'profile_stn_code')
                     ->where('data_code', $data->code);
+    }
+
+    /**
+     * Create and return a new profile for the
+     * given stn_code with default values
+     * 
+     * @param  string stn_code
+     * @return App\Profile
+     */
+    public static function newDefault(string $stn_code)
+    {
+        $p = new Profile;
+        $p->stn_code = $stn_code;
+        $p->altitude = 0;
+        $p->infos = "{}";
+        $p->last_update = null;
+        $p->online = true;
+        $p->save();
+
+        return $p;
     }
 }

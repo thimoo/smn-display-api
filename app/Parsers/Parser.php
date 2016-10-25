@@ -25,5 +25,4 @@ abstract class Parser
     {
         return $this->dataSet;
     }
-
 }

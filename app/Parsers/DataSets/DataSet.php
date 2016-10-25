@@ -53,6 +53,16 @@ class DataSet
         return $count;
     }
 
+    public function getNumberHeader()
+    {
+        return count($this->data);
+    }
+
+    public function getNumberProfile()
+    {
+        return count($this->profiles);
+    }
+
     public function setData(array $data)
     {
         $this->data = $data;
@@ -66,6 +76,36 @@ class DataSet
     public function setContent(array $content)
     {
         $this->content = $content;
+    }
+
+    public function display()
+    {
+        echo "\nDump the dataset: \n";
+        $nbHeader = $this->getNumberHeader();
+        echo "Number of header: $nbHeader\n";
+        echo "[" . implode(',', $this->data) . "]\n\n";
+
+        $nbProfile = $this->getNumberProfile();
+        echo "Number of profiles: $nbProfile\n";
+        echo "[" . implode(',', $this->profiles) . "]\n\n";
+
+        $nbValues = $this->count();
+        echo "Number of values: $nbValues\n";
+
+        $this->resetCursors();
+        $i = 0;
+
+        while ($this->hasNextValue()) {
+            $p = $this->getProfileCursor();
+            $d = $this->getDataCursor();
+            echo "\n profile: $p | data: $d";
+
+            list($profile, $data, $value, $time) = $this->getNextValue();
+
+            $i++;
+        }
+
+        echo "\nNumber of iteration: $i\n\n";
     }
 
     private function getTheProfile()
@@ -85,11 +125,11 @@ class DataSet
 
     private function setNextCursors()
     {
-        $this->setNextProfileCursor();
         $this->setNextDataCursor();
 
         if (! $this->hasNextData() && $this->hasNextProfile())
         {
+            $this->setNextProfileCursor();
             $this->resetDataCursor();
         }
     }
@@ -128,6 +168,11 @@ class DataSet
     private function resetDataCursor()
     {
         $this->cursors[self::$DATA_CURSOR] = 0;
+    }
+
+    public function resetCursors()
+    {
+        $this->cursors = [0, 0];
     }
 
 }

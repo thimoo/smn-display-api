@@ -13,6 +13,8 @@ class Display extends Model
      */
     protected $primaryKey = ['data_code', 'profile_stn_code'];
 
+    protected $table = "displays";
+
     /**
      * Indicate if the primary key is an incermetal int
      *

@@ -13,6 +13,8 @@ class Data extends Model
      */
     protected $primaryKey = 'code';
 
+    protected $table = "data";
+
     /**
      * Indicate if the primary key is an incermetal int
      *
