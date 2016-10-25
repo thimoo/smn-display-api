@@ -126,6 +126,12 @@ class InsertValue
             // is required
             $this->insertWithNoValue();
         }
+
+        // Update the last update time on the attach
+        // profile
+        // TODO: optize this all profile are updated 10 times
+        $this->profile->last_update = $this->value->date;
+        $this->profile->save();
     }
 
     /**
@@ -148,13 +154,13 @@ class InsertValue
         {
             // An older value is present with the
             // new one. Check based on last tag
-            // what proccess must to be perform
+            // what proccess must be perform
             $this->insertWithValueAndLast();
         }
     }
 
     /**
-     * Check if older values must to be smoothed or
+     * Check if older values must be smoothed or
      * if the new value can be inserted as original.
      * 
      * @return void
@@ -205,7 +211,7 @@ class InsertValue
             // but the last value is present in db,
             // then check if substitution can be
             // performe or if old substituted value
-            // must to be updated to zero value
+            // must be updated to zero value
             // tagged as no-data
             $this->insertWithNoValueButLast();
         }
