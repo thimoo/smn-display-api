@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use \DB;
 use App\Data;
 use App\Profile;
 use App\Events\NewValue;
@@ -47,7 +48,7 @@ class RemoveOldValue
         // Get the profile and the data attach to the
         // new value given
         $this->profile = Profile::find($value->profile_stn_code);
-        $this->data = Data::where('smn_code', $value->data_code)->first();
+        $this->data = Data::find($value->data_code);
 
         // If the data is null, then the data is not
         // present in database and the value must be

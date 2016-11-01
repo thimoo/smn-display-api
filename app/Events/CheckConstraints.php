@@ -2,6 +2,8 @@
 
 namespace App\Events;
 
+use App\Data;
+use App\Profile;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;
@@ -13,14 +15,22 @@ class CheckConstraints
 {
     use InteractsWithSockets, SerializesModels;
 
+    public $profile;
+
+    public $data;
+
+    public $values;
+
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Profile $profile, Data $data, $values)
     {
-        //
+        $this->profile = $profile;
+        $this->data = $data;
+        $this->values = $values;
     }
 
     /**
