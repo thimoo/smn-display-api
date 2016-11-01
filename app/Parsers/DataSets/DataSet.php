@@ -1,4 +1,4 @@
-<?
+<?php
 
 namespace App\Parsers\DataSets;
 
@@ -25,6 +25,8 @@ class DataSet
     public function setDatetime($datetime)
     {
         $this->datetime = $datetime;
+
+        return $this;
     }
 
     public final function getNextValue()
@@ -66,16 +68,22 @@ class DataSet
     public function setData(array $data)
     {
         $this->data = $data;
+
+        return $this;
     }
 
     public function setProfiles(array $profiles)
     {
         $this->profiles = $profiles;
+
+        return $this;
     }
 
     public function setContent(array $content)
     {
         $this->content = $content;
+
+        return $this;
     }
 
     public function display()
@@ -113,13 +121,10 @@ class DataSet
 
     public function populate($date, $profiles, $data)
     {
-        $this->setDatetime($date);
-        
-        $this->transformProfiles($profiles);
-        
-        $this->transformData($data);
-
-        $this->generateEmptyContent();
+        $this->setDatetime($date)
+            ->transformProfiles($profiles)
+            ->transformData($data)
+            ->generateEmptyContent();
 
         return $this;
     }
