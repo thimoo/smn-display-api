@@ -4,6 +4,7 @@ namespace App\Importers;
 
 use App\Value;
 use App\Events\NewValue;
+use App\Events\ValuesInserted;
 use App\Parsers\DataSets\DataSet;
 
 class Importer
@@ -50,6 +51,8 @@ class Importer
 
             event(new NewValue($value));
         }
+
+        event(new ValuesInserted);
 
         return $this;
     }

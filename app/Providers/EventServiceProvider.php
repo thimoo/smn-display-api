@@ -15,10 +15,13 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         'App\Events\NewValue' => [
             'App\Listeners\InsertValue',
-            'App\Listeners\RemoveOldValue',
             'App\Listeners\VerifyConstraints',
         ],
+        'App\Events\ValuesInserted' => [
+            'App\Listeners\RemoveOldValue',
+        ],
         'App\Events\CheckConstraints' => [
+            'App\Listeners\CheckDisplay',
         ],
     ];
 
