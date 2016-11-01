@@ -17,9 +17,6 @@ class EventServiceProvider extends ServiceProvider
             'App\Listeners\InsertValue',
             'App\Listeners\RemoveOldValue',
         ],
-        'App\Events\NoValues' => [
-            'App\Listeners\InsertNoDataValues',
-        ],
         'App\Events\ValuesInserted' => [
             'App\Listeners\CheckRules',
         ],

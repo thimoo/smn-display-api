@@ -98,14 +98,55 @@ class DataSet
         while ($this->hasNextValue()) {
             $p = $this->getProfileCursor();
             $d = $this->getDataCursor();
-            echo "\n profile: $p | data: $d";
 
             list($profile, $data, $value, $time) = $this->getNextValue();
+
+            if ($value == null) $value = 'null';
+
+            echo "\n ($p) profile: $profile \t ($d) data:  $data \t = $value \t ($time)";
 
             $i++;
         }
 
         echo "\nNumber of iteration: $i\n\n";
+    }
+
+    public function populate($date, $profiles, $data)
+    {
+        $this->setDatetime($date);
+        
+        $this->transformProfiles($profiles);
+        
+        $this->transformData($data);
+
+        $this->generateEmptyContent();
+
+        return $this;
+    }
+
+    private function transformProfiles($profiles)
+    {
+        $array = array_column($profiles->toArray(), 'stn_code');
+        $this->setProfiles($array);
+    }
+
+    private function transformData($data)
+    {
+        $array = array_column($data->toArray(), 'smn_code');
+        $this->setData($array);
+    }
+
+    private function generateEmptyContent()
+    {
+        $this->content = [];
+
+        foreach ($this->profiles as $profile) {
+            $values = array_fill(0, $this->getNumberHeader(), null);
+
+            $this->content[] = $values;
+        }
+
+        $this->resetCursors();
     }
 
     private function getTheProfile()

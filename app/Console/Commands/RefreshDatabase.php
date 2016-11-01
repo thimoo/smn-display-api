@@ -5,11 +5,14 @@ namespace App\Console\Commands;
 use \DB;
 use \Log;
 use \Mail;
+use App\Data;
+use App\Profile;
 use Carbon\Carbon;
 use App\Events\NoValues;
 use App\Parsers\CsvParser;
 use App\Importers\Importer;
 use Illuminate\Console\Command;
+use App\Parsers\DataSets\DataSet;
 use \GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Exception\ClientException;
 
@@ -43,6 +46,20 @@ class RefreshDatabase extends Command
     private $nextUpdateTime;
 
     /**
+     * Store the importer used to import the DataSet
+     * 
+     * @var App\Importers\Importer
+     */
+    private $importer;
+
+    /**
+     * Store the parser used to transform the CSV in DataSet
+     * 
+     * @var App\Parsers\CsvParser
+     */
+    private $parser;
+
+    /**
      * Create a new command instance.
      *
      * @return void
@@ -50,6 +67,8 @@ class RefreshDatabase extends Command
     public function __construct()
     {
         parent::__construct();
+
+        $this->importer = new Importer;
     }
 
     /**
@@ -112,30 +131,15 @@ class RefreshDatabase extends Command
 
         // Create the parser, parse the content
         // and validate the format
-        $parser = (new CsvParser($content))->parse();
+        $this->parser = (new CsvParser($content))->parse();
 
-        if ($parser->validateFormat()) 
+        if ($this->parser->validateFormat())
         {
-            // The dataset represent with a usefull way
-            // the collections of data present in the
-            // CSV. The dataset is used to pass data
-            // between the parser and the importer
-            $dataSet = $parser->get();
-
-            // Check if the database must be updated
-            // based on the dataset datetime, if yes:
-            // create the importer and import all data
-            if ($this->databaseMustBeUpdated($dataSet)) 
-            {
-                $this->info('Database must be updated!');
-                $this->displayDates();
-                $importer = new Importer;
-                $importer->load($dataSet)->import();
-            }
-            else
-            {
-                $this->noUpdateNeeded();
-            }
+            $this->insertNewValues();
+        }
+        else 
+        {
+            $this->insertNoDataValues();
         }
     }
 
@@ -152,19 +156,63 @@ class RefreshDatabase extends Command
 
         if ($this->databaseMustBeUpdated()) 
         {
-            $this->info('Inserting no-data values...');
-            $this->displayDates();
-
-            // No data must be imported in the database with
-            // the next time
-            $forDate = $this->computeNextDatetime();
-            $this->info("No-data date: $forDate");
-            event(new NoValues($forDate));
+            $this->insertNoDataValues();
         }
         else
         {
             $this->noUpdateNeeded();
         }
+    }
+
+    private function insertNewValues()
+    {
+        // The dataset represent with a usefull way
+        // the collections of data present in the
+        // CSV. The dataset is used to pass data
+        // between the parser and the importer
+        $dataSet = $this->parser->get();
+
+        // Check if the database must be updated
+        // based on the dataset datetime, if yes:
+        // import all data
+        if ($this->databaseMustBeUpdated($dataSet)) 
+        {
+            $this->info('Database must be updated!');
+            $this->displayDates();
+            $this->importer->load($dataSet)->import();
+        }
+        else
+        {
+            $this->noUpdateNeeded();
+        }
+    }
+
+    private function insertNoDataValues()
+    {
+        $this->info('Inserting no-data values...');
+        $this->displayDates();
+
+        // No data must be imported in the database with
+        // the current time rounded
+        $forDate = $this->computeNowDate();
+        $this->info("No-data date: $forDate");
+
+        // Retreive all profiles
+        $forProfiles = Profile::all();
+
+        // Retreive all data
+        $forData = Data::all();
+
+        // Generate a new DataSet with no-data
+        // values for the date, profiles and data
+        $dataSet = (new DataSet)->populate(
+            $forDate, 
+            $forProfiles, 
+            $forData
+        );
+        
+        // Import the DataSet
+        $this->importer->load($dataSet)->import();
     }
 
     /**
@@ -177,14 +225,51 @@ class RefreshDatabase extends Command
     {
         if ($this->databaseUpdateTime == null)
         {
-            // carbon now
-            // arrondir à la dizaine de minutes 
-            return null;
+            // When the application start and if
+            // no CSV is retreived, then we must 
+            // compute a datetime based on the
+            // current time
+            return $this->computeNowDate();
         }
 
         // Add ten minutes to the last datetime present
         // in database
         return (new Carbon($this->databaseUpdateTime))->addMinutes(10);
+    }
+
+    /**
+     * Get the current datetime and create a Carbon
+     * date with the minutes rouded to the nearest
+     * ten below minus ten
+     * 
+     * @return Carbon\Carbon the now datetime rounded
+     */
+    private function computeNowDate()
+    {
+        $year = date('Y');
+        $month = date('n');
+        $day = date('j');
+
+        $hour = date('G');
+
+        // Rounding the number of seconds to ten below
+        // ex: 20 -> 20, 34 -> 30, 58 -> 50
+        $minute = (int) (date('i') / 10);
+        $minute *= 10;
+
+        $tz = date('e');
+        $new = Carbon::create($year, $month, $day, $hour, $minute, 0, $tz);
+        $new->subMinutes(10);
+
+        // If a datetime is present in database,
+        // then check if minus ten is greather
+        // than, else add ten
+        if ($this->databaseUpdateTime && $this->databaseUpdateTime->gte($new))
+        {
+            $new->addMinutes(10);
+        }
+
+        return $new;
     }
 
     /**
@@ -196,7 +281,6 @@ class RefreshDatabase extends Command
     {
         $this->error('Something went wrong to retreive the CSV!');
         Log::error("The CSV can't be retreive");
-        // TODO send a mail
     }
 
     /**
@@ -220,8 +304,8 @@ class RefreshDatabase extends Command
      */
     private function displayDates()
     {
-        $nextUpdateTime = $this->nextUpdateTime;
-        $databaseUpdateTime = $this->databaseUpdateTime;
+        $nextUpdateTime = $this->nextUpdateTime ?? 'no date';
+        $databaseUpdateTime = $this->databaseUpdateTime ?? 'no date';
 
         $this->info("Next update date found: $nextUpdateTime");
         $this->info("Last database udpate: $databaseUpdateTime");
