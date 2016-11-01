@@ -16,9 +16,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\NewValue' => [
             'App\Listeners\InsertValue',
             'App\Listeners\RemoveOldValue',
+            'App\Listeners\VerifyConstraints',
         ],
-        'App\Events\ValuesInserted' => [
-            'App\Listeners\CheckRules',
+        'App\Events\CheckConstraints' => [
         ],
     ];
 

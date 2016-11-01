@@ -8,8 +8,19 @@ use App\Parsers\DataSets\DataSet;
 
 class Importer
 {
+    /**
+     * Stores the data set to import
+     * 
+     * @var App\Parsers\DataSets\DataSet
+     */
     protected $dataSet;
 
+    /**
+     * Load the data set and store it
+     * 
+     * @param  DataSet $dataSet the data set to import
+     * @return Importer         $this
+     */
     public function load(DataSet $dataSet)
     {
         $this->dataSet = $dataSet;
@@ -17,6 +28,13 @@ class Importer
         return $this;
     }
 
+    /**
+     * Browse the complete data set loaded and create
+     * a new Value based on the retreived informations
+     * The new value has passed to a new "NewValue" event
+     * 
+     * @return Importer  $this
+     */
     public function import()
     {
         while ($this->dataSet->hasNextValue()) {
@@ -32,8 +50,6 @@ class Importer
 
             event(new NewValue($value));
         }
-
-        var_dump("finish ?!? fire value inserted");
 
         return $this;
     }

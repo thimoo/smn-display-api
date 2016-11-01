@@ -44,20 +44,10 @@ class InsertValue
     protected $data;
 
     /**
-     * Create the event listener.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        // Nothing to do here...
-    }
-
-    /**
      * Handle the event.
      * Retreive all informations required,
      * create the profile if not present,
-     * and call the insert proccess.
+     * and call the insert process.
      *
      * @param  NewValue  $event
      * @return void
@@ -71,7 +61,7 @@ class InsertValue
         // Get the profile and the data attach to the
         // new value given
         $this->profile = Profile::find($this->value->profile_stn_code);
-        $this->data = Data::where('smn_code',  $this->value->data_code)->first();
+        $this->data = Data::where('smn_code', $this->value->data_code)->first();
 
         if ($this->profile == null)
         {
@@ -81,7 +71,10 @@ class InsertValue
             $this->profile = Profile::newDefault($this->value->profile_stn_code);
         }
 
-        if ($this->data != null)
+        // If the data is null, then the data is not
+        // present in database and the value must be
+        // ignored
+        if ($this->data)
         {
             // The value created by the importer
             // as the data_code set to the smn_code
@@ -89,7 +82,7 @@ class InsertValue
             // right data code
             $this->value->data_code = $this->data->code;
 
-            // Start the proccess to determine
+            // Start the process to determine
             // the new value tag and if older
             // values must be updated and how
             $this->insert();
@@ -97,7 +90,7 @@ class InsertValue
     }
 
     /**
-     * Starting the insertion proccess.
+     * Starting the insertion process.
      * If a value is present, check all the cases.
      * Else, check all other cases.
      * 
@@ -107,7 +100,7 @@ class InsertValue
     {
         $this->lastValue = $this->profile->values($this->data)->first();
         
-        if ($this->value->value != null)
+        if ($this->value->value)
         {
             // A value is present in the CSV
             // for the given profile and the given
@@ -147,14 +140,14 @@ class InsertValue
         {
             // No older value is present with
             // the new one. Insert the new value 
-            // as original and finish the proccess
+            // as original and finish the process
             Value::insertAsOriginal($this->value);
         }
         else
         {
             // An older value is present with the
             // new one. Check based on last tag
-            // what proccess must be perform
+            // what process must be perform
             $this->insertWithValueAndLast();
         }
     }
@@ -172,7 +165,7 @@ class InsertValue
             // If the older value is not a substituted
             // value, then it can be a original or no-data
             // In both case we can insert the new data as
-            // original and finish the proccess
+            // original and finish the process
             Value::insertAsOriginal($this->value);
         }
         else 
@@ -180,7 +173,7 @@ class InsertValue
             // The last value is tagged as substituted, so :
             //  - retreive the last 1|2|3 last values
             //  - smooth them with the new value (and the last original before)
-            //  - insert the new value as original and finish the proccess
+            //  - insert the new value as original and finish the process
             $lastSubstitutedValues = Value::getSubstitutedLastValues($this->profile, $this->data);
             Value::smoothSubstitutedValues($this->value, $lastSubstitutedValues);
             Value::insertAsOriginal($this->value);
@@ -231,7 +224,7 @@ class InsertValue
             // If no data is present in the CSV and
             // the last value is original, then
             // the new value is substituted and
-            // the proccess is finish
+            // the process is finish
             Value::insertAsSubstituted($this->value, $this->lastValue);
         }
         else 
@@ -265,7 +258,7 @@ class InsertValue
             // not substituted, then the last value
             // is tagged as no-data, then the new value
             // is inserted as no-data with a zero value
-            // and finish the proccess
+            // and finish the process
             Value::insertAsNoData($this->value);
         }
     }
@@ -290,7 +283,7 @@ class InsertValue
             // If the count of neighbour values is 
             // lesser than 3 the substitution can 
             // be performed with the new value
-            // and finish the proccess
+            // and finish the process
             Value::insertAsSubstituted($this->value, $this->lastValue);
         }
         else
@@ -301,7 +294,7 @@ class InsertValue
             // no-data
             Value::updateLastValuesToNoData($lastSubstitutedValues);
             // The new value is inserted as a zero value
-            // tagged as no-data and finish the proccess
+            // tagged as no-data and finish the process
             Value::insertAsNoData($this->value);
         }
     }

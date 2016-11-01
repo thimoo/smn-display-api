@@ -418,5 +418,4 @@ class DataSet
     {
         $this->cursors = [0, 0];
     }
-
 }

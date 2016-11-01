@@ -2,11 +2,11 @@
 
 namespace App\Listeners;
 
-use App\Events\ValuesInserted;
+use App\Events\NewValue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class CheckRules
+class VerifyConstraints
 {
     /**
      * Create the event listener.
@@ -21,10 +21,10 @@ class CheckRules
     /**
      * Handle the event.
      *
-     * @param  ValuesInserted  $event
+     * @param  NewValue  $event
      * @return void
      */
-    public function handle(ValuesInserted $event)
+    public function handle(NewValue $event)
     {
         //
     }

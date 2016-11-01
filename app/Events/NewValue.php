@@ -14,10 +14,15 @@ class NewValue
 {
     use InteractsWithSockets, SerializesModels;
 
+    /**
+     * Stores the value to save
+     * 
+     * @var App\Value
+     */
     public $value;
 
     /**
-     * Create a new event instance.
+     * Create a new event instance with the given value.
      *
      * @return void
      */
