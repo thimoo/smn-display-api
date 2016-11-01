@@ -4,7 +4,6 @@ namespace App\Console\Commands;
 
 use \DB;
 use \Log;
-use \Mail;
 use App\Data;
 use App\Profile;
 use Carbon\Carbon;
@@ -13,7 +12,7 @@ use App\Parsers\CsvParser;
 use App\Importers\Importer;
 use Illuminate\Console\Command;
 use App\Parsers\DataSets\DataSet;
-use \GuzzleHttp\Client as HttpClient;
+use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Exception\ClientException;
 
 class RefreshDatabase extends Command
@@ -34,6 +33,7 @@ class RefreshDatabase extends Command
 
     /**
      * Store the datetime of the last update in DB
+     * 
      * @var \Carbon\Carbon
      */
     private $databaseUpdateTime;
@@ -273,7 +273,7 @@ class RefreshDatabase extends Command
     }
 
     /**
-     * Log the error and make an email if possible
+     * Log the error
      * 
      * @return void
      */
@@ -351,7 +351,9 @@ class RefreshDatabase extends Command
     }
 
     /**
-     * Retreive the latest update datetime of profiles
+     * Retreive the latest update datetime from profiles
+     * and set the databaseUpdateTime. If no profile was
+     * found, then the databaseUpdateTime is set to null
      * 
      * @return void
      */
