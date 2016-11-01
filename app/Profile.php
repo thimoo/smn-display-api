@@ -64,6 +64,12 @@ class Profile extends Model
                     ->withTimestamps();
     }
 
+    /**
+     * Get the relation between profile and data through the
+     * values table
+     * 
+     * @return Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function dataValue()
     {
         return $this->belongsToMany(

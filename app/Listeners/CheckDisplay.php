@@ -2,12 +2,46 @@
 
 namespace App\Listeners;
 
+use App\Data;
+use App\Value;
+use App\Profile;
+use App\Display;
 use App\Events\CheckConstraints;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
 class CheckDisplay
 {
+    /**
+     * Stores the profile to work with
+     * 
+     * @var App\Profile
+     */
+    public $profile;
+
+    /**
+     * Stores the data to work with
+     * 
+     * @var App\Data
+     */
+    public $data;
+
+    /**
+     * Stores the collection of values between the stored
+     * data and the stored profile
+     * 
+     * @var \Illuminate\Database\Eloquent\Collection
+     */
+    public $values;
+
+    /**
+     * Store the first value of the collection, the latest
+     * in time
+     * 
+     * @var App\Value
+     */
+    protected $first;
+
     /**
      * Handle the event.
      *
@@ -16,6 +50,59 @@ class CheckDisplay
      */
     public function handle(CheckConstraints $event)
     {
-        // 
+        // Unpack stored data
+        $this->profile = $event->profile;
+        $this->data = $event->data;
+        $this->values = $event->values;
+
+        $this->first = $this->values->first();
+
+        if ($this->first->isOriginal())
+        {
+            $this->originalValue();
+        }
+        else
+        {
+            $this->noOriginalValue();
+        }
+    }
+
+    /**
+     * If an original value is present, then show
+     * the data and check if the collection can be
+     * show
+     * 
+     * @return void
+     */
+    protected function originalValue()
+    {
+        Display::showData($this->data, $this->profile);
+        
+        $noData = Value::countNoDataValue($this->values);
+        if ($noData <= 36)
+        {
+            Display::showCollection($this->data, $this->profile);
+        }
+    }
+
+    /**
+     * If no originial value is present, then check
+     * if the value is tagged as no-data. If yes, then
+     * check if they are more than 36 continious no-data
+     * value and hide the data and the collection
+     * 
+     * @return void
+     */
+    protected function noOriginalValue()
+    {
+        if ($this->first->isNoData())
+        {
+            $noData = Value::countLastNoData($this->values);
+            if ($noData > 36)
+            {
+                Display::hideData($this->data, $this->profile);
+                Display::hideCollection($this->data, $this->profile);
+            }
+        }
     }
 }

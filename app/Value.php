@@ -93,6 +93,7 @@ class Value extends Model
     {
         return Value::where('profile_stn_code', $p->stn_code)
                     ->where('data_code', $d->code)
+                    ->orderBy('date', 'desc')
                     ->get();
     }
 
@@ -267,6 +268,40 @@ class Value extends Model
     public function isSmoothed()
     {
         return strcmp($this->tag, self::SMOOTHED) === 0;
+    }
+
+    /**
+     * Count the number of no-data value in the entire
+     * collection
+     * 
+     * @param  \Illuminate\Database\Eloquent\Collection $values the collection
+     * @return int                                              number of no-data
+     */
+    public static function countNoDataValue($values)
+    {
+        $noDataCollection = $values->reject(function ($value, $key) {
+            return $value->isNoData();
+        });
+
+        return $noDataCollection->count();
+    }
+
+    /**
+     * Count the last continious no-data value in the given
+     * collection of values
+     * @param  \Illuminate\Database\Eloquent\Collection $values the collection
+     * @return int                                              number of no-data
+     */
+    public static function countLastNoData($values)
+    {
+        $bool = true;
+
+        $collection = $values->filter(function ($value, $key) use (&$bool) {
+            if ($bool && ! $value->isNoData()) $bool = false;
+            if ($bool) return $value;
+        });
+
+        return $collection->count();
     }
 
     /**
