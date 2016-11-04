@@ -16,8 +16,8 @@ class ProfileTransformer extends Transformer
         'last_update', 
         'last_time_online', 
         'online',
-        'data',
-        'collections',
+        'data_display',
+        'collections_display',
     ];
 
     public $morph = [
@@ -25,6 +25,8 @@ class ProfileTransformer extends Transformer
         'last_update' => 'lastUpdate',
         'last_time_online' => 'lastTimeOnline',
         'online' => 'isOnline',
+        'data_display' => 'data',
+        'collections_display' => 'collections',
         'href' => '$href',
     ];
 
