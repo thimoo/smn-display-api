@@ -2,27 +2,47 @@
 
 namespace App\Http\Controllers;
 
+use StdClass;
 use App\Profile;
-use Illuminate\Http\Request;
-
+use Carbon\Carbon;
 use App\Http\Requests;
+use Illuminate\Http\Request;
+use App\Transformers\Transformer;
+use App\Transformers\ProfileTransformer;
 
 class ProfileController extends Controller
 {
+    private $date;
+
     public function index()
     {
-        return Profile::all();
+        return ProfileTransformer::all(Profile::all());
     }
 
     public function show(Profile $profile)
     {
-        return $profile;
+        $profile->data = $profile->getDataDisplays();
+        $profile->collections = $profile->getCollectionDisplays();
+
+        return ProfileTransformer::get($profile);
     }
 
-    public function checkUpdate(Profile $profile, $date)
+    public function checkUpdate(Request $request, Profile $profile)
     {
         // transforme the date to a carbon date
         // check if the profile have been updated after the date
         // return the response
+        if ($request->header('X-Datetime'))
+        {
+            $this->date = new Carbon($request->header('X-Datetime'));
+            $transformer = new Transformer;
+            $pDate = new Carbon($profile->last_update);
+            $response = new StdClass;
+            $response->compareDate = $request->header('X-Datetime');
+            $response->lastUpdate = $profile->last_update;
+            $response->updateAvailable = $this->date->lt($pDate);
+            return $transformer->wrap($response);
+        }
+        else return abort(422);
     }
 }

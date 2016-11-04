@@ -35,7 +35,7 @@ class Value extends Model
     protected $primaryKey = ['data_code', 'profile_stn_code', 'date'];
 
     /**
-     * The name of the table in database
+     * The table name in database
      * 
      * @var string
      */
@@ -91,10 +91,68 @@ class Value extends Model
      */
     public static function getCollectionFor(Profile $p, Data $d)
     {
+        return self::getCollectionWith($p->stn_code, $d->code);
+    }
+
+    public static function getCollectionWith($stn_code, $code)
+    {
+        return Value::where('profile_stn_code', $stn_code)
+                    ->where('data_code', $code)
+                    ->orderBy('date', 'desc')
+                    ->get();
+    }
+
+    /**
+     * Retreive the last value that correspond to the given
+     * profile and the given data
+     * 
+     * @param  App\Profile  $p
+     * @param  App\Data     $d
+     * @return App\Value
+     */
+    public static function getLastValueFor(Profile $p, Data $d)
+    {
         return Value::where('profile_stn_code', $p->stn_code)
                     ->where('data_code', $d->code)
                     ->orderBy('date', 'desc')
-                    ->get();
+                    ->first();
+    }
+
+    public function getMinString()
+    {
+        return Value::where('profile_stn_code', $this->profile_stn_code)
+                    ->where('data_code', $this->data_code)
+                    ->min('value');
+    }
+
+    public function getMinValue()
+    {
+        return Value::where('profile_stn_code', $this->profile_stn_code)
+                    ->where('data_code', $this->data_code)
+                    ->where('value', $this->getMinString())
+                    ->first();
+    }
+
+    public function getMaxString()
+    {
+        return Value::where('profile_stn_code', $this->profile_stn_code)
+                    ->where('data_code', $this->data_code)
+                    ->max('value');
+    }
+
+    public function getMaxValue()
+    {   
+        return Value::where('profile_stn_code', $this->profile_stn_code)
+                    ->where('data_code', $this->data_code)
+                    ->where('value', $this->getMaxString())
+                    ->first();
+    }
+
+    public function getSumString()
+    {   
+        return Value::where('profile_stn_code', $this->profile_stn_code)
+                    ->where('data_code', $this->data_code)
+                    ->sum('value');
     }
 
     /**
@@ -156,6 +214,19 @@ class Value extends Model
         });
 
         return $collection;
+    }
+
+    public static function getLastOriginalValue(Profile $profile, Data $data)
+    {
+        $collection = $profile->values($data)->orderBy('date', 'desc')->get();
+        $bool = false;
+
+        $collection = $collection->filter(function ($value, $key) use (&$bool) {
+            if (! $bool && $value->isOriginal()) $bool = true;
+            if ($bool) return $value;
+        });
+
+        return $collection->first();
     }
 
     /**

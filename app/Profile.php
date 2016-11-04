@@ -2,10 +2,13 @@
 
 namespace App;
 
+use App\Transformers\Traits\Linkable;
 use Illuminate\Database\Eloquent\Model;
 
 class Profile extends Model
 {
+    use Linkable;
+
     /**
      * Indicate the primary key field
      *
@@ -202,5 +205,11 @@ class Profile extends Model
     public function getNumberDisplays()
     {
         return $this->getDataDisplays()->count();
+    }
+
+
+    public function fullProfileUri($profile_code)
+    {
+        return $this->baseUri() . "profiles/$profile_code";
     }
 }

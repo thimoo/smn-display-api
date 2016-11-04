@@ -2,10 +2,13 @@
 
 namespace App;
 
+use App\Transformers\Traits\Linkable;
 use Illuminate\Database\Eloquent\Model;
 
 class Data extends Model
 {
+    use Linkable;
+
     /**
      * Indicate the primary key field
      *
@@ -13,6 +16,11 @@ class Data extends Model
      */
     protected $primaryKey = 'code';
 
+    /**
+     * The name of the table in database
+     * 
+     * @var string
+     */
     protected $table = "data";
 
     /**
@@ -76,5 +84,11 @@ class Data extends Model
     {
         return $this->hasMany(Value::class, 'data_code')
                     ->where('profile_stn_code', $profile->stn_code);
+    }
+
+    // TODO
+    public function fullDataUri($profile_code, $data_code, $type = 'data')
+    {
+        return $this->baseUri() . "profiles/$profile_code/$type/$data_code";
     }
 }
