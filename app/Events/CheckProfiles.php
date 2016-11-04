@@ -29,7 +29,6 @@ class CheckProfiles
     public function __construct(Profile $profile)
     {
         $this->profile = $profile;
-        var_dump("event profile fired");
     }
 
     /**

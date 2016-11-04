@@ -17,16 +17,6 @@ class VerfiyOnlineProfile
     protected $profile;
 
     /**
-     * Create the event listener.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
-
-    /**
      * Handle the event.
      *
      * @param  CheckProfiles  $event
@@ -39,21 +29,46 @@ class VerfiyOnlineProfile
         $this->check();
     }
 
+    /**
+     * Check if the profile must be set online or
+     * offline
+     * 
+     * @return void
+     */
     protected function check()
     {
-        // get all data
-        // get all no-data for each data
-        // if each > 36
-        // -> update
+        if ($this->profile->isOnline()) 
+        {
+            $this->checkToSetOffline();
+        }
+        else $this->checkToSetOnline();
     }
 
-    protected function setOffline()
+    /**
+     * Check if the profile displays no data. If yes,
+     * then the profile is set offline
+     * 
+     * @return void
+     */
+    protected function checkToSetOffline()
     {
-        // update the online to false
+        if ($this->profile->getNumberDisplays() == 0)
+        {
+            $this->profile->setOffline();
+        }
     }
 
-    protected function setOnline()
+    /**
+     * Check if the profile displays data. If yes,
+     * then the profile is set to online
+     * 
+     * @return void
+     */
+    protected function checkToSetOnline()
     {
-        
+        if ($this->profile->getNumberDisplays() > 0)
+        {
+            $this->profile->setOnline();
+        }
     }
 }

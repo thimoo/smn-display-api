@@ -18,7 +18,12 @@ use App\Profile;
 // All routes are in api group
 
 Route::get('/', function(){
-    // $p = Profile::find('jun');
+    $p = Profile::first();
+
+    $r = $p->getCollectionDisplays()->count();
+
+    var_dump($r);
+
     // $d = Data::first();
 
     // $collection = Value::getCollectionFor($p, $d);

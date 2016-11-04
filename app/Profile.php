@@ -13,6 +13,11 @@ class Profile extends Model
      */
     protected $primaryKey = 'stn_code';
 
+    /**
+     * The name of the table in database
+     * 
+     * @var string
+     */
     protected $table = "profiles";
 
     /**
@@ -45,6 +50,29 @@ class Profile extends Model
     public function getInfosAttribute($value)
     {
         return json_decode($value);
+    }
+
+    /**
+     * Set the current profile online and save it
+     *
+     * @return void
+     */
+    public function setOnline()
+    {
+        $this->online = true;
+        $this->save();
+    }
+
+    /**
+     * Set the current profile offline and save it
+     * 
+     * @return void
+     */
+    public function setOffline()
+    {
+        $this->online = false;
+        $this->last_time_online = $this->last_update;
+        $this->save();
     }
 
     /**
@@ -124,5 +152,55 @@ class Profile extends Model
         $p->save();
 
         return $p;
+    }
+
+    /**
+     * Return the boolean value of online attribute
+     * 
+     * @return boolean         online
+     */
+    public function isOnline()
+    {
+        return $this->online == 1;
+    }
+
+    /**
+     * Return a collection of data that are display in
+     * the profile as a single data
+     * 
+     * @return \Illuminate\Database\Eloquent\Collection   of App\Data
+     */
+    public function getDataDisplays()
+    {
+        $r = $this->data()->get();
+        $collection = $r->filter(function ($data, $key) {
+            return $data->pivot->data == 1;
+        });
+        return $collection;
+    }
+
+    /**
+     * Rerturn a collection of data that are display in
+     * the profile as a data collection
+     * 
+     * @return \Illuminate\Database\Eloquent\Collection   of App\Data
+     */
+    public function getCollectionDisplays()
+    {
+        $r = $this->data()->get();
+        $collection = $r->filter(function ($data, $key) {
+            return $data->pivot->collection == 1;
+        });
+        return $collection;
+    }
+
+    /**
+     * Return the number of single data display in the profile
+     * 
+     * @return int number of item in collection
+     */
+    public function getNumberDisplays()
+    {
+        return $this->getDataDisplays()->count();
     }
 }
