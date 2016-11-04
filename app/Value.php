@@ -186,6 +186,8 @@ class Value extends Model
     {
         $count = $collection->count();
 
+        var_dump($new); // TODO
+
         $old = $new->subset()->orderBy('date', 'desc')
             ->offset($count)
             ->take(1)

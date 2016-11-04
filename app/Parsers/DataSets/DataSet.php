@@ -83,6 +83,20 @@ class DataSet
     }
 
     /**
+     * Return the next profile in the set
+     * 
+     * @return string the stn_code profile
+     */
+    public final function getNextProfile()
+    {
+        $p = $this->getTheProfile();
+
+        $this->setNextProfileCursor();
+
+        return $p;
+    }
+
+    /**
      * Return if the set has a next value
      * 
      * @return boolean
@@ -333,7 +347,7 @@ class DataSet
      * 
      * @return boolean
      */
-    private function hasNextProfile()
+    public function hasNextProfile()
     {
         return $this->getProfileCursor() < count($this->profiles);
     }

@@ -23,6 +23,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\CheckConstraints' => [
             'App\Listeners\CheckDisplay',
         ],
+        'App\Events\CheckProfiles' => [
+            'App\Listeners\VerfiyOnlineProfile',
+        ],
     ];
 
     /**
