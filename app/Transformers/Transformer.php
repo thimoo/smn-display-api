@@ -53,6 +53,7 @@ class Transformer
 
     /**
      * Transform a collection of model in a JsonResponse
+     * 
      * @param  Collection                    $models the eloquent collection
      * @return Illuminate\Http\JsonResponse          the response
      */
@@ -159,6 +160,7 @@ class Transformer
 
     /**
      * Set an error message for the response
+     * 
      * @param string  $message "An error occured, please retry later!"
      * @param integer $code    422
      */

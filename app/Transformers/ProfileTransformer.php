@@ -35,12 +35,12 @@ class ProfileTransformer extends Transformer
 
     public function filterData($model, $key)
     {
-        return ShortDataTransformer::getAll($model->$key);
+        return collect(ShortDataTransformer::getAll($model->$key));
     }
 
     public function filterCollections($model, $key)
     {
-        return ShortCollectionTransformer::getAll($model->$key);
+        return collect(ShortCollectionTransformer::getAll($model->$key));
     }
 
     public function addHref($object, $model)
