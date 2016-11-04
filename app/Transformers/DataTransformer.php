@@ -9,6 +9,11 @@ class DataTransformer extends Transformer
 {
     use Accessors, AddFilter;
 
+    /**
+     * List of json attributes
+     * 
+     * @var array
+     */
     public $attributes = [
         'code',
         'agregator',

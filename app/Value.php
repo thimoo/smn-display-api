@@ -94,6 +94,14 @@ class Value extends Model
         return self::getCollectionWith($p->stn_code, $d->code);
     }
 
+    /**
+     * Retreive the collection of values that correspond to
+     * the given profile and the given data
+     * 
+     * @param  string $stn_code the stn_code
+     * @param  string $code     the internal data code
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
     public static function getCollectionWith($stn_code, $code)
     {
         return Value::where('profile_stn_code', $stn_code)
@@ -118,6 +126,12 @@ class Value extends Model
                     ->first();
     }
 
+    /**
+     * Return the minimum value in a collection between the profile
+     * and the data
+     * 
+     * @return string the minimum value
+     */
     public function getMinString()
     {
         return Value::where('profile_stn_code', $this->profile_stn_code)
@@ -125,6 +139,11 @@ class Value extends Model
                     ->min('value');
     }
 
+    /**
+     * Return the minimum value model in a collection
+     * 
+     * @return App\Value the minimum value
+     */
     public function getMinValue()
     {
         return Value::where('profile_stn_code', $this->profile_stn_code)
@@ -133,6 +152,12 @@ class Value extends Model
                     ->first();
     }
 
+    /**
+     * Return the maximum value in a collection between the profile
+     * and the data
+     * 
+     * @return string the maximum value
+     */
     public function getMaxString()
     {
         return Value::where('profile_stn_code', $this->profile_stn_code)
@@ -140,6 +165,11 @@ class Value extends Model
                     ->max('value');
     }
 
+    /**
+     * Return the maximum value model in a collection
+     * 
+     * @return App\Value the maximum value
+     */
     public function getMaxValue()
     {   
         return Value::where('profile_stn_code', $this->profile_stn_code)
@@ -148,6 +178,12 @@ class Value extends Model
                     ->first();
     }
 
+    /**
+     * Return the sum value in a collection between the profile
+     * and the data
+     * 
+     * @return string the sum value
+     */
     public function getSumString()
     {   
         return Value::where('profile_stn_code', $this->profile_stn_code)
@@ -216,6 +252,14 @@ class Value extends Model
         return $collection;
     }
 
+    /**
+     * Get the last original value present in the collection, null
+     * if no original value is present
+     * 
+     * @param  Profile $profile the profile
+     * @param  Data    $data    the data
+     * @return \Illuminate\Database\Eloquent\Model
+     */
     public static function getLastOriginalValue(Profile $profile, Data $data)
     {
         $collection = $profile->values($data)->orderBy('date', 'desc')->get();
@@ -256,8 +300,6 @@ class Value extends Model
     public static function smoothSubstitutedValues(Value $new, $collection)
     {
         $count = $collection->count();
-
-        var_dump($new); // TODO
 
         $old = $new->subset()->orderBy('date', 'desc')
             ->offset($count)

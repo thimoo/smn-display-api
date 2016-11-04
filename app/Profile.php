@@ -207,7 +207,12 @@ class Profile extends Model
         return $this->getDataDisplays()->count();
     }
 
-
+    /**
+     * Return the full URI to retreive the complete profile
+     * 
+     * @param  string $profile_code stn_code
+     * @return string               the full URI
+     */
     public function fullProfileUri($profile_code)
     {
         return $this->baseUri() . "profiles/$profile_code";

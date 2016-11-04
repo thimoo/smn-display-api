@@ -86,7 +86,14 @@ class Data extends Model
                     ->where('profile_stn_code', $profile->stn_code);
     }
 
-    // TODO
+    /**
+     * Return the full URI to retreive the complete profile
+     * 
+     * @param  string $profile_code the stn_code
+     * @param  string $data_code    the internal data code
+     * @param  string $type         [data|collections], default data
+     * @return string               the full URI
+     */
     public function fullDataUri($profile_code, $data_code, $type = 'data')
     {
         return $this->baseUri() . "profiles/$profile_code/$type/$data_code";
