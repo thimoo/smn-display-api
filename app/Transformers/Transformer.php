@@ -59,11 +59,11 @@ class Transformer
      */
     public function transformAll(Collection $models)
     {
-        $collection = $models->map(function ($model, $key) {
+        $models->transform(function ($model, $key) {
            return $this->transform($model);
         });
 
-        return $collection->toArray();
+        return array_values($models->toArray());
     }
 
     /**

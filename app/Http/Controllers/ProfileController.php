@@ -22,7 +22,7 @@ class ProfileController extends Controller
     public function show(Profile $profile)
     {
         $profile->data_display = $profile->getDataDisplays();
-        var_dump($profile->data_display);
+        // var_dump($profile->data_display);
         $profile->collections_display = $profile->getCollectionDisplays();
 
         return ProfileTransformer::get($profile);

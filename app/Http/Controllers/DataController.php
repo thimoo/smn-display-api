@@ -46,6 +46,7 @@ class DataController extends Controller
             'date' => $profile->last_update,
             'values' => $profile->values($data)->orderBy('date', 'desc')->get(),
         ]);
+        // var_dump($profile->values($data)->orderBy('date', 'desc')->get());
         return CollectionTransformer::get($collection);
     }
 }
