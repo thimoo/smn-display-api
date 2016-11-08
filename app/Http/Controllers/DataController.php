@@ -13,6 +13,16 @@ use App\Http\Controllers\Agregators\Agregator;
 
 class DataController extends Controller
 {
+    /**
+     * Show the last value in the collection between the profile and
+     * the data given in parameter. If the data has a no-data tag, then
+     * the last original value is attached in the original field.
+     * 
+     * @param  Request $request the request object
+     * @param  Profile $profile the concerned profile
+     * @param  Data    $data    the concerned data
+     * @return Illuminate\Http\JsonResponse
+     */
     public function showData(Request $request, Profile $profile, Data $data)
     {
         $value = Value::getLastValueFor($profile, $data);
@@ -38,6 +48,15 @@ class DataController extends Controller
         return SingleValueTransformer::get($value);
     }
 
+    /**
+     * Show the collection between the profile and the data given in
+     * parameter. A collection is composed of 144 values for the last
+     * 24 hours.
+     * 
+     * @param  Profile $profile the concerned profile
+     * @param  Data    $data    the concerned data
+     * @return Illuminate\Http\JsonResponse
+     */
     public function showCollection(Profile $profile, Data $data)
     {
         $collection = new Collection([
