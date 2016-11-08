@@ -2,13 +2,10 @@
 
 namespace App;
 
-use App\Transformers\Traits\Linkable;
 use Illuminate\Database\Eloquent\Model;
 
 class Profile extends Model
 {
-    use Linkable;
-
     /**
      * Indicate the primary key field
      *
@@ -138,6 +135,18 @@ class Profile extends Model
     }
 
     /**
+     * Get the most recent value between the profile and the given
+     * data parameter
+     * 
+     * @param  Data   $data the data search
+     * @return App\Value    the value serached
+     */
+    public function lastValue(Data $data)
+    {
+        return $this->values($data)->orderBy('date', 'desc')->first();
+    }
+
+    /**
      * Create and return a new profile for the
      * given stn_code with default values
      * 
@@ -215,6 +224,6 @@ class Profile extends Model
      */
     public function fullProfileUri($profile_code)
     {
-        return $this->baseUri() . "profiles/$profile_code";
+        return route('profiles.show', ['profile' => $profile_code]);
     }
 }

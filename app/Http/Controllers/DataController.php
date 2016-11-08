@@ -28,7 +28,6 @@ class DataController extends Controller
             if (!$value) return abort(422);
         }
 
-
         if ($value->isNoData())
         {
             // Get last original value
@@ -42,11 +41,12 @@ class DataController extends Controller
     public function showCollection(Profile $profile, Data $data)
     {
         $collection = new Collection([
+            'profile' => $profile->stn_code,
             'code' => $data->code,
             'date' => $profile->last_update,
             'values' => $profile->values($data)->orderBy('date', 'desc')->get(),
         ]);
-        // var_dump($profile->values($data)->orderBy('date', 'desc')->get());
+
         return CollectionTransformer::get($collection);
     }
 }

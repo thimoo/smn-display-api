@@ -323,13 +323,13 @@ class Value extends Model
      * @param  int          $count      number of element
      * @param  App\Value    $new        the new original value
      * @param  App\Value    $old        the older original value
-     * @return int
+     * @return float                    rounded with 1 number
      */
     protected function getValueFor(int $position, int $count, Value $new, Value $old)
     {
-        return $old->value 
+        return round($old->value 
                + ($position * (1 / ($count + 1)) 
-               * ($new->value - $old->value));
+               * ($new->value - $old->value)), 1);
     }
 
     /**
@@ -386,8 +386,8 @@ class Value extends Model
     }
 
     /**
-     * Count the number of no-data value in the entire
-     * collection
+     * Count the no-data values ​​in the collection rejecting 
+     * tags which are not no-data
      * 
      * @param  \Illuminate\Database\Eloquent\Collection $values the collection
      * @return int                                              number of no-data
@@ -395,7 +395,7 @@ class Value extends Model
     public static function countNoDataValue($values)
     {
         $noDataCollection = $values->reject(function ($value, $key) {
-            return $value->isNoData();
+            return ! $value->isNoData();
         });
 
         return $noDataCollection->count();
@@ -404,6 +404,7 @@ class Value extends Model
     /**
      * Count the last continious no-data value in the given
      * collection of values
+     * 
      * @param  \Illuminate\Database\Eloquent\Collection $values the collection
      * @return int                                              number of no-data
      */

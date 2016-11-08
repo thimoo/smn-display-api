@@ -2,13 +2,10 @@
 
 namespace App;
 
-use App\Transformers\Traits\Linkable;
 use Illuminate\Database\Eloquent\Model;
 
 class Data extends Model
 {
-    use Linkable;
-
     /**
      * Indicate the primary key field
      *
@@ -96,6 +93,16 @@ class Data extends Model
      */
     public function fullDataUri($profile_code, $data_code, $type = 'data')
     {
-        return $this->baseUri() . "profiles/$profile_code/$type/$data_code";
+        $route = 'profiles.' . $type;
+
+        return route($route, [
+            'profile' => $profile_code, 
+            'data' => $data_code,
+        ]);
+    }
+
+    public static function fullUri($profile_code, $data_code, $type = 'data')
+    {
+        return (new self)->fullDataUri($profile_code, $data_code, $type);
     }
 }

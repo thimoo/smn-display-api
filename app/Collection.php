@@ -12,6 +12,7 @@ class Collection extends Model
      * @var array
      */
     protected $fillable = [
+        'profile', 
         'code', 
         'date',
         'values',

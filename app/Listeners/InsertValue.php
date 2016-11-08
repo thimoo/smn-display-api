@@ -98,7 +98,7 @@ class InsertValue
      */
     protected function insert()
     {
-        $this->lastValue = $this->profile->values($this->data)->first();
+        $this->lastValue = $this->profile->lastValue($this->data);
         
         if ($this->value->value)
         {

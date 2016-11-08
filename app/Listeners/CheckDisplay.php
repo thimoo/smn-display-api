@@ -79,7 +79,9 @@ class CheckDisplay
         Display::showData($this->data, $this->profile);
         
         $noData = Value::countNoDataValue($this->values);
-        if ($noData <= 36)
+
+        $maxNoDataConstant = config('constants.max_number_no_data_to_show_collection');
+        if ($noData <= $maxNoDataConstant)
         {
             Display::showCollection($this->data, $this->profile);
         }
@@ -98,7 +100,9 @@ class CheckDisplay
         if ($this->first->isNoData())
         {
             $noData = Value::countLastNoData($this->values);
-            if ($noData > 36)
+            
+            $maxNoDataConstant = config('constants.max_number_no_data_to_hide_data');
+            if ($noData > $maxNoDataConstant)
             {
                 Display::hideData($this->data, $this->profile);
                 Display::hideCollection($this->data, $this->profile);

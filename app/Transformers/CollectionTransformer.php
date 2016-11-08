@@ -2,6 +2,7 @@
 
 namespace App\Transformers;
 
+use App\Data;
 use App\Transformers\Traits\Accessors;
 use App\Transformers\Traits\AddFilter;
 
@@ -20,6 +21,10 @@ class CollectionTransformer extends Transformer
         'values',
     ];
 
+    public $morph = [
+        'href' => '$href',
+    ];
+
     /**
      * Filter the values attributes. Transform the collection with
      * ValueTransformer and add indexes
@@ -36,5 +41,12 @@ class CollectionTransformer extends Transformer
             return $item;
         });
         return $values->toArray();
+    }
+
+    public function addHref($object, $model)
+    {
+        $profile_code = $model->profile;
+        $data_code = $model->code;
+        return Data::fullUri($profile_code, $data_code, 'collections');
     }
 }
