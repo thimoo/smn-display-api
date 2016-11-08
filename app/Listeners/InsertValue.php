@@ -278,7 +278,8 @@ class InsertValue
         // as a collection of Values
         $lastSubstitutedValues = Value::getSubstitutedLastValues($this->profile, $this->data);
 
-        if ($lastSubstitutedValues->count() < 3)
+        $maxSubstitutedValues = config('constants.max_substituted_values');
+        if ($lastSubstitutedValues->count() < $maxSubstitutedValues)
         {
             // If the count of neighbour values is 
             // lesser than 3 the substitution can 
