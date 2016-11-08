@@ -10,6 +10,11 @@ class SingleValueTransformer extends Transformer
 {
     use Accessors, AddFilter;
 
+    /**
+     * List of json attributes
+     * 
+     * @var array
+     */
     public $attributes = [
         'data_code',
         'date',
@@ -19,16 +24,37 @@ class SingleValueTransformer extends Transformer
         'original',
     ];
 
+    /**
+     * List of renamed attributes
+     * 
+     * @var array
+     */
     public $morph = [
         'data_code' => 'code',
         'href' => '$href',
     ];
 
+    /**
+     * Filter the value attribute. Cast in float
+     * 
+     * @param  mixed  $model the result object
+     * @param  string $key   the attribute name
+     * @return float
+     */
     public function filterValue($model, $key)
     {
         return (float) $model->$key;
     }
 
+    /**
+     * Filter the original value. If a original value is
+     * present in the model, transform and delete the href
+     * attribute
+     * 
+     * @param  mixed  $model the source model
+     * @param  string $key   the attribute name
+     * @return mixed
+     */
     public function filterOriginal($model, $key)
     {
         if ($model->$key)
@@ -37,8 +63,17 @@ class SingleValueTransformer extends Transformer
             unset($original->{'$href'});
             return $original;
         }
+        return null;
     }
 
+    /**
+     * Add a new attribute to the result object.
+     * Create a link to refresh the single value
+     * 
+     * @param mixed $object the result object
+     * @param mixed $model  the source model
+     * @return string
+     */
     public function addHref($object, $model)
     {
         $profile_code = $model->profile_stn_code;

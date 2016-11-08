@@ -21,6 +21,11 @@ class CollectionTransformer extends Transformer
         'values',
     ];
 
+    /**
+     * List of renamed attributes
+     * 
+     * @var array
+     */
     public $morph = [
         'href' => '$href',
     ];
@@ -28,6 +33,7 @@ class CollectionTransformer extends Transformer
     /**
      * Filter the values attributes. Transform the collection with
      * ValueTransformer and add indexes
+     * 
      * @param  Model  $model an Eloquent model
      * @param  string $key   attribute name
      * @return array         the content of values attribute
@@ -43,6 +49,12 @@ class CollectionTransformer extends Transformer
         return $values->toArray();
     }
 
+    /**
+     * Add a link to refresh the collection
+     * 
+     * @param mixed $object the result object
+     * @param mixed $model  the collection model
+     */
     public function addHref($object, $model)
     {
         $profile_code = $model->profile;

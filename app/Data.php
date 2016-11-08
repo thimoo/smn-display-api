@@ -84,7 +84,7 @@ class Data extends Model
     }
 
     /**
-     * Return the full URI to retreive the complete profile
+     * Return the full URI to retreive the data or the collections
      * 
      * @param  string $profile_code the stn_code
      * @param  string $data_code    the internal data code
@@ -101,6 +101,14 @@ class Data extends Model
         ]);
     }
 
+    /**
+     * Create a new instance and return the full URI
+     * 
+     * @param  string $profile_code the stn_code
+     * @param  string $data_code    the internal data code
+     * @param  string $type         [data|collections], default data
+     * @return string               the full URI
+     */
     public static function fullUri($profile_code, $data_code, $type = 'data')
     {
         return (new self)->fullDataUri($profile_code, $data_code, $type);
