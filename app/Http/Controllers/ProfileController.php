@@ -64,7 +64,7 @@ class ProfileController extends Controller
             $pDate = new Carbon($profile->last_update);
             $response = new StdClass;
             $response->compareDate = $request->header('X-Datetime');
-            $response->lastUpdate = $profile->last_update;
+            $response->lastUpdate = (new Carbon($profile->last_update))->toW3cString();
             $response->updateAvailable = $this->date->lt($pDate);
             return $transformer->wrap($response);
         }

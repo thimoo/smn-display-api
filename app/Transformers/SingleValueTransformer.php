@@ -3,6 +3,7 @@
 namespace App\Transformers;
 
 use App\Data;
+use Carbon\Carbon;
 use App\Transformers\Traits\Accessors;
 use App\Transformers\Traits\AddFilter;
 
@@ -44,6 +45,18 @@ class SingleValueTransformer extends Transformer
     public function filterValue($model, $key)
     {
         return (float) $model->$key;
+    }
+
+    /**
+     * Filter the date to w3c format
+     * 
+     * @param  mixed  $model the source model
+     * @param  string $key   the attribute name
+     * @return string        the date in w3c format
+     */
+    public function filterDate($model, $key)
+    {
+        return (new Carbon($model->$key))->toW3cString();
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Transformers;
 
+use Carbon\Carbon;
 use App\Transformers\Traits\Accessors;
 use App\Transformers\Traits\AddFilter;
 
@@ -41,15 +42,52 @@ class ProfileTransformer extends Transformer
     ];
 
     /**
+     * Filter the last update datetime to w3c format
+     * 
+     * @param  mixed  $model the source model
+     * @param  string $key   the attribute name
+     * @return string        the date in w3c format
+     */
+    public function filterLastUpdate($model, $key)
+    {
+        return (new Carbon($model->$key))->toW3cString();
+    }
+
+    /**
+     * Filter the last time online datetime to w3c format
+     * 
+     * @param  mixed  $model the source model
+     * @param  string $key   the attribute name
+     * @return string        the date in w3c format
+     */
+    public function filterLastTimeOnline($model, $key)
+    {
+        if ($model->$key == null) return null;
+        else return (new Carbon($model->$key))->toW3cString();
+    }
+
+    /**
      * Filter the online attribute. Cast in boolean
      * 
-     * @param  mixed  $model the result object
+     * @param  mixed  $model the source model
      * @param  string $key   the attribute name
      * @return boolean
      */
     public function filterIsOnline($model, $key)
     {
         return (bool) $model->$key;
+    }
+
+    /**
+     * Filter the altitude attribute. Cast in integer
+     * 
+     * @param  mixed  $model the source model
+     * @param  string $key   the attribute name
+     * @return int
+     */
+    public function filterAltitude($model, $key)
+    {
+        return (int) $model->$key;
     }
 
     /**
