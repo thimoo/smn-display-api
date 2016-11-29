@@ -102,7 +102,7 @@ class InsertValue
         
         // A value can be set to zero, we must check
         // than the value is not equal to null
-        if ($this->value->value != null)
+        if ($this->value->value !== null)
         {
             // A value is present in the CSV
             // for the given profile and the given
