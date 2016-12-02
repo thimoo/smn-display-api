@@ -20,6 +20,4 @@ Route::group(['prefix' => 'v1'], function() {
     Route::get('profiles/{profile}/data/{data}', 'DataController@showData')->name('profiles.data');
     Route::get('profiles/{profile}/collections/{data}', 'DataController@showCollection')->name('profiles.collections');
 
-    Route::get('test', 'DataController@test');
-
 });
