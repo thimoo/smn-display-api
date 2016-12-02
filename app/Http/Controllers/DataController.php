@@ -52,6 +52,7 @@ class DataController extends Controller
     {
         $v = Value::getLastOriginalValue(Profile::find('cha'), Data::find('temp'));
 
+        $v->value = 0;
         $v->tag = Value::NODATA;
 
         $v->original = Value::getCollectionWith('cha', 'temp')->random();
