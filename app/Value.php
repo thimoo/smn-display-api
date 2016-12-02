@@ -136,6 +136,7 @@ class Value extends Model
     {
         return Value::where('profile_stn_code', $this->profile_stn_code)
                     ->where('data_code', $this->data_code)
+                    ->where('tag', '<>', self::NODATA)
                     ->min('value');
     }
 
@@ -148,6 +149,7 @@ class Value extends Model
     {
         return Value::where('profile_stn_code', $this->profile_stn_code)
                     ->where('data_code', $this->data_code)
+                    ->where('tag', '<>', self::NODATA)
                     ->where('value', $this->getMinString())
                     ->first();
     }
@@ -162,6 +164,7 @@ class Value extends Model
     {
         return Value::where('profile_stn_code', $this->profile_stn_code)
                     ->where('data_code', $this->data_code)
+                    ->where('tag', '<>', self::NODATA)
                     ->max('value');
     }
 
@@ -174,6 +177,7 @@ class Value extends Model
     {   
         return Value::where('profile_stn_code', $this->profile_stn_code)
                     ->where('data_code', $this->data_code)
+                    ->where('tag', '<>', self::NODATA)
                     ->where('value', $this->getMaxString())
                     ->first();
     }
