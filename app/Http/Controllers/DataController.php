@@ -48,6 +48,17 @@ class DataController extends Controller
         return SingleValueTransformer::get($value);
     }
 
+    public function test(Request $request)
+    {
+        $v = Value::getLastOriginalValue(Profile::find('cha'), Data::find('temp'));
+
+        $v->tag = Value::NODATA;
+
+        $value->original = Value::getCollectionWith('cha', 'temp')->random();
+
+        return SingleValueTransformer::get($value);
+    }
+
     /**
      * Show the collection between the profile and the data given in
      * parameter. A collection is composed of 144 values for the last
