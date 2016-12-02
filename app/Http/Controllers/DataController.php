@@ -54,9 +54,9 @@ class DataController extends Controller
 
         $v->tag = Value::NODATA;
 
-        $value->original = Value::getCollectionWith('cha', 'temp')->random();
+        $v->original = Value::getCollectionWith('cha', 'temp')->random();
 
-        return SingleValueTransformer::get($value);
+        return SingleValueTransformer::get($v);
     }
 
     /**
