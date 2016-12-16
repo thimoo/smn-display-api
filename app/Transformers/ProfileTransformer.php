@@ -51,8 +51,13 @@ class ProfileTransformer extends Transformer
     public function filterInfos($model, $key)
     {
         $infos = $model->$key;
-        // Convert the altitude attribute to integer
-        $infos->altitude = (int) $infos->altitude;
+        
+        if (isset($infos->altitude))
+        {
+            // Convert the altitude attribute to integer
+            $infos->altitude = (int) $infos->altitude;
+        }
+
         return $infos;
     }
 
