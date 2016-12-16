@@ -16,11 +16,10 @@ class ProfileTransformer extends Transformer
      * @var array
      */
     public $attributes = [
-        'stn_code', 
-        'altitude', 
-        'infos', 
-        'last_update', 
-        'last_time_online', 
+        'stn_code',
+        'infos',
+        'last_update',
+        'last_time_online',
         'online',
         'data_display',
         'collections_display',
@@ -96,18 +95,6 @@ class ProfileTransformer extends Transformer
     public function filterIsOnline($model, $key)
     {
         return (bool) $model->$key;
-    }
-
-    /**
-     * Filter the altitude attribute. Cast in integer
-     * 
-     * @param  mixed  $model the source model
-     * @param  string $key   the attribute name
-     * @return int
-     */
-    public function filterAltitude($model, $key)
-    {
-        return (int) $model->$key;
     }
 
     /**
