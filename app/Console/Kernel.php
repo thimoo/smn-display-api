@@ -13,7 +13,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        Commands\RefreshDatabase::class
+        Commands\RefreshDatabase::class,
+        Commands\RefreshProfiles::class,
     ];
 
     /**
@@ -24,7 +25,11 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        // Check if new data is present every minute
         $schedule->command('database:refresh')->everyMinute();
+
+        // Refresh profile's information every day
+        $schedule->command('profiles:refresh')->daily();
     }
 
     /**

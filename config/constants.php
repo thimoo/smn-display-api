@@ -40,4 +40,10 @@ return [
      */
     'max_substituted_values' => 3,
 
+    /**
+     * Relative path from the storage root to the profile's 
+     * informtaion csv
+     */
+    'stations_infos_path' => 'csv/stations_infos.csv',
+
 ];

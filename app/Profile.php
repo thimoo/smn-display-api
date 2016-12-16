@@ -2,6 +2,7 @@
 
 namespace App;
 
+use \StdClass;
 use Illuminate\Database\Eloquent\Model;
 
 class Profile extends Model
@@ -225,5 +226,26 @@ class Profile extends Model
     public function fullProfileUri($profile_code)
     {
         return route('profiles.show', ['profile' => $profile_code]);
+    }
+
+    /**
+     * Return a serialized string to find the profile
+     * by stn_code
+     * @param  String $code the stn code to serialize
+     * @return String       the serialized stn code
+     */
+    public static function normalizeCode(String $code)
+    {
+        return trim(strtolower($code));
+    }
+
+    /**
+     * Set the infos attribute with a standard class
+     * 
+     * @param StdClass $newInfos the object to json encode
+     */
+    public function setNewInfos(StdClass $newInfos)
+    {
+        $this->infos = json_encode($newInfos);
     }
 }

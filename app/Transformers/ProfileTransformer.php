@@ -42,6 +42,21 @@ class ProfileTransformer extends Transformer
     ];
 
     /**
+     * Filter the infos object
+     * 
+     * @param  mixed  $model the source model
+     * @param  string $key   the attrivute name
+     * @return object        the pased infos object
+     */
+    public function filterInfos($model, $key)
+    {
+        $infos = $model->$key;
+        // Convert the altitude attribute to integer
+        $infos->altitude = (int) $infos->altitude;
+        return $infos;
+    }
+
+    /**
      * Filter the last update datetime to w3c format
      * 
      * @param  mixed  $model the source model

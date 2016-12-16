@@ -1,0 +1,281 @@
+STATION_NAT_ABBR_TX;STATION_NAME_TX;STATION_HEIGHT_ASL_NU
+ABO;Adelboden;1327
+AEG;Oberägeri;724
+AGATT;Attelwil;475
+AGSTE;Stetten;355
+AIE;Affoltern im Emmental;755
+AIG;Aigle;381
+AIR;Airolo;1139
+ALS;Altstätten, SG;430
+ALT;Altdorf;438
+AMW;Amriswil;420
+AND;Andeer;987
+ANT;Andermatt;1438
+APP;Appenzell;750
+ARH;Altenrhein;398
+ARO;Arosa;1878
+ATT;Les Attelas;2730
+AUB;L' Auberson;1096
+AVA;Les Avants;1036
+BAN;Bantiger;942
+BAS;Basel / Binningen;316
+BEC;Bernina-Curtinatsch;2090
+BEH;Passo del Bernina;2260
+BER;Bern / Zollikofen;553
+BEX;Bex;402
+BEY;Bellelay;923
+BEZ;Beznau;326
+BIA;Biasca;278
+BIE;Bière;684
+BIN;Binn;1448
+BIV;Bivio;1856
+BLA;Blatten, Lötschental;1538
+BLZ;Bellinzona;224
+BOL;Boltigen;820
+BOS;Bosco-Gurin;1486
+BOU;Bouveret;374
+BRI;Brig;665
+BRL;La Brévine;1050
+BRP;Brusio-Piazzo;856
+BRT;Bristen;784
+BRW;Braunwald;1299
+BRZ;Brienz;567
+BUF;Buffalora;1968
+BUS;Buchs / Aarau;387
+CDF;La Chaux-de-Fonds;1018
+CDM;Col des Mosses;1412
+CEV;Cevio;417
+CGI;Nyon / Changins;455
+CHA;Chasseral;1599
+CHB;Les Charbonnières;1045
+CHD;Château-d'Oex;1029
+CHM;Chaumont;1136
+CHU;Chur;556
+CHZ;Cham;443
+CIM;Cimetta;1661
+CMA;Crap Masegn;2480
+COL;Coldrerio;347
+COM;Acquarossa / Comprovasco;575
+COS;Cossonay;590
+COU;Couvet;728
+COV;Piz Corvatsch;3302
+COY;Courtelary;695
+CRM;Cressier;431
+CTO;Crana-Torricella;1002
+DAV;Davos;1594
+DEM;Delémont;439
+DIA;Les Diablerets;2964
+DIS;Disentis / Sedrun;1197
+DIT;Dietikon;384
+DOB;Doggen-Benken;408
+DOL;La Dôle;1670
+EBK;Ebnat-Kappel;623
+EGH;Eggishorn;2893
+EGO;Egolzwil;521
+EIN;Einsiedeln;910
+ELM;Elm;958
+ENG;Engelberg;1036
+ENT;Entlebuch;768
+ESZ;Eschenz;414
+EVI;Evionnaz;482
+EVO;Evolène / Villa;1825
+FAH;Fahy;596
+FAI;Faido;747
+FIO;Fionnay;1500
+FIT;Fieschertal;1175
+FLU;Flühli, LU;940
+FLW;Flawil;570
+FRE;Bullet / La Frétaz;1205
+FRU;Frutigen;756
+GEN;Monte Generoso;1600
+GES;Gersau;521
+GIH;Giswil;471
+GLA;Glarus;517
+GOA;Göscheneralp;1745
+GOE;Gösgen;380
+GOR;Gornergrat;3129
+GOS;Göschenen;950
+GRA;Fribourg / Posieux;646
+GRC;Grächen;1605
+GRE;Grenchen;430
+GRH;Grimsel Hospiz;1980
+GRO;Grono;324
+GSB;Col du Grand St-Bernard;2472
+GSG;Gsteig, Gstaad;1196
+GTT;Guttannen;1055
+GUE;Gütsch ob Andermatt;2283
+GUT;Güttingen;440
+GVE;Genève-Cointrin;412
+HAI;Salen-Reutenen;718
+HLL;Hallau;419
+HOE;Hörnli;1144
+HUT;Huttwil;633
+ILZ;Ilanz;698
+INN;Innerthal;903
+INT;Interlaken;577
+JON;Jona;410
+JUN;Jungfraujoch;3580
+KAS;Kandersteg;1178
+KLA;Klosters / Aeuja;1186
+KLO;Zürich / Kloten;426
+KOP;Koppigen;484
+LAB;Langenbruck;731
+LAC;Lachen / Galgenen;468
+LAG;Langnau i.E.;745
+LAT;Bergün / Latsch;1408
+LEI;Leibstadt;341
+LEU;Leukerbad;1286
+LOH;Lohn, SH;585
+LON;Longirod;900
+LSN;Lausanne;601
+LTB;Lauterbrunnen;815
+LUG;Lugano;273
+LUZ;Luzern;454
+MAB;Martigny / Ravoire;461
+MAG;Magadino / Cadenazzo;203
+MAH;Mathod;437
+MAL;Malbun;1610
+MAR;Les Marécottes;990
+MAS;Marsens;715
+MAT;Martina;1041
+MER;Meiringen;589
+MEV;Mervelier;540
+MGL;Magglingen;883
+MLS;Le Moléson;1974
+MMO;Mormont;535
+MOA;Mosen;453
+MOB;Montagnier, Bagnes;848
+MOE;Möhlin;344
+MRP;Monte Rosa-Plattje;2885
+MSG;Mosogno;771
+MSK;Mühleberg / Stockeren;775
+MTE;Mottec;1580
+MTR;Matro;2171
+MUB;Mühleberg;480
+MUR;Muri, AG;577
+MVE;Montana;1427
+NAP;Napf;1404
+NAS;Naluns / Schlivera;2400
+NEB;Nesselboden;1055
+NEU;Neuchâtel;485
+OBI;Oberiberg;1075
+OBR;Oberriet, SG;409
+OED;Oberehrendingen;428
+OPF;Opfikon;424
+ORO;Oron;827
+ORS;Orsières;929
+OTL;Locarno / Monti;367
+PAY;Payerne;490
+PIL;Pilatus;2106
+PIO;Piotta;990
+PLF;Plaffeien;1042
+PMA;Piz Martegnas;2670
+PRE;St-Prex;425
+PSI;PSI Würenlingen;334
+PUY;Pully;456
+QUI;Quinten;419
+RAG;Bad Ragaz;496
+REH;Zürich / Affoltern;444
+REM;Rempen;650
+ROB;Poschiavo / Robbia;1078
+ROE;Robièi;1896
+ROG;Rossberg;1119
+ROM;Romont;692
+ROT;Rothenbrunnen;622
+RUE;Rünenberg;611
+SAE;Säntis;2502
+SAG;Sattel-Aegeri;790
+SAI;Saignelégier;883
+SAM;Samedan;1709
+SAN;St. Antönien;1456
+SAP;Safien-Platz;1300
+SAX;Salez / Saxerriet;436
+SBE;S. Bernardino;1639
+SBO;Stabio;353
+SCM;Schmerikon;408
+SCU;Scuol;1304
+SHA;Schaffhausen;438
+SIA;Segl-Maria;1804
+SIE;Siebnen;452
+SIH;Sihlbrugg;549
+SIM;Simplon-Dorf;1465
+SIO;Sion;482
+SMA;Zürich / Fluntern;556
+SMM;Sta. Maria, Val Müstair;1383
+SOG;Soglio;1086
+SPF;Schüpfheim;742
+SRS;Schiers;626
+STB;Starkenbach;897
+STC;St. Chrischona;493
+STG;St. Gallen;776
+STK;Steckborn;398
+STP;Stöckalp;1070
+SUA;Schaan / Untere Au;444
+SUS;Susch;1416
+SVG;Savognin;1172
+TAE;Aadorf / Tänikon;539
+THS;Thusis;672
+THU;Thun;570
+TIT;Titlis;3040
+TRU;Trun;834
+TST;Tschiertschen;1273
+UBB;Unterbözberg;536
+UEB;Uetliberg;854
+ULR;Ulrichen;1346
+UNK;Unterkulm;454
+URN;Urnäsch;825
+VAB;Valbella;1569
+VAD;Vaduz;457
+VAE;Vättis;939
+VEV;Vevey / Corseaux;405
+VIO;Vicosoprano;1089
+VIS;Visp;639
+VIT;Villars-Tiercelin;859
+VLS;Vals;1242
+VRI;Vrin;1384
+VSANZ;Anzère;1614
+VSARO;Arolla;2005
+VSBAS;Baltschiedertal;1318
+VSBLI;Blinnen;1530
+VSBRI;Bricola;2431
+VSBRU;Bruchji;2300
+VSBSP;Bourg-St-Pierre;1822
+VSCHO;Choëx;891
+VSCHY;Champéry;1055
+VSCLU;Clusanfe;1926
+VSCOL;Les Collons;1770
+VSDER;Derborence;1366
+VSDUR;Durnand;1214
+VSEMO;Emosson;1923
+VSERG;Ergisch;1133
+VSFIN;Findelen;2170
+VSFLY;LaFouly;1564
+VSGDX;Barrage Grande Dixence;2162
+VSISE;Isérables;1237
+VSJEI;Jeizinen;1556
+VSMAT;Mattsand;1230
+VSMOI;Moiry;2127
+VSNEN;Nendaz;1938
+VSOTE;Otemma;2357
+VSSAB;Saas Balen;1535
+VSSAL;Saleina;1600
+VSSFE;Salanfe;1965
+VSSIE;Sierre;535
+VSSOR;Sorniot-Lac Inférieur;1990
+VSSTA;Stafel;2183
+VSTRI;Trient;1329
+VSTSN;Tsanfleuron;2052
+VSTUR;Turtmann;2180
+VSVER;Vercorin;1650
+VSVIS;Visperterminen;1352
+WAE;Wädenswil;485
+WAR;Wartau;468
+WEE;Weesen;425
+WFJ;Weissfluhjoch;2691
+WHF;Riedholz-Wallierhof;518
+WIN;Winterthur-Seen;506
+WIT;Wittnau;463
+WYN;Wynau;422
+ZER;Zermatt;1638
+ZEV;Zervreila;1738
+ZWK;Zwillikon;461
