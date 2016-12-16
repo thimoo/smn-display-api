@@ -3,6 +3,7 @@
 namespace App;
 
 use \StdClass;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Profile extends Model
@@ -160,7 +161,7 @@ class Profile extends Model
         $p->stn_code = $stn_code;
         $p->altitude = 0;
         $p->infos = "{}";
-        $p->last_update = null;
+        $p->last_update = new Carbon();
         $p->online = true;
         $p->save();
 

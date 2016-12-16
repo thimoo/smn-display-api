@@ -97,7 +97,7 @@ class RefreshDatabase extends Command
             $response = $client->request('GET', $csvTargetUrl);
 
             $status = $response->getStatusCode();
-            if ($status < 300) 
+            if ($status >= 200 && $status < 300)
             {
                 $this->info("Response ok [$status]");
                 $this->csvStatusOk($response);
@@ -328,13 +328,13 @@ class RefreshDatabase extends Command
         // If no last_update is found, then the database
         // are not yet be populate, database must be 
         // updated
-        if ($this->databaseUpdateTime == null) return true;
+        if ($this->databaseUpdateTime === null) return true;
 
         // If a dataset is present, then retreive the 
         // datetime of the content. If the datetime of
         // the content is greater than the database, then
         // the database must be udpated
-        if ($dataSet != null)
+        if ($dataSet !== null)
         {
            $this->nextUpdateTime = $dataSet->datetime();
            return $this->nextUpdateTime->gt($this->databaseUpdateTime);
@@ -360,7 +360,7 @@ class RefreshDatabase extends Command
     private function getLastUpdate()
     {
         $res = DB::table('profiles')->max('last_update');
-        if ($res == null) $this->databaseUpdateTime = null;
+        if ($res === null) $this->databaseUpdateTime = null;
         else $this->databaseUpdateTime = new Carbon($res);
     }
 }

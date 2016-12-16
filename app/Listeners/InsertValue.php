@@ -63,7 +63,7 @@ class InsertValue
         $this->profile = Profile::find($this->value->profile_stn_code);
         $this->data = Data::where('smn_code', $this->value->data_code)->first();
 
-        if ($this->profile == null)
+        if ($this->profile === null)
         {
             // If the profile does not already exists,
             // then create the profile with default values
@@ -124,7 +124,6 @@ class InsertValue
 
         // Update the last update time on the attach
         // profile
-        // TODO: optize this all profile are updated 10 times
         $this->profile->last_update = $this->value->date;
         $this->profile->save();
     }
@@ -138,7 +137,7 @@ class InsertValue
      */
     protected function insertWithValue()
     {
-        if ($this->lastValue == null)
+        if ($this->lastValue === null)
         {
             // No older value is present with
             // the new one. Insert the new value 
@@ -192,7 +191,7 @@ class InsertValue
      */
     protected function insertWithNoValue()
     {
-        if ($this->lastValue == null)
+        if ($this->lastValue === null)
         {
             // If no value is present in the CSV
             // and last value is not present in db,
