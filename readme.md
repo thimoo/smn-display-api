@@ -1,27 +1,46 @@
-# Laravel PHP Framework
+# SwissMetNet Display API
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+The SwissMetNet Display API is a web service for retrieving public weather information from a network of Swiss stations. The service stops the information every ten minutes over 24 hours and offers an API to consume them.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+## Server
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+To start the server run `php artisan serve`. The server will start by default on port 8000.
 
-## Official Documentation
+## Custom commands
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+To check if new data are available in the csv run `php artisan database:refresh`. This command will download the csv and check if new data can be inserted into the database.
 
-## Contributing
+To update the station information the command `php artisan profiles:refresh` can be run. The information is stored in the file `storage/csv/stations_infos.csv`.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+## Register the Scheduler
 
-## Security Vulnerabilities
+Custom commands are registered with the scheduler. To execute it every minute you can add `* * * * * php /path/to/artisan schedule:run >> /dev/null 2>&1` in your crontab job.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+## Installation
 
-## License
+To install the project on a development or a production server run :
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+```
+php composer install
+php artisan migrate
+php artisan db:seed
+```
+
+## Config File
+
+A .env file is required to define the configuration of the database and the environment (development or production). This file must have these lines at least :
+
+```
+APP_ENV=...
+APP_KEY=...
+APP_DEBUG=...
+APP_LOG_LEVEL=...
+APP_URL=...
+
+DB_CONNECTION=...
+DB_HOST=...
+DB_PORT=...
+DB_DATABASE=...
+DB_USERNAME=...
+DB_PASSWORD=...
+```
