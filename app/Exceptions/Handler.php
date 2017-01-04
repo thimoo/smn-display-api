@@ -44,7 +44,12 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        return parent::render($request, $exception);
+        return response()->json([
+            'error' => 422, 
+            'data' => [
+                'message' => 'An error occured, please retry later!'
+            ]
+        ], 422);
     }
 
     /**
