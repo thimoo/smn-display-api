@@ -2,6 +2,10 @@
 
 The SwissMetNet Display API is a web service for retrieving public weather information from a network of Swiss stations. The service stops the information every ten minutes over 24 hours and offers an API to consume them.
 
+## Data source
+
+The data stored into the service come from the url stores in `csv_target_url` in the `config/constants.php` file.
+
 ## Server
 
 To start the server run `php artisan serve`. The server will start by default on port 8000.
@@ -26,7 +30,13 @@ php artisan migrate
 php artisan db:seed
 ```
 
-## Config File
+## Configuration
+
+### Configuring the service
+
+Some constraint values are stored in the `csv_target_url`. It's possible to change the behavior of the web service with these values.
+
+### Environment file
 
 A .env file is required to define the configuration of the database and the environment (development or production). This file must have these lines at least :
 
