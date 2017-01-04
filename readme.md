@@ -34,7 +34,7 @@ php artisan db:seed
 
 ### Configuring the service
 
-Some constraint values are stored in the `csv_target_url`. It's possible to change the behavior of the web service with these values.
+Some constraint values are stored in the `config/constants.php` file. It's possible to change the behavior of the web service with these values.
 
 ### Environment file
 
