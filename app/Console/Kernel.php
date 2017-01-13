@@ -15,6 +15,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         Commands\RefreshDatabase::class,
         Commands\RefreshProfiles::class,
+        Commands\FakeGraph::class,
     ];
 
     /**
