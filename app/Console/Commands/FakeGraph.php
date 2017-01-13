@@ -18,7 +18,8 @@ class FakeGraph extends Command
     protected $signature = 'fake:graph 
                             {profile : The stn_code of the profile}
                             {data : The code of the data}
-                            {noData? : The number of no-data}';
+                            {noData? : The number of no-data}
+                            {--B|bar : Set the graph as a bar graph}';
 
     /**
      * The console command description.
@@ -33,6 +34,27 @@ class FakeGraph extends Command
      * @var integer
      */
     protected $noDataNumber = 6;
+
+    /**
+     * Defines the minimum value for starting the graph
+     * 
+     * @var integer
+     */
+    protected $min = -20;
+
+    /**
+     * Defines the maximum value for starting the graph
+     * 
+     * @var integer
+     */
+    protected $max = 30;
+
+    /**
+     * Defines if values is for a line graph or a bar graph
+     * 
+     * @var boolean
+     */
+    protected $barMode = false;
 
     /**
      * Create a new command instance.
@@ -55,6 +77,13 @@ class FakeGraph extends Command
         $code = $this->argument('data');
         
         $this->noDataNumber = ($this->argument('noData') === null) ? $this->noDataNumber : (int) $this->argument('noData');
+
+        if ($this->option('bar'))
+        {
+            $this->min = 0;
+            $this->max = 1;
+            $this->barMode = true;
+        }
 
         try
         {
@@ -113,8 +142,19 @@ class FakeGraph extends Command
 
         if ($prev != null)
         {
-            $diff = rand(-40, 40) / 10;
+            $diff = rand(-4, 4) / 10;
             $nextValue = $prev->value + $diff;
+
+            if ($this->barMode)
+            {
+                $nextValue = max($this->min, $nextValue);
+                $nextValue = min($this->max, $nextValue);
+
+                if (rand(0, 99) >= 95)
+                {
+                    $nextValue = 0;
+                }
+            }
 
             switch ($prev->tag) {
                 case Value::NODATA:
@@ -124,6 +164,7 @@ class FakeGraph extends Command
                     }
                     else 
                     {
+                        $nextValue = rand($this->min, $this->max);
                         $tab = [$nextValue, Value::ORIGINAL];
                     }
                     break;
@@ -143,7 +184,7 @@ class FakeGraph extends Command
         }
         else 
         {
-            $tab = [rand(-20, 30), Value::ORIGINAL];
+            $tab = [rand($this->min, $this->max), Value::ORIGINAL];
         }
 
         return $tab;
