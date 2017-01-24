@@ -66,6 +66,13 @@ class ListNoData extends Command
             });
         });
 
-        $this->table(['profile', 'data', 'num', 'no-data'], $table);
+        if (count($table) > 0)
+        {
+            $this->table(['profile', 'data', 'no-data', 'displayed'], $table);            
+        }
+        else 
+        {
+            $this->comment('No no-data are currently displayed!');
+        }
     }
 }
