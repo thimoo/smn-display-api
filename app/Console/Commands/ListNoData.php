@@ -14,7 +14,7 @@ class ListNoData extends Command
      *
      * @var string
      */
-    protected $signature = 'list:nodata';
+    protected $signature = 'list:nodata {--a|all}';
 
     /**
      * The console command description.
@@ -41,7 +41,7 @@ class ListNoData extends Command
     public function handle()
     {
         $this->info('List profiles that have no-data displayed');
-        
+
         $profiles = Profile::all();
         $data = Data::all();
 
@@ -50,10 +50,14 @@ class ListNoData extends Command
                 if ($profile->lastValue($d)->isNoData()) 
                 {
                     $count = Value::countLastNoData($profile->values($d)->get());
+                    if ($this->option('all'))
+                    {
+                        $this->line($profile->stn_code . ': ' . $count);
+                    }
                     if ($count < config('constants.max_number_no_data_to_hide_data') 
                         && $count > config('constants.max_substituted_values'))
                     {
-                        $this->line($profile->stn_code);
+                        $this->infos($profile->stn_code . ': ' . $count);
                     }
                 }
             });
