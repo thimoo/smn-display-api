@@ -16,6 +16,7 @@ class Kernel extends ConsoleKernel
         Commands\RefreshDatabase::class,
         Commands\RefreshProfiles::class,
         Commands\FakeGraph::class,
+        Commands\ListNoData::class,
     ];
 
     /**
