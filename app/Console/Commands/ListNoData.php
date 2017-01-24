@@ -51,7 +51,8 @@ class ListNoData extends Command
             $data->each(function ($d, $k) use ($profile, $data, &$table) {
                 if ($profile->lastValue($d)->isNoData()) 
                 {
-                    $count = Value::countLastNoData($profile->values($d)->get());
+                    $values = $profile->values($d)->orderBy('date', 'desc')->get();
+                    $count = Value::countLastNoData($values);
                     if ($this->option('all'))
                     {
                         $table[] = [$profile->stn_code, $d->code, $count, ''];
