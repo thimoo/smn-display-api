@@ -80,6 +80,7 @@ class RefreshDatabase extends Command
     public function handle()
     {
         $this->info("Starting refresh...");
+        DB::beginTransaction();
 
         // Loading the target url in the config file
         $csvTargetUrl = config('constants.csv_target_url');
@@ -111,6 +112,9 @@ class RefreshDatabase extends Command
         {
             $this->csvStatusError();
         }
+
+        DB::commit();
+        $this->info("Refresh finished!");
     }
 
     /**
