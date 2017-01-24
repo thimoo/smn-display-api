@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use \DB;
 use \StdClass;
 use App\Profile;
 use Illuminate\Console\Command;
@@ -22,6 +23,14 @@ class RefreshProfiles extends Command
      * Index in line for the altitude station
      */
     const ALTITUDE = 2;
+
+    /**
+     * If true the db transaction is commit, else
+     * the transaction is rollback 
+     * 
+     * @var boolean
+     */
+    protected $commit = true;
 
     /**
      * The name and signature of the console command.
@@ -69,10 +78,11 @@ class RefreshProfiles extends Command
         // parse the csv format
         $path = storage_path(config('constants.stations_infos_path'));
         
-        if (($pointer = fopen($path, 'r')) !== false)
+        if (($pointer = fopen($path, 'r')))
         {
+            DB::beginTransaction();
             $first = true;
-            while (($line = fgetcsv($pointer, 0, ';')) !== false)
+            while (($line = fgetcsv($pointer, 0, ';')))
             {
                 // Ignore the first header line
                 if (! $first)
@@ -82,6 +92,15 @@ class RefreshProfiles extends Command
                 $first = false;
             }
             fclose($pointer);
+            
+            if ($this->commit)
+            {
+                DB::commit();
+            } 
+            else 
+            {
+                DB::rollBack();
+            }
         }
     }
 
@@ -125,6 +144,10 @@ class RefreshProfiles extends Command
         if ($profile->save())
         {
             $this->info("'$profile->stn_code' has been refreshed !");
+        }
+        else 
+        {
+            $this->commit = false;
         }
     }
 }

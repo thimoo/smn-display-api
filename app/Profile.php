@@ -36,7 +36,6 @@ class Profile extends Model
      */
     protected $fillable = [
         'stn_code', 
-        'altitude', 
         'infos', 
         'last_update', 
         'last_time_online', 
@@ -159,7 +158,6 @@ class Profile extends Model
     {
         $p = new Profile;
         $p->stn_code = $stn_code;
-        $p->altitude = 0;
         $p->infos = "{}";
         $p->last_update = new Carbon();
         $p->online = true;
