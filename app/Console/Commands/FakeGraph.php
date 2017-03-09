@@ -19,6 +19,8 @@ class FakeGraph extends Command
                             {profile : The stn_code of the profile}
                             {data : The code of the data}
                             {noData? : The number of no-data}
+                            {min? : The minimum value for starting the graph}
+                            {max? : The maximum value for starting the graph}
                             {--B|bar : Set the graph as a bar graph}';
 
     /**
@@ -76,7 +78,14 @@ class FakeGraph extends Command
         $stnCode = $this->argument('profile');
         $code = $this->argument('data');
         
+        $this->min = ($this->argument('min') === null) ? $this->min : (int) $this->argument('min');
+        $this->max = ($this->argument('max') === null) ? $this->max : (int) $this->argument('max');
+
         $this->noDataNumber = ($this->argument('noData') === null) ? $this->noDataNumber : (int) $this->argument('noData');
+
+        var_dump($this->min);
+        var_dump($this->max);
+        var_dump($this->noDataNumber);
 
         if ($this->option('bar'))
         {
