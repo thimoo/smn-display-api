@@ -13,7 +13,7 @@ class RefreshProfiles extends Command
      * Index in line for the stn_code
      */
     const STN_CODE = 0;
-    
+
     /**
      * Index in line for the name station
      */
@@ -26,8 +26,8 @@ class RefreshProfiles extends Command
 
     /**
      * If true the db transaction is commit, else
-     * the transaction is rollback 
-     * 
+     * the transaction is rollback
+     *
      * @var boolean
      */
     protected $commit = true;
@@ -69,7 +69,7 @@ class RefreshProfiles extends Command
     /**
      * Parse the csv file at the path given in the constants
      * file
-     * 
+     *
      * @return void
      */
     private function parse()
@@ -77,7 +77,7 @@ class RefreshProfiles extends Command
         // Load the file and
         // parse the csv format
         $path = storage_path(config('constants.stations_infos_path'));
-        
+
         if (($pointer = fopen($path, 'r')))
         {
             DB::beginTransaction();
@@ -92,12 +92,12 @@ class RefreshProfiles extends Command
                 $first = false;
             }
             fclose($pointer);
-            
+
             if ($this->commit)
             {
                 DB::commit();
-            } 
-            else 
+            }
+            else
             {
                 DB::rollBack();
             }
@@ -107,18 +107,22 @@ class RefreshProfiles extends Command
     /**
      * Try to retreive the profile and check if informations
      * already exists, if not update the profile
-     * 
+     *
      * @param  array  $line the current line in the csv
      * @return void
      */
     private function refresh(array $line)
-    {   
+    {
         // Get the profile
         $code = Profile::normalizeCode($line[self::STN_CODE]);
         $profile = Profile::find($code);
 
+        $newName = $line[self::NAME];
+
         // Check if update needed
-        if ($profile && ! isset($profile->infos->name) && ! isset($profile->infos->altitude))
+        if ($profile && (
+          (! isset($profile->infos->name) && ! isset($profile->infos->altitude) )
+          || $profile->infos->name !== $newName ) )
         {
             // Update needed
             $this->info("Refresh the profile '$profile->stn_code'...");
@@ -128,7 +132,7 @@ class RefreshProfiles extends Command
 
     /**
      * Update the given profile with the array of infos
-     * 
+     *
      * @param  Profile $profile the profile to update
      * @param  array   $infos   the new infos
      * @return void
@@ -138,14 +142,14 @@ class RefreshProfiles extends Command
         $newInfo = new StdClass();
         $newInfo->name = $infos[self::NAME];
         $newInfo->altitude = $infos[self::ALTITUDE];
-    
+
         $profile->setNewInfos($newInfo);
 
         if ($profile->save())
         {
             $this->info("'$profile->stn_code' has been refreshed !");
         }
-        else 
+        else
         {
             $this->commit = false;
         }
