@@ -117,12 +117,9 @@ class RefreshProfiles extends Command
         $code = Profile::normalizeCode($line[self::STN_CODE]);
         $profile = Profile::find($code);
 
-        $newName = $line[self::NAME];
-
         // Check if update needed
-        if ($profile && (
-          (! isset($profile->infos->name) && ! isset($profile->infos->altitude) )
-          || $profile->infos->name !== $newName ) )
+        if ($profile && ( (! isset($profile->infos->name) && ! isset($profile->infos->altitude) )
+          || $profile->infos->name !== $line[self::NAME] ) )
         {
             // Update needed
             $this->info("Refresh the profile '$profile->stn_code'...");
