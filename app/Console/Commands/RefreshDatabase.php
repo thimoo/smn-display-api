@@ -33,28 +33,28 @@ class RefreshDatabase extends Command
 
     /**
      * Store the datetime of the last update in DB
-     * 
+     *
      * @var \Carbon\Carbon
      */
     private $databaseUpdateTime;
 
     /**
      * Store the datetime found for the current update
-     * 
+     *
      * @var \Carbon\Carbon
      */
     private $nextUpdateTime;
 
     /**
      * Store the importer used to import the DataSet
-     * 
+     *
      * @var App\Importers\Importer
      */
     private $importer;
 
     /**
      * Store the parser used to transform the CSV in DataSet
-     * 
+     *
      * @var App\Parsers\CsvParser
      */
     private $parser;
@@ -88,7 +88,7 @@ class RefreshDatabase extends Command
 
         // Create a new Http client and make the request
         $client = new HttpClient();
-        
+
         try
         {
             // If the GET is successful, then trigger
@@ -102,13 +102,13 @@ class RefreshDatabase extends Command
             {
                 $this->info("Response ok [$status]");
                 $this->csvStatusOk($response);
-            } 
-            else 
+            }
+            else
             {
                 $this->csvStatusError();
-            }    
-        } 
-        catch (ClientException $e) 
+            }
+        }
+        catch (ClientException $e)
         {
             $this->csvStatusError();
         }
@@ -123,7 +123,7 @@ class RefreshDatabase extends Command
      * as a string and output a dataset object.
      * The dataset is pass to an importer that fire all
      * necessary events.
-     * 
+     *
      * @param  object
      * @return void
      */
@@ -141,7 +141,7 @@ class RefreshDatabase extends Command
         {
             $this->insertNewValues();
         }
-        else 
+        else
         {
             $this->insertNoDataValues();
         }
@@ -151,14 +151,14 @@ class RefreshDatabase extends Command
      * If an error occured, check if the database must
      * be updated, if yes, then fire an event for inserting
      * no-data values.
-     * 
+     *
      * @return void
      */
     private function csvStatusError()
     {
         $this->logTheError();
 
-        if ($this->databaseMustBeUpdated()) 
+        if ($this->databaseMustBeUpdated())
         {
             $this->insertNoDataValues();
         }
@@ -179,7 +179,7 @@ class RefreshDatabase extends Command
         // Check if the database must be updated
         // based on the dataset datetime, if yes:
         // import all data
-        if ($this->databaseMustBeUpdated($dataSet)) 
+        if ($this->databaseMustBeUpdated($dataSet))
         {
             $this->info('Database must be updated!');
             $this->displayDates();
@@ -210,11 +210,11 @@ class RefreshDatabase extends Command
         // Generate a new DataSet with no-data
         // values for the date, profiles and data
         $dataSet = (new DataSet)->populate(
-            $forDate, 
-            $forProfiles, 
+            $forDate,
+            $forProfiles,
             $forData
         );
-        
+
         // Import the DataSet
         $this->importer->load($dataSet)->import();
     }
@@ -222,7 +222,7 @@ class RefreshDatabase extends Command
     /**
      * Get the next datetime used to set the date field
      * on no-data values when CSV error occured
-     * 
+     *
      * @return Carbon\Carbon
      */
     private function computeNextDatetime()
@@ -230,7 +230,7 @@ class RefreshDatabase extends Command
         if ($this->databaseUpdateTime == null)
         {
             // When the application start and if
-            // no CSV is retreived, then we must 
+            // no CSV is retreived, then we must
             // compute a datetime based on the
             // current time
             return $this->computeNowDate();
@@ -245,7 +245,7 @@ class RefreshDatabase extends Command
      * Get the current datetime and create a Carbon
      * date with the minutes rouded to the nearest
      * ten below minus ten
-     * 
+     *
      * @return Carbon\Carbon the now datetime rounded
      */
     private function computeNowDate()
@@ -278,7 +278,7 @@ class RefreshDatabase extends Command
 
     /**
      * Log the error
-     * 
+     *
      * @return void
      */
     private function logTheError()
@@ -290,7 +290,7 @@ class RefreshDatabase extends Command
     /**
      * Display that the update is not needed
      * and display dates
-     * 
+     *
      * @return void
      */
     private function noUpdateNeeded()
@@ -303,7 +303,7 @@ class RefreshDatabase extends Command
     /**
      * Display the date used to check if the database
      * must be updated or not
-     * 
+     *
      * @return void
      */
     private function displayDates()
@@ -318,7 +318,7 @@ class RefreshDatabase extends Command
     /**
      * If a dataset is define, then the datetime is
      * set to the dataset datetime. Else the current
-     * time is used. The check is performed on the 
+     * time is used. The check is performed on the
      * lastest last_update datetime profile
      *
      * @param  App\Parsers\DataSets\DataSet  $dataset
@@ -330,11 +330,11 @@ class RefreshDatabase extends Command
         $this->nextUpdateTime = Carbon::now();
 
         // If no last_update is found, then the database
-        // are not yet be populate, database must be 
+        // are not yet be populate, database must be
         // updated
         if ($this->databaseUpdateTime === null) return true;
 
-        // If a dataset is present, then retreive the 
+        // If a dataset is present, then retreive the
         // datetime of the content. If the datetime of
         // the content is greater than the database, then
         // the database must be udpated
@@ -358,7 +358,7 @@ class RefreshDatabase extends Command
      * Retreive the latest update datetime from profiles
      * and set the databaseUpdateTime. If no profile was
      * found, then the databaseUpdateTime is set to null
-     * 
+     *
      * @return void
      */
     private function getLastUpdate()

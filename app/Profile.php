@@ -17,7 +17,7 @@ class Profile extends Model
 
     /**
      * The name of the table in database
-     * 
+     *
      * @var string
      */
     protected $table = "profiles";
@@ -35,16 +35,16 @@ class Profile extends Model
      * @var array
      */
     protected $fillable = [
-        'stn_code', 
-        'infos', 
-        'last_update', 
-        'last_time_online', 
+        'stn_code',
+        'infos',
+        'last_update',
+        'last_time_online',
         'online'
     ];
 
     /**
-     * Get the infos json attribute decoded 
-     * 
+     * Get the infos json attribute decoded
+     *
      * @param  string $value
      * @return object decoded json
      */
@@ -66,7 +66,7 @@ class Profile extends Model
 
     /**
      * Set the current profile offline and save it
-     * 
+     *
      * @return void
      */
     public function setOffline()
@@ -78,15 +78,15 @@ class Profile extends Model
 
     /**
      * Get the data attached to the profile
-     * 
+     *
      * @return Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function data()
     {
         return $this->belongsToMany(
-                        Data::class, 
-                        'displays', 
-                        'profile_stn_code', 
+                        Data::class,
+                        'displays',
+                        'profile_stn_code',
                         'data_code'
                     )
                     ->withPivot('data', 'collection')
@@ -96,15 +96,15 @@ class Profile extends Model
     /**
      * Get the relation between profile and data through the
      * values table
-     * 
+     *
      * @return Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function dataValue()
     {
         return $this->belongsToMany(
-                        Data::class, 
-                        'values', 
-                        'profile_stn_code', 
+                        Data::class,
+                        'values',
+                        'profile_stn_code',
                         'data_code'
                     )
                     ->withPivot('value', 'date', 'tag')
@@ -113,7 +113,7 @@ class Profile extends Model
 
     /**
      * Get the display relation between the profile and the given data
-     * 
+     *
      * @param  Data
      * @return Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -125,7 +125,7 @@ class Profile extends Model
 
     /**
      * Get all data attached between the profile and the given data
-     * 
+     *
      * @param  Data
      * @return Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -138,7 +138,7 @@ class Profile extends Model
     /**
      * Get the most recent value between the profile and the given
      * data parameter
-     * 
+     *
      * @param  Data   $data the data search
      * @return App\Value    the value serached
      */
@@ -150,7 +150,7 @@ class Profile extends Model
     /**
      * Create and return a new profile for the
      * given stn_code with default values
-     * 
+     *
      * @param  string stn_code
      * @return App\Profile
      */
@@ -168,7 +168,7 @@ class Profile extends Model
 
     /**
      * Return the boolean value of online attribute
-     * 
+     *
      * @return boolean         online
      */
     public function isOnline()
@@ -179,7 +179,7 @@ class Profile extends Model
     /**
      * Return a collection of data that are display in
      * the profile as a single data
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Collection   of App\Data
      */
     public function getDataDisplays()
@@ -194,7 +194,7 @@ class Profile extends Model
     /**
      * Rerturn a collection of data that are display in
      * the profile as a data collection
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Collection   of App\Data
      */
     public function getCollectionDisplays()
@@ -208,7 +208,7 @@ class Profile extends Model
 
     /**
      * Return the number of single data display in the profile
-     * 
+     *
      * @return int number of item in collection
      */
     public function getNumberDisplays()
@@ -218,7 +218,7 @@ class Profile extends Model
 
     /**
      * Return the full URI to retreive the complete profile
-     * 
+     *
      * @param  string $profile_code stn_code
      * @return string               the full URI
      */
@@ -240,7 +240,7 @@ class Profile extends Model
 
     /**
      * Set the infos attribute with a standard class
-     * 
+     *
      * @param StdClass $newInfos the object to json encode
      */
     public function setNewInfos(StdClass $newInfos)

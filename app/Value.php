@@ -36,7 +36,7 @@ class Value extends Model
 
     /**
      * The table name in database
-     * 
+     *
      * @var string
      */
     protected $table = "values";
@@ -56,14 +56,14 @@ class Value extends Model
     protected $fillable = [
         'data_code', 
         'profile_stn_code',
-    	'date', 
-    	'value', 
+    	'date',
+    	'value',
     	'tag',
     ];
 
     /**
      * Get the profile that owns the value
-     * 
+     *
      * @return Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function profile()
@@ -73,7 +73,7 @@ class Value extends Model
 
     /**
      * Get the data that owns the value
-     * 
+     *
      * @return Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function data()
@@ -84,7 +84,7 @@ class Value extends Model
     /**
      * Retreive the collection of values that correspond to
      * the given profile and the given data
-     * 
+     *
      * @param  App\Profile  $p
      * @param  App\Data     $d
      * @return \Illuminate\Database\Eloquent\Collection
@@ -97,7 +97,7 @@ class Value extends Model
     /**
      * Retreive the collection of values that correspond to
      * the given profile and the given data
-     * 
+     *
      * @param  string $stn_code the stn_code
      * @param  string $code     the internal data code
      * @return \Illuminate\Database\Eloquent\Collection
@@ -113,7 +113,7 @@ class Value extends Model
     /**
      * Retreive the last value that correspond to the given
      * profile and the given data
-     * 
+     *
      * @param  App\Profile  $p
      * @param  App\Data     $d
      * @return App\Value
@@ -129,7 +129,7 @@ class Value extends Model
     /**
      * Return the minimum value in a collection between the profile
      * and the data
-     * 
+     *
      * @return string the minimum value
      */
     public function getMinString()
@@ -142,7 +142,7 @@ class Value extends Model
 
     /**
      * Return the minimum value model in a collection
-     * 
+     *
      * @return App\Value the minimum value
      */
     public function getMinValue()
@@ -157,7 +157,7 @@ class Value extends Model
     /**
      * Return the maximum value in a collection between the profile
      * and the data
-     * 
+     *
      * @return string the maximum value
      */
     public function getMaxString()
@@ -170,11 +170,11 @@ class Value extends Model
 
     /**
      * Return the maximum value model in a collection
-     * 
+     *
      * @return App\Value the maximum value
      */
     public function getMaxValue()
-    {   
+    {
         return Value::where('profile_stn_code', $this->profile_stn_code)
                     ->where('data_code', $this->data_code)
                     ->where('tag', '<>', self::NODATA)
@@ -185,11 +185,11 @@ class Value extends Model
     /**
      * Return the sum value in a collection between the profile
      * and the data
-     * 
+     *
      * @return string the sum value
      */
     public function getSumString()
-    {   
+    {
         return Value::where('profile_stn_code', $this->profile_stn_code)
                     ->where('data_code', $this->data_code)
                     ->sum('value');
@@ -197,7 +197,7 @@ class Value extends Model
 
     /**
      * Save a value as original
-     * 
+     *
      * @param  App\Value    $value
      * @return void
      */
@@ -210,7 +210,7 @@ class Value extends Model
     /**
      * Save a new value as substituted and copy the
      * value of the old one
-     * 
+     *
      * @param  App\Value    $new
      * @param  App\Value    $old
      * @return void
@@ -221,10 +221,10 @@ class Value extends Model
         $new->tag = self::SUBSTITUTED;
         $new->save();
     }
-    
+
     /**
      * Save a value as no-data with a zero value
-     * 
+     *
      * @param  App\Value    $value
      * @return void
      */
@@ -238,7 +238,7 @@ class Value extends Model
     /**
      * Get the last substituted continious values tagged
      * as a collection.
-     * 
+     *
      * @param  App\Profile  $profile
      * @param  App\Data     $data
      * @return \Illuminate\Database\Eloquent\Collection
@@ -259,7 +259,7 @@ class Value extends Model
     /**
      * Get the last original value present in the collection, null
      * if no original value is present
-     * 
+     *
      * @param  Profile $profile the profile
      * @param  Data    $data    the data
      * @return \Illuminate\Database\Eloquent\Model
@@ -280,7 +280,7 @@ class Value extends Model
     /**
      * Update all values present inside the collection
      * to no-data with a zero value
-     * 
+     *
      * @param  \Illuminate\Database\Eloquent\Collection  $collection
      * @return void
      */
@@ -296,7 +296,7 @@ class Value extends Model
     /**
      * Get the new value and the last original value
      * and smooth the values in the collection given
-     * 
+     *
      * @param  App\Value                                 $new
      * @param  \Illuminate\Database\Eloquent\Collection  $collection
      * @return void
@@ -309,7 +309,7 @@ class Value extends Model
             ->offset($count)
             ->take(1)
             ->first();
-        
+
         foreach ($collection as $key => &$value) {
             $position = $count - $key;
             $value->value = $value->getValueFor($position, $count, $new, $old);
@@ -322,7 +322,7 @@ class Value extends Model
      * Calculate the smoothed value for a given position
      * based on the number of elements and the starting value
      * (the old value) and the ending value (the new value)
-     * 
+     *
      * @param  int          $position
      * @param  int          $count      number of element
      * @param  App\Value    $new        the new original value
@@ -331,15 +331,15 @@ class Value extends Model
      */
     protected function getValueFor(int $position, int $count, Value $new, Value $old)
     {
-        return round($old->value 
-               + ($position * (1 / ($count + 1)) 
+        return round($old->value
+               + ($position * (1 / ($count + 1))
                * ($new->value - $old->value)), 1);
     }
 
     /**
      * Create a local scope with two where conditions to
      * match the profile and the data of the current object
-     * 
+     *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
@@ -351,7 +351,7 @@ class Value extends Model
 
     /**
      * Check if the value is tagged as substituted
-     * 
+     *
      * @return boolean
      */
     public function isSubstituted()
@@ -361,7 +361,7 @@ class Value extends Model
 
     /**
      * Check if the value is tagged as original
-     * 
+     *
      * @return boolean
      */
     public function isOriginal()
@@ -371,7 +371,7 @@ class Value extends Model
 
     /**
      * Check if the value is tagged as no-data
-     * 
+     *
      * @return boolean
      */
     public function isNoData()
@@ -381,7 +381,7 @@ class Value extends Model
 
     /**
      * Check if the value is tagged as smoothed
-     * 
+     *
      * @return boolean
      */
     public function isSmoothed()
@@ -390,9 +390,9 @@ class Value extends Model
     }
 
     /**
-     * Count the no-data values ​​in the collection rejecting 
+     * Count the no-data values ​​in the collection rejecting
      * tags which are not no-data
-     * 
+     *
      * @param  \Illuminate\Database\Eloquent\Collection $values the collection
      * @return int                                              number of no-data
      */
@@ -408,7 +408,7 @@ class Value extends Model
     /**
      * Count the last continious no-data value in the given
      * collection of values
-     * 
+     *
      * @param  \Illuminate\Database\Eloquent\Collection $values the collection
      * @return int                                              number of no-data
      */
@@ -432,14 +432,14 @@ class Value extends Model
      * @return \Illuminate\Database\Eloquent\Builder
      */
      protected function setKeysForSaveQuery(Builder $query) {
-        if (is_array($this->primaryKey)) 
+        if (is_array($this->primaryKey))
         {
             foreach ($this->primaryKey as $pk) {
                 $query->where($pk, '=', $this->original[$pk]);
             }
             return $query;
-        } 
-        else 
+        }
+        else
         {
             return parent::setKeysForSaveQuery($query);
         }
