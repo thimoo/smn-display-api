@@ -252,7 +252,7 @@ class CsvParser extends Parser
         $date = Carbon::createFromFormat('YmdHi', $datetime);
         $RecentDate = $this->mostRecentDate($date);
 
-        if ($this->datetime == null || $this->recentDate->lessThan($datetime)) $this->datetime = $RecentDate;
+        if ($this->datetime == null || $this->recentDate->lt($datetime)) $this->datetime = $RecentDate;
 
         // V1
         // If the current datetime is different that the
@@ -285,7 +285,7 @@ class CsvParser extends Parser
     protected function mostRecentDate($datetime)
     {
         if ($this->recentDate == null) $this->recentDate = $datetime;
-        if ($this->recentDate->lessThan($datetime)) $this->recentDate = $datetime;
+        if ($this->recentDate->lt($datetime)) $this->recentDate = $datetime;
 
         return $this->recentDate;
     }
