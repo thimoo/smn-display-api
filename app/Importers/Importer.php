@@ -64,7 +64,7 @@ class Importer
             list($profile, $data, $value, $time) = $this->dataSet->getNextValue();
             if($currentProfile!=$profile)
             {
-              $output->writeln("<info>".$profile."</info>");
+              $output->writeln("<info>".$profile." ".date("H:i:s")."</info>");
               $currentProfile=$profile;
             }
 
