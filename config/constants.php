@@ -19,7 +19,7 @@ return [
     /**
      * URI to retreive the CSV
      */
-    //'csv_target_url' => 'http://data.geo.admin.ch/ch.meteoschweiz.swissmetnet/VQHA69.csv',
+    // 'csv_target_url' => 'http://data.geo.admin.ch/ch.meteoschweiz.swissmetnet/VQHA69.csv',
     'csv_target_url' => 'http://data.swissmetnet-display.ch/VQJA15.LSSW.csv',
 
     /**

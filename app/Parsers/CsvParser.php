@@ -170,7 +170,11 @@ class CsvParser extends Parser
     protected function formatHeader(string $header)
     {
         $header = explode(';', $header);
-        return array_slice($header, 2);
+        // Remove the two items [m/s] (pos 7 and 8) (fkl010z0 and fkl010z1)
+        unset($header[6]);
+        unset($header[7]);
+
+        return array_slice($header, 1);
     }
 
     /**
@@ -202,6 +206,7 @@ class CsvParser extends Parser
 
             // Grab the datetime of the current profile
             $datetime = $values[1];
+
             $this->udpateDatetime($datetime);
 
             // Remove the two items [m/s] (pos 7 and 8) (fkl010z0 and fkl010z1)
@@ -210,7 +215,7 @@ class CsvParser extends Parser
 
             // Remove the two first items and parse
             // the values
-            $values = array_slice($values, 2);
+            $values = array_slice($values, 1);
             $this->values[] = $this->parseValues($values);
         }
 
@@ -228,6 +233,7 @@ class CsvParser extends Parser
     {
         return array_map(function ($value) {
             if (strcmp('-', $value) == 0) return null;
+            elseif((int) $value > 20180000) return Carbon::createFromFormat('YmdHi', $value);
             else return (float) $value;
         }, $values);
     }
@@ -244,14 +250,15 @@ class CsvParser extends Parser
     protected function udpateDatetime($datetime)
     {
         $date = Carbon::createFromFormat('YmdHi', $datetime);
+        $RecentDate = $this->mostRecentDate($date);
 
-        $date = $this->mostRecentDate($date);
+        if ($this->datetime == null || $this->recentDate->lessThan($datetime)) $this->datetime = $RecentDate;
 
-        if ($this->datetime == null) $this->datetime = $date;
+        // V1
         // If the current datetime is different that the
         // stores datetime, then the CSV is not conform with
         // the format
-        elseif ($this->datetime->diffInMinutes($date) != 0) $this->validFormat = false;
+        // elseif ($this->datetime->diffInMinutes($date) != 0) $this->validFormat = false;
     }
 
     /**

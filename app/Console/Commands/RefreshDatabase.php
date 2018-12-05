@@ -196,9 +196,6 @@ class RefreshDatabase extends Command
         $this->info('Inserting no-data values...');
         $this->displayDates();
 
-        // No data must be imported in the database with
-        // the current time rounded
-        $forDate = $this->computeNowDate();
         $this->info("No-data date: $forDate");
 
         // Retreive all profiles
@@ -206,6 +203,10 @@ class RefreshDatabase extends Command
 
         // Retreive all data
         $forData = Data::all();
+
+        // No data must be imported in the database with
+        // the current time rounded
+        $forDate = $this->computeNowDate();
 
         // Generate a new DataSet with no-data
         // values for the date, profiles and data
@@ -366,5 +367,6 @@ class RefreshDatabase extends Command
         $res = DB::table('profiles')->max('last_update');
         if ($res === null) $this->databaseUpdateTime = null;
         else $this->databaseUpdateTime = new Carbon($res);
+
     }
 }

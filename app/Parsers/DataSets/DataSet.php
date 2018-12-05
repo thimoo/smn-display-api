@@ -49,6 +49,13 @@ class DataSet
     private static $PROFILE_CURSOR = 1;
 
     /**
+     * Stores the cursor position for the profile
+     *
+     * @var integer
+     */
+    private static $DATE_CURSOR = 0;
+
+    /**
      * Stores the current cursor positions
      *
      * @var array
@@ -72,10 +79,14 @@ class DataSet
      */
     public final function getNextValue()
     {
+        if($this->getTheData()=="time")
+        {
+          $this->setNextCursors();
+        }
         $p = $this->getTheProfile();
         $d = $this->getTheData();
         $v = $this->getTheValue();
-        $t = $this->datetime;
+        $t = $this->getTheDate();
 
         $this->setNextCursors();
 
@@ -339,6 +350,17 @@ class DataSet
     private function getTheValue()
     {
         return $this->content[$this->getProfileCursor()][$this->getDataCursor()];
+    }
+
+    /**
+     * Get the date value based on the current
+     * cursors state
+     *
+     * @return Carbon or null if no value
+     */
+    private function getTheDate()
+    {
+        return $this->content[$this->getProfileCursor()][self::$DATE_CURSOR];
     }
 
     /**

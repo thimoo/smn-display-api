@@ -6,21 +6,21 @@ use App\Value;
 use App\Profile;
 use App\Events\NewValue;
 use App\Events\CheckProfiles;
-use App\Events\ValuesInserted;
+use App\Events\BeforeValuesInserted;
 use App\Parsers\DataSets\DataSet;
 
 class Importer
 {
     /**
      * Stores the data set to import
-     * 
+     *
      * @var App\Parsers\DataSets\DataSet
      */
     protected $dataSet;
 
     /**
      * Load the data set and store it
-     * 
+     *
      * @param  DataSet $dataSet the data set to import
      * @return Importer         $this
      */
@@ -34,13 +34,13 @@ class Importer
     /**
      * Compute the process to insert all values prensent
      * in the data set and check all constraints attached
-     * 
+     *
      * @return Importer         $this
      */
     public function import()
     {
-        $this->insertValues()
-             ->valuesInserted()
+        $this->BeforeValuesInserted()
+             ->insertValues()
              ->checkProfiles();
 
         return $this;
@@ -50,15 +50,23 @@ class Importer
      * Browse the complete data set loaded and create
      * a new Value based on the retreived informations
      * The new value has passed to a new "NewValue" event
-     * 
+     *
      * @return Importer         $this
      */
     protected function insertValues()
     {
+        $output = new \Symfony\Component\Console\Output\ConsoleOutput();
+        $output->writeln("<info>Start : ".date("H:i:s")."</info>");
+        $currentProfile=null;
         $this->dataSet->resetCursors();
-        while ($this->dataSet->hasNextValue()) 
+        while ($this->dataSet->hasNextValue())
         {
             list($profile, $data, $value, $time) = $this->dataSet->getNextValue();
+            if($currentProfile!=$profile)
+            {
+              $output->writeln("<info>".$profile."</info>");
+              $currentProfile=$profile;
+            }
 
             $value = new Value([
                 'profile_stn_code' => $profile,
@@ -67,9 +75,9 @@ class Importer
                 'value' => $value,
                 'tag' => null,
             ]);
-
             event(new NewValue($value));
         }
+        $output->writeln("<info>Start : ".date("H:i:s")."</info>");
 
         return $this;
     }
@@ -77,12 +85,12 @@ class Importer
     /**
      * Call the "ValueInserterd" event to fire the
      * post checks
-     * 
+     *
      * @return Importer          $this
      */
-    protected function valuesInserted()
+    protected function BeforeValuesInserted()
     {
-        event(new ValuesInserted);
+        event(new BeforeValuesInserted);
 
         return $this;
     }
@@ -90,13 +98,16 @@ class Importer
     /**
      * Browse all profiles present in the data set and
      * retreive it form the database to fire the "CheckProfiles"
-     * event. CheckProfile verify if the online field on the profile 
+     * event. CheckProfile verify if the online field on the profile
      * must be updated
-     * 
+     *
      * @return Importer           $this
      */
     protected function checkProfiles()
     {
+      $output = new \Symfony\Component\Console\Output\ConsoleOutput();
+      $output->writeln("<info>checkProfiles</info>");
+
         $this->dataSet->resetCursors();
         while ($this->dataSet->hasNextProfile())
         {
