@@ -252,7 +252,7 @@ class CsvParser extends Parser
         $date = Carbon::createFromFormat('YmdHi', $datetime);
         $RecentDate = $this->mostRecentDate($date);
         $output = new \Symfony\Component\Console\Output\ConsoleOutput();
-        if ($this->datetime == null || $RecentDate->greaterThan($date)) {
+        if ($this->datetime == null || $RecentDate->gt($date)) {
           $this->datetime = $RecentDate;
         }
 
@@ -287,7 +287,7 @@ class CsvParser extends Parser
     protected function mostRecentDate($datetime)
     {
         if ($this->recentDate == null) $this->recentDate = $datetime;
-        if ($this->recentDate->lessThan($datetime)) $this->recentDate = $datetime;
+        if ($this->recentDate->lt($datetime)) $this->recentDate = $datetime;
 
         return $this->recentDate;
     }
