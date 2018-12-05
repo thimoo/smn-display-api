@@ -207,7 +207,7 @@ class CsvParser extends Parser
             // Grab the datetime of the current profile
             $datetime = $values[1];
 
-            $this->udpateDatetime($datetime);
+            $this->updateDatetime($datetime);
 
             // Remove the two items [m/s] (pos 7 and 8) (fkl010z0 and fkl010z1)
             unset($values[6]);
@@ -247,12 +247,14 @@ class CsvParser extends Parser
      * @param  string $datetime value datetime
      * @return void
      */
-    protected function udpateDatetime($datetime)
+    protected function updateDatetime($datetime)
     {
         $date = Carbon::createFromFormat('YmdHi', $datetime);
         $RecentDate = $this->mostRecentDate($date);
-
-        if ($this->datetime == null || $this->recentDate->lt($datetime)) $this->datetime = $RecentDate;
+        $output = new \Symfony\Component\Console\Output\ConsoleOutput();
+        if ($this->datetime == null || $RecentDate->greaterThan($date)) {
+          $this->datetime = $RecentDate;
+        }
 
         // V1
         // If the current datetime is different that the
@@ -285,7 +287,7 @@ class CsvParser extends Parser
     protected function mostRecentDate($datetime)
     {
         if ($this->recentDate == null) $this->recentDate = $datetime;
-        if ($this->recentDate->lt($datetime)) $this->recentDate = $datetime;
+        if ($this->recentDate->lessThan($datetime)) $this->recentDate = $datetime;
 
         return $this->recentDate;
     }
