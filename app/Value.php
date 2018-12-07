@@ -54,7 +54,7 @@ class Value extends Model
      * @var array
      */
     protected $fillable = [
-        'data_code', 
+        'data_code',
         'profile_stn_code',
     	'date',
     	'value',

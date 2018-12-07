@@ -10,25 +10,27 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class NewValue
+class NewValues
 {
     use InteractsWithSockets, SerializesModels;
 
     /**
-     * Stores the value to save
-     * 
-     * @var App\Value
+     * Stores the collection of value between the data
+     * and the profile
+     *
+     * @var array
      */
-    public $value;
+    public $values = array();
 
     /**
-     * Create a new event instance with the given value.
+     * Create a array new event instance with the given value.
      *
+     * @param array  $values  array of values
      * @return void
      */
-    public function __construct(Value $data)
+    public function __construct($values)
     {
-        $this->value = $data;
+        $this->values = $values;
     }
 
     /**

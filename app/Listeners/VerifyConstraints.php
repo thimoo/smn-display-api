@@ -5,7 +5,7 @@ namespace App\Listeners;
 use App\Data;
 use App\Value;
 use App\Profile;
-use App\Events\NewValue;
+use App\Events\NewValues;
 use App\Events\CheckConstraints;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -14,14 +14,14 @@ class VerifyConstraints
 {
     /**
      * The profile object attach to the current value
-     * 
+     *
      * @var App\Profile
      */
     protected $profile;
 
     /**
      * The data object attach to the current value
-     * 
+     *
      * @var App\Data
      */
     protected $data;
@@ -29,10 +29,10 @@ class VerifyConstraints
     /**
      * Handle the event.
      *
-     * @param  NewValue  $event
+     * @param  NewValues  $event
      * @return void
      */
-    public function handle(NewValue $event)
+    public function handle(NewValues $event)
     {
         // Unpack the value given in the event message
         // and store it in the current object

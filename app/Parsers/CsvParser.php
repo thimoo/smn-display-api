@@ -251,7 +251,6 @@ class CsvParser extends Parser
     {
         $date = Carbon::createFromFormat('YmdHi', $datetime);
         $RecentDate = $this->mostRecentDate($date);
-        $output = new \Symfony\Component\Console\Output\ConsoleOutput();
         if ($this->datetime == null || $RecentDate->gt($date)) {
           $this->datetime = $RecentDate;
         }

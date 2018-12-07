@@ -2,9 +2,10 @@
 
 namespace App\Importers;
 
+use App\Data;
 use App\Value;
 use App\Profile;
-use App\Events\NewValue;
+use App\Events\NewValues;
 use App\Events\CheckProfiles;
 use App\Events\BeforeValuesInserted;
 use App\Parsers\DataSets\DataSet;
@@ -49,7 +50,7 @@ class Importer
     /**
      * Browse the complete data set loaded and create
      * a new Value based on the retreived informations
-     * The new value has passed to a new "NewValue" event
+     * The new value has passed to a new "NewValues" event
      *
      * @return Importer         $this
      */
@@ -57,27 +58,46 @@ class Importer
     {
         $output = new \Symfony\Component\Console\Output\ConsoleOutput();
         $output->writeln("<info>Start : ".date("H:i:s")."</info>");
+
+        $datas=Data::all();
+
         $currentProfile=null;
         $this->dataSet->resetCursors();
         while ($this->dataSet->hasNextValue())
         {
             list($profile, $data, $value, $time) = $this->dataSet->getNextValue();
+
+            //est-ce que c'est un nouveau profile
             if($currentProfile!=$profile)
             {
-              $output->writeln("<info>".$profile." ".date("H:i:s")."</info>");
+              //Verifie que ce n'est pas le premier profile
+              if($currentProfile!=null)
+              {
+                $output->writeln("<info>Insert : ".$currentProfile." (".count($values).")</info>");
+                //Ajouter toutes les données d'un profile
+                event(new NewValues($values));
+                //reset le profile.
+                $values = array();
+              }
+              //définition du profile courant
               $currentProfile=$profile;
             }
 
-            $value = new Value([
-                'profile_stn_code' => $profile,
-                'data_code' => $data,
-                'date' => $time,
-                'value' => $value,
-                'tag' => null,
-            ]);
-            event(new NewValue($value));
+            if(in_array($values->data_code, $datas)) {
+
+              $values[] = new Value([
+                  'profile_stn_code' => $profile,
+                  'data_code' => $data,
+                  'date' => $time,
+                  'value' => $value,
+                  'tag' => null,
+              ]);
+            }
         }
-        $output->writeln("<info>Start : ".date("H:i:s")."</info>");
+        //ajout toutes les données du dernier profile
+        $output->writeln("<info>Insert : ".$currentProfile." (".count($values).")</info>");
+        event(new NewValues($values));
+        $output->writeln("<info>out : ".date("H:i:s")."</info>");
 
         return $this;
     }
@@ -105,9 +125,6 @@ class Importer
      */
     protected function checkProfiles()
     {
-      $output = new \Symfony\Component\Console\Output\ConsoleOutput();
-      $output->writeln("<info>checkProfiles</info>");
-
         $this->dataSet->resetCursors();
         while ($this->dataSet->hasNextProfile())
         {
