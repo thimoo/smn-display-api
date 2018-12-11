@@ -15,22 +15,20 @@ class NewValues
     use InteractsWithSockets, SerializesModels;
 
     /**
-     * Stores the collection of value between the data
-     * and the profile
+     * Stores the value to save
      *
      * @var array
      */
-    public $values = array();
+    public $value;
 
     /**
      * Create a array new event instance with the given value.
-     *
-     * @param array  $values  array of values
+     * @param  array  $data
      * @return void
      */
-    public function __construct($values)
+    public function __construct(array $data)
     {
-        $this->values = $values;
+      $this->value = $data;
     }
 
     /**

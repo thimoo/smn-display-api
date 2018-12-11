@@ -139,7 +139,7 @@ class RefreshDatabase extends Command
 
         if ($this->parser->validateFormat())
         {
-            $this->insertNewValues();
+            $this->insertNewValue();
         }
         else
         {
@@ -168,7 +168,7 @@ class RefreshDatabase extends Command
         }
     }
 
-    private function insertNewValues()
+    private function insertNewValue()
     {
         // The dataset represent with a usefull way
         // the collections of data present in the

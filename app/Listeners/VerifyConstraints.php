@@ -34,6 +34,7 @@ class VerifyConstraints
      */
     public function handle(NewValues $event)
     {
+      foreach ($event->value as $v) {
         // Unpack the value given in the event message
         // and store it in the current object
         $value = $event->value;
@@ -49,11 +50,12 @@ class VerifyConstraints
         // ignored
         if ($this->data)
         {
-            // Get the collection for the data and the profile
-            // and trigger the CheckConstraints event
-            $collection = Value::getCollectionFor($this->profile, $this->data);
+          // Get the collection for the data and the profile
+          // and trigger the CheckConstraints event
+          $collection = Value::getCollectionFor($this->profile, $this->data);
 
-            event(new CheckConstraints($this->profile, $this->data, $collection));
+          event(new CheckConstraints($this->profile, $this->data, $collection));
         }
+      }
     }
 }

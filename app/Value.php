@@ -56,9 +56,9 @@ class Value extends Model
     protected $fillable = [
         'data_code',
         'profile_stn_code',
-    	'date',
-    	'value',
-    	'tag',
+      	'date',
+      	'value',
+      	'tag',
     ];
 
     /**
@@ -204,7 +204,8 @@ class Value extends Model
     public static function insertAsOriginal(Value $value)
     {
         $value->tag = self::ORIGINAL;
-        $value->save();
+        // $value->save();
+        return $value;
     }
 
     /**
@@ -219,7 +220,8 @@ class Value extends Model
     {
         $new->value = $old->value;
         $new->tag = self::SUBSTITUTED;
-        $new->save();
+        // $new->save();
+        return $value;
     }
 
     /**
@@ -232,7 +234,8 @@ class Value extends Model
     {
         $value->value = 0;
         $value->tag = self::NODATA;
-        $value->save();
+        // $value->save();
+        return $value;
     }
 
     /**
