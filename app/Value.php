@@ -199,7 +199,7 @@ class Value extends Model
      * Save a value as original
      *
      * @param  App\Value    $value
-     * @return void
+     * @return App\Value 
      */
     public static function insertAsOriginal(Value $value)
     {
@@ -214,21 +214,21 @@ class Value extends Model
      *
      * @param  App\Value    $new
      * @param  App\Value    $old
-     * @return void
+     * @return App\Value
      */
     public static function insertAsSubstituted(Value $new, Value $old)
     {
         $new->value = $old->value;
         $new->tag = self::SUBSTITUTED;
         // $new->save();
-        return $value;
+        return $new;
     }
 
     /**
      * Save a value as no-data with a zero value
      *
      * @param  App\Value    $value
-     * @return void
+     * @return App\Value
      */
     public static function insertAsNoData(Value $value)
     {

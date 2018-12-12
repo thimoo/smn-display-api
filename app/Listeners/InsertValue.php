@@ -22,6 +22,14 @@ class InsertValue
     protected $value;
 
     /**
+     *
+     * @var array
+     */
+    protected $insertValues;
+
+    protected $id;
+
+    /**
      * The precedent value in database for the
      * data and the profile store in current value
      *
@@ -53,10 +61,14 @@ class InsertValue
      */
     public function handle($event)
     {
-      foreach ($event->value as $v) {
+      $this->id=0;
+
+
+      foreach ($event->values as $v) {
         // Unpack the value given in the event message
         // and store it in the current object
         $this->value = $v;
+        $this->id++;
 
         // Get the profile and the data attach to the
         // new value given
@@ -88,6 +100,12 @@ class InsertValue
             $this->insert();
         }
       }
+
+      // foreach ($this->insertValues as $v) {
+      //   $v->save();
+      // }
+
+      Value::insert($this->insertValues);
     }
 
     /**
@@ -143,7 +161,7 @@ class InsertValue
             // No older value is present with
             // the new one. Insert the new value
             // as original and finish the process
-            Value::insertAsOriginal($this->value);
+            $this->insertValues[]=Value::insertAsOriginal($this->value);
         }
         else
         {
@@ -168,7 +186,7 @@ class InsertValue
             // value, then it can be a original or no-data
             // In both case we can insert the new data as
             // original and finish the process
-            Value::insertAsOriginal($this->value);
+            $this->insertValues[]=Value::insertAsOriginal($this->value);
         }
         else
         {
@@ -178,7 +196,7 @@ class InsertValue
             //  - insert the new value as original and finish the process
             $lastSubstitutedValues = Value::getSubstitutedLastValues($this->profile, $this->data);
             Value::smoothSubstitutedValues($this->value, $lastSubstitutedValues);
-            Value::insertAsOriginal($this->value);
+            $this->insertValues[]=Value::insertAsOriginal($this->value);
         }
     }
 
@@ -197,8 +215,8 @@ class InsertValue
             // If no value is present in the CSV
             // and last value is not present in db,
             // then insert a value zero as no-data
-            // and finish the process
-            Value::insertAsNoData($this->value);
+            // and finish the process$
+            $this->insertValues[]=Value::insertAsNoData($this->value);
         }
         else
         {
@@ -227,7 +245,7 @@ class InsertValue
             // the last value is original, then
             // the new value is substituted and
             // the process is finish
-            Value::insertAsSubstituted($this->value, $this->lastValue);
+            $this->insertValues[]=Value::insertAsSubstituted($this->value, $this->lastValue);
         }
         else
         {
@@ -261,7 +279,7 @@ class InsertValue
             // is tagged as no-data, then the new value
             // is inserted as no-data with a zero value
             // and finish the process
-            Value::insertAsNoData($this->value);
+            $this->insertValues[]=Value::insertAsNoData($this->value);
         }
     }
 
@@ -287,7 +305,7 @@ class InsertValue
             // lesser than 3 the substitution can
             // be performed with the new value
             // and finish the process
-            Value::insertAsSubstituted($this->value, $this->lastValue);
+            $this->insertValues[]=Value::insertAsSubstituted($this->value, $this->lastValue);
         }
         else
         {

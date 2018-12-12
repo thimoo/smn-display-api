@@ -34,11 +34,9 @@ class VerifyConstraints
      */
     public function handle(NewValues $event)
     {
-      foreach ($event->value as $v) {
         // Unpack the value given in the event message
         // and store it in the current object
-        $value = $event->value;
-
+        $value = $event->values[count($event->values)-1];
 
         // Get the profile and the data attach to the
         // new value given
@@ -56,6 +54,5 @@ class VerifyConstraints
 
           event(new CheckConstraints($this->profile, $this->data, $collection));
         }
-      }
     }
 }

@@ -6,7 +6,7 @@ use App\Value;
 use App\Profile;
 use App\Events\NewValues;
 use App\Events\CheckProfiles;
-use App\Events\ValuesInserted;
+use App\Events\BeforeValuesInserted;
 use App\Parsers\DataSets\DataSet;
 
 class Importer
@@ -39,8 +39,7 @@ class Importer
      */
     public function import()
     {
-        $this->ValuesInserted()
-             ->insertValues()
+        $this->insertValues()
              ->checkProfiles();
 
         return $this;
@@ -67,18 +66,17 @@ class Importer
             if($currentProfile!=$profile)
             {
               //Verifie que ce n'est pas le premier profile
-              if($currentProfile!=null)
+              if($currentProfile!=null && $currentProfile=="biz")
               {
+                $this->beforeValuesInserted($currentProfile);
                 $output->writeln("<info>Insert : ".$currentProfile."(".date("H:i:s").")</info>");
-
                 event(new NewValues($values));
-                //reset le profile.
-                $values = array();
-                $output = new \Symfony\Component\Console\Output\ConsoleOutput();
-                $output->writeln("<info>out : </info>");
+
               }
               //définition du profile courant
               $currentProfile=$profile;
+              //reset le profile.
+              $values = array();
             }
             $values[] = new Value([
                 'profile_stn_code' => $profile,
@@ -100,12 +98,12 @@ class Importer
     /**
      * Call the "ValueInserterd" event to fire the
      * post checks
-     *
+     * @param  string  $currentProfile the profile
      * @return Importer          $this
      */
-    protected function ValuesInserted()
+    protected function beforeValuesInserted($currentProfile)
     {
-        event(new ValuesInserted);
+        event(new BeforeValuesInserted ($currentProfile));
 
         return $this;
     }

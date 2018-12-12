@@ -19,7 +19,7 @@ class NewValues
      *
      * @var array
      */
-    public $value;
+    public $values;
 
     /**
      * Create a array new event instance with the given value.
@@ -28,7 +28,7 @@ class NewValues
      */
     public function __construct(array $data)
     {
-      $this->value = $data;
+      $this->values = $data;
     }
 
     /**

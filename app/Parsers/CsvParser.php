@@ -170,9 +170,9 @@ class CsvParser extends Parser
     protected function formatHeader(string $header)
     {
         $header = explode(';', $header);
-        // Remove the two items [m/s] (pos 7 and 8) (fkl010z0 and fkl010z1)
-        unset($header[6]);
-        unset($header[7]);
+        // // Remove the two items [m/s] (pos 7 and 8) (fkl010z0 and fkl010z1)
+        // unset($header[6]);
+        // unset($header[7]);
 
         return array_slice($header, 1);
     }
@@ -209,9 +209,9 @@ class CsvParser extends Parser
 
             $this->updateDatetime($datetime);
 
-            // Remove the two items [m/s] (pos 7 and 8) (fkl010z0 and fkl010z1)
-            unset($values[6]);
-            unset($values[7]);
+            // // Remove the two items [m/s] (pos 7 and 8) (fkl010z0 and fkl010z1)
+            // unset($values[6]);
+            // unset($values[7]);
 
             // Remove the two first items and parse
             // the values

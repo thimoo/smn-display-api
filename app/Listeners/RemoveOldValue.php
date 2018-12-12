@@ -5,7 +5,7 @@ namespace App\Listeners;
 use \DB;
 use \Log;
 use Carbon\Carbon;
-use App\Events\ValuesInserted;
+use App\Events\BeforeValuesInserted;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
@@ -14,17 +14,16 @@ class RemoveOldValue
     /**
      * Handle the event.
      *
-     * @param  ValuesInserted  $event
+     * @param  BeforeValuesInserted  $event
      * @return void
      */
-    public function handle(ValuesInserted $event)
+    public function handle(BeforeValuesInserted $event)
     {
-
         // DB::table('values')->truncate();
 
         // Get the current datetime in database
         $currentTime = $this->getDatabaseTime();
-
+        
 
         if ($currentTime)
         {
@@ -36,7 +35,7 @@ class RemoveOldValue
             // Query the database to deletes all values that have
             // a date lesser than the computed limit datetime
             DB::table('values')
-                ->where('date', '<', $limitTime)
+                ->where('profile_stn_code', '=', $event->profile)
                 ->delete();
         }
     }
