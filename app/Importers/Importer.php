@@ -86,7 +86,7 @@ class Importer
                 'tag' => null,
             ]);
         }
-
+        $this->beforeValuesInserted($currentProfile);
         //Add the last profile
         $output->writeln("<info>Insert : ".$currentProfile."(".date("H:i:s").")</info>");
         event(new NewValues($values));
