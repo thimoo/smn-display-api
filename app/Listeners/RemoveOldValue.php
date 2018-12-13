@@ -20,7 +20,7 @@ class RemoveOldValue
     public function handle(BeforeValuesInserted $event)
     {
       DB::table('values')
-          ->where('profile_stn_code', '=', $event->profile)
+          ->where('profile_stn_code', $event->profile)
           ->delete();
         // DB::table('values')->truncate();
 
