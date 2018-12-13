@@ -27,8 +27,6 @@ class InsertValue
      */
     protected $insertValues;
 
-    protected $id;
-
     /**
      * The precedent value in database for the
      * data and the profile store in current value
@@ -61,14 +59,10 @@ class InsertValue
      */
     public function handle($event)
     {
-      $this->id=0;
-
-
       foreach ($event->values as $v) {
         // Unpack the value given in the event message
         // and store it in the current object
         $this->value = $v;
-        $this->id++;
 
         // Get the profile and the data attach to the
         // new value given
@@ -105,9 +99,40 @@ class InsertValue
       //   $v->save();
       // }
 
-      Value::insert($this->insertValues);
+      $this->insertall();
     }
 
+    /**
+     * Create request for insert all datas
+     * @param int
+     * @return void
+     */
+    protected function insertall()
+    {
+      $now = Carbon::now();
+      foreach ($this->insertValues as $value) {
+        $query="INSERT INTO `values` (`data_code`, `profile_stn_code`, `date`, `value`, `tag`, `created_at`, `updated_at`) VALUES ";
+        $query.="('".$value->data_code."', '".$value->profile_stn_code."', '".$value->date."', ".$value->value.", '".$value->tag."', '".$now."', '".$now."');";
+        \DB::insert($query.";");
+      }
+
+      //   if($i>50)
+      //   {
+      //     \DB::insert($query.";");
+      //     $query="INSERT INTO `values` (`data_code`, `profile_stn_code`, `date`, `value`, `tag`, `created_at`, `updated_at`) VALUES ";
+      //     $i=0;
+      //   }
+      //   else
+      //   {
+      //     $i++;
+      //     $query.=",";
+      //   }
+      // }
+      // if($i!=0)
+      // {
+      //   \DB::insert(substr($query, 0, -1).";");
+      // }
+    }
     /**
      * Starting the insertion process.
      * If a value is present, check all the cases.

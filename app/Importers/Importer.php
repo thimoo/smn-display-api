@@ -66,7 +66,7 @@ class Importer
             if($currentProfile!=$profile)
             {
               //Verifie que ce n'est pas le premier profile
-              if($currentProfile!=null && $currentProfile=="biz")
+              if($currentProfile!=null)
               {
                 $this->beforeValuesInserted($currentProfile);
                 $output->writeln("<info>Insert : ".$currentProfile."(".date("H:i:s").")</info>");
