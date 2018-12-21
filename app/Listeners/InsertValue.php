@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use \DB;
 use App\Data;
 use App\Value;
 use App\Profile;
@@ -110,28 +111,32 @@ class InsertValue
     protected function insertall()
     {
       $now = Carbon::now();
-      foreach ($this->insertValues as $value) {
-        $query="INSERT INTO `values` (`data_code`, `profile_stn_code`, `date`, `value`, `tag`, `created_at`, `updated_at`) VALUES ";
-        $query.="('".$value->data_code."', '".$value->profile_stn_code."', '".$value->date."', ".$value->value.", '".$value->tag."', '".$now."', '".$now."');";
-        \DB::insert($query.";");
-      }
+      // foreach ($this->insertValues as $value) {
+      //   $query="INSERT INTO `values` (`data_code`, `profile_stn_code`, `date`, `value`, `tag`, `created_at`, `updated_at`) VALUES ";
+      //   $query.="('".$value->data_code."', '".$value->profile_stn_code."', '".$value->date."', ".$value->value.", '".$value->tag."', '".$now."', '".$now."');";
+      //   \DB::insert($query.";");
+      // }
 
-      //   if($i>50)
-      //   {
-      //     \DB::insert($query.";");
-      //     $query="INSERT INTO `values` (`data_code`, `profile_stn_code`, `date`, `value`, `tag`, `created_at`, `updated_at`) VALUES ";
-      //     $i=0;
-      //   }
-      //   else
-      //   {
-      //     $i++;
-      //     $query.=",";
-      //   }
-      // }
-      // if($i!=0)
-      // {
-      //   \DB::insert(substr($query, 0, -1).";");
-      // }
+      $i=0;
+      $query="INSERT INTO `values` (`data_code`, `profile_stn_code`, `date`, `value`, `tag`, `created_at`, `updated_at`) VALUES ";
+
+      foreach ($this->insertValues as $value) {
+        if($i>15)
+        {
+          DB::insert(substr($query, 0, -1).";");
+          $query="INSERT INTO `values` (`data_code`, `profile_stn_code`, `date`, `value`, `tag`, `created_at`, `updated_at`) VALUES ";
+          $i=0;
+        }
+        else
+        {
+          $i++;
+          $query.="('".$value->data_code."', '".$value->profile_stn_code."', '".$value->date."', ".$value->value.", '".$value->tag."', '".$now."', '".$now."'),";
+        }
+      }
+      if($i!=0)
+      {
+        DB::insert(substr($query, 0, -1).";");
+      }
     }
     /**
      * Starting the insertion process.
