@@ -94,9 +94,17 @@ class Importer
               'tag' => null,
           ]);
         }
+<<<<<<< HEAD
       }
 
       //Add the last profile
+=======
+        $this->beforeValuesInserted($currentProfile);
+        //Add the last profile
+        $output->writeln("<info>Insert : ".$currentProfile."(".date("H:i:s").")</info>");
+        event(new NewValues($values));
+        $output->writeln("<info>out : ".date("H:i:s")."</info>");
+>>>>>>> 65674cfc02f7718e434e3033c202349b91d2a4d5
 
       $this->push($values);
 

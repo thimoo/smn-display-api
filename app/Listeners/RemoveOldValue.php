@@ -19,8 +19,15 @@ class RemoveOldValue
      */
     public function handle(BeforeValuesInserted $event)
     {
+<<<<<<< HEAD
       // Get the current datetime in database
       $currentTime = $this->getDatabaseTime();
+=======
+      DB::table('values')
+          ->where('profile_stn_code', $event->profile)
+          ->delete();
+        // DB::table('values')->truncate();
+>>>>>>> 65674cfc02f7718e434e3033c202349b91d2a4d5
 
       if ($currentTime)
       {
