@@ -37,7 +37,7 @@ class RemoveOldValue
           $query=DB::table('values')
               ->where('profile_stn_code', '=', $event->profile)
               ->where('date', '>', $limitTime2h)
-              ->where('date', '<', $limitTime24h)
+              ->orWhere('date', '<', $limitTime24h)
               ->delete();
         }
     }
