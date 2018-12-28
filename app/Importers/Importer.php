@@ -99,7 +99,6 @@ class Importer
       //Add the last profile
       $this->push($values);
 
-
       return $this;
     }
 

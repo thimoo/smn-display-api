@@ -60,8 +60,6 @@ class InsertValue
      */
     public function handle($event)
     {
-      $output = new \Symfony\Component\Console\Output\ConsoleOutput();
-      $output->writeln("<info>count ".count($event->values)."</info>");
       foreach ($event->values as $v) {
         // Unpack the value given in the event message
         // and store it in the current object
@@ -116,7 +114,6 @@ class InsertValue
       foreach ($this->insertValues as $value) {
         if($i>15)
         {
-
           DB::insert(substr($query, 0, -1).";");
           $query="INSERT INTO `values` (`data_code`, `profile_stn_code`, `date`, `value`, `tag`, `created_at`, `updated_at`) VALUES ";
           $i=0;
