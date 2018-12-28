@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use \DB;
 use App\Data;
 use App\Value;
 use App\Profile;
@@ -26,8 +27,6 @@ class InsertValue
      * @var array
      */
     protected $insertValues;
-
-    protected $id;
 
     /**
      * The precedent value in database for the
@@ -61,14 +60,12 @@ class InsertValue
      */
     public function handle($event)
     {
-      $this->id=0;
-
-
+      $output = new \Symfony\Component\Console\Output\ConsoleOutput();
+      $output->writeln("<info>count ".count($event->values)."</info>");
       foreach ($event->values as $v) {
         // Unpack the value given in the event message
         // and store it in the current object
         $this->value = $v;
-        $this->id++;
 
         // Get the profile and the data attach to the
         // new value given
@@ -101,11 +98,39 @@ class InsertValue
         }
       }
 
-      // foreach ($this->insertValues as $v) {
-      //   $v->save();
-      // }
+      $this->insertall();
+    }
 
-      Value::insert($this->insertValues);
+    /**
+     * Create request for insert all datas
+     * @param int
+     * @return void
+     */
+    protected function insertall()
+    {
+      $now = Carbon::now();
+
+      $i=0;
+      $query="INSERT INTO `values` (`data_code`, `profile_stn_code`, `date`, `value`, `tag`, `created_at`, `updated_at`) VALUES ";
+
+      foreach ($this->insertValues as $value) {
+        if($i>15)
+        {
+
+          DB::insert(substr($query, 0, -1).";");
+          $query="INSERT INTO `values` (`data_code`, `profile_stn_code`, `date`, `value`, `tag`, `created_at`, `updated_at`) VALUES ";
+          $i=0;
+        }
+        else
+        {
+          $i++;
+          $query.="('".$value->data_code."', '".$value->profile_stn_code."', '".$value->date."', ".$value->value.", '".$value->tag."', '".$now."', '".$now."'),";
+        }
+      }
+      if($i!=0)
+      {
+        DB::insert(substr($query, 0, -1).";");
+      }
     }
 
     /**
