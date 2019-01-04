@@ -29,7 +29,7 @@ class RemoveOldValue
           $minutes = 12 * 10;
           $limitTime2h = $currentTime->copy()->subMinutes($minutes);
 
-          $minutes = 143 * 10;
+          $minutes = 150 * 10;
           $limitTime24h = $currentTime->copy()->subMinutes($minutes);
 
           // Query the database to deletes all values that have
