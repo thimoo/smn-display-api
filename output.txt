@@ -10,3 +10,20 @@ Last database udpate: 2018-12-27 17:50:00
   Cannot redeclare App\Listeners\InsertValue::insertall()  
                                                            
 
+Starting refresh...
+Getting csv at: http://data.swissmetnet-display.ch/VQJA15.LSSW.csv
+Response ok [200]
+Database must be updated!
+Next update date found: 2019-01-04 07:50:00
+Last database udpate: 2018-12-28 06:50:00
+res : Illuminate\Database\Query\Expression Object
+(
+    [value:protected] => SELECT now()
+)
+
+
+                                                                           
+  [Symfony\Component\Debug\Exception\FatalThrowableError]                  
+  Cannot use object of type Illuminate\Database\Query\Expression as array  
+                                                                           
+
