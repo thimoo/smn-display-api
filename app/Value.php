@@ -54,11 +54,11 @@ class Value extends Model
      * @var array
      */
     protected $fillable = [
-        'data_code', 
+        'data_code',
         'profile_stn_code',
-    	'date',
-    	'value',
-    	'tag',
+      	'date',
+      	'value',
+      	'tag',
     ];
 
     /**
@@ -199,12 +199,13 @@ class Value extends Model
      * Save a value as original
      *
      * @param  App\Value    $value
-     * @return void
+     * @return App\Value 
      */
     public static function insertAsOriginal(Value $value)
     {
         $value->tag = self::ORIGINAL;
-        $value->save();
+        // $value->save();
+        return $value;
     }
 
     /**
@@ -213,26 +214,28 @@ class Value extends Model
      *
      * @param  App\Value    $new
      * @param  App\Value    $old
-     * @return void
+     * @return App\Value
      */
     public static function insertAsSubstituted(Value $new, Value $old)
     {
         $new->value = $old->value;
         $new->tag = self::SUBSTITUTED;
-        $new->save();
+        // $new->save();
+        return $new;
     }
 
     /**
      * Save a value as no-data with a zero value
      *
      * @param  App\Value    $value
-     * @return void
+     * @return App\Value
      */
     public static function insertAsNoData(Value $value)
     {
         $value->value = 0;
         $value->tag = self::NODATA;
-        $value->save();
+        // $value->save();
+        return $value;
     }
 
     /**

@@ -80,7 +80,6 @@ class RefreshDatabase extends Command
     public function handle()
     {
         $this->info("Starting refresh...");
-        DB::beginTransaction();
 
         // Loading the target url in the config file
         $csvTargetUrl = config('constants.csv_target_url');
@@ -113,7 +112,6 @@ class RefreshDatabase extends Command
             $this->csvStatusError();
         }
 
-        DB::commit();
         $this->info("Refresh finished!");
     }
 
@@ -139,7 +137,7 @@ class RefreshDatabase extends Command
 
         if ($this->parser->validateFormat())
         {
-            $this->insertNewValues();
+            $this->insertNewValue();
         }
         else
         {
@@ -168,7 +166,7 @@ class RefreshDatabase extends Command
         }
     }
 
-    private function insertNewValues()
+    private function insertNewValue()
     {
         // The dataset represent with a usefull way
         // the collections of data present in the
@@ -364,7 +362,7 @@ class RefreshDatabase extends Command
      */
     private function getLastUpdate()
     {
-        $res = DB::table('profiles')->max('last_update');
+        $res = DB::table('profiles')->min('last_update');
         if ($res === null) $this->databaseUpdateTime = null;
         else $this->databaseUpdateTime = new Carbon($res);
 

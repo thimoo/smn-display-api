@@ -10,25 +10,25 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class NewValue
+class NewValues
 {
     use InteractsWithSockets, SerializesModels;
 
     /**
      * Stores the value to save
-     * 
-     * @var App\Value
+     *
+     * @var array
      */
-    public $value;
+    public $values;
 
     /**
-     * Create a new event instance with the given value.
-     *
+     * Create a array new event instance with the given value.
+     * @param  array  $data
      * @return void
      */
-    public function __construct(Value $data)
+    public function __construct(array $data)
     {
-        $this->value = $data;
+      $this->values = $data;
     }
 
     /**

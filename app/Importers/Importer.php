@@ -2,12 +2,14 @@
 
 namespace App\Importers;
 
+use \DB;
 use App\Value;
 use App\Profile;
-use App\Events\NewValue;
+use Carbon\Carbon;
+use App\Events\NewValues;
 use App\Events\CheckProfiles;
-use App\Events\BeforeValuesInserted;
 use App\Parsers\DataSets\DataSet;
+use App\Events\BeforeValuesInserted;
 
 class Importer
 {
@@ -17,6 +19,13 @@ class Importer
      * @var App\Parsers\DataSets\DataSet
      */
     protected $dataSet;
+
+    /**
+     * The code name of the currentProfile
+     *
+     * @var string
+     */
+    protected $currentProfile=null;
 
     /**
      * Load the data set and store it
@@ -39,8 +48,7 @@ class Importer
      */
     public function import()
     {
-        $this->BeforeValuesInserted()
-             ->insertValues()
+        $this->insertValues()
              ->checkProfiles();
 
         return $this;
@@ -55,44 +63,71 @@ class Importer
      */
     protected function insertValues()
     {
-        $output = new \Symfony\Component\Console\Output\ConsoleOutput();
-        $output->writeln("<info>Start : ".date("H:i:s")."</info>");
-        $currentProfile=null;
-        $this->dataSet->resetCursors();
-        while ($this->dataSet->hasNextValue())
+      $this->dataSet->resetCursors();
+      $values = array();
+      while ($this->dataSet->hasNextValue())
+      {
+        list($profile, $data, $value, $time) = $this->dataSet->getNextValue();
+
+        if($this->currentProfile!=$profile)
         {
-            list($profile, $data, $value, $time) = $this->dataSet->getNextValue();
-            if($currentProfile!=$profile)
-            {
-              $output->writeln("<info>".$profile." ".date("H:i:s")."</info>");
-              $currentProfile=$profile;
-            }
+          //Verifie que ce n'est pas le premier profile
+          if($this->currentProfile!=null)
+          {
+            $this->push($values);
+          }
+          //définition du profile courant
+          $this->currentProfile=$profile;
+          //reset le profile.
+          $values = array();
 
-            $value = new Value([
-                'profile_stn_code' => $profile,
-                'data_code' => $data,
-                'date' => $time,
-                'value' => $value,
-                'tag' => null,
-            ]);
-            event(new NewValue($value));
+          $limitTime = $this->getDatabaseTime();
         }
-        $output->writeln("<info>Start : ".date("H:i:s")."</info>");
 
-        return $this;
+        if($time > $limitTime)
+        {
+          $values[] = new Value([
+              'profile_stn_code' => $profile,
+              'data_code' => $data,
+              'date' => $time,
+              'value' => $value,
+              'tag' => null,
+          ]);
+        }
+      }
+
+      //Add the last profile
+      $this->push($values);
+
+      return $this;
     }
 
     /**
      * Call the "ValueInserterd" event to fire the
      * post checks
-     *
+     * @param  string  $currentProfile the profile
      * @return Importer          $this
      */
-    protected function BeforeValuesInserted()
+    protected function beforeValuesInserted($currentProfile)
     {
-        event(new BeforeValuesInserted);
+        event(new BeforeValuesInserted ($currentProfile));
 
         return $this;
+    }
+
+    /**
+     * Push the values
+     * @param  array  $data
+     * @return void
+     */
+    protected function push(array $data)
+    {
+      if(count($data)>0){
+        DB::beginTransaction();
+          $this->beforeValuesInserted($this->currentProfile);
+          event(new NewValues($data));
+        DB::commit();
+      }
     }
 
     /**
@@ -105,9 +140,6 @@ class Importer
      */
     protected function checkProfiles()
     {
-      $output = new \Symfony\Component\Console\Output\ConsoleOutput();
-      $output->writeln("<info>checkProfiles</info>");
-
         $this->dataSet->resetCursors();
         while ($this->dataSet->hasNextProfile())
         {
@@ -117,5 +149,21 @@ class Importer
         }
 
         return $this;
+    }
+
+    /**
+     * Retreive the latest update datetime from profiles
+     * and set the databaseUpdateTime. If no profile was
+     * found, then the databaseUpdateTime is set to null
+     *
+     * @return Carbon\Carbon or null if no profile in database
+     */
+    private function getDatabaseTime()
+    {
+        $res = DB::table('profiles')
+                      ->where('stn_code', '=', $this->currentProfile)
+                      ->max('last_update');
+        if ($res == null) return null;
+        else return new Carbon($res);
     }
 }
