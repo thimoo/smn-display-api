@@ -1,29 +1,982 @@
 Starting refresh...
 Getting csv at: http://data.swissmetnet-display.ch/VQJA15.LSSW.csv
 Response ok [200]
-Database must be updated!
-Next update date found: 2018-12-28 06:50:00
-Last database udpate: 2018-12-27 17:50:00
-
-                                                           
-  [Symfony\Component\Debug\Exception\FatalErrorException]  
-  Cannot redeclare App\Listeners\InsertValue::insertall()  
-                                                           
-
+No update needed!
+Next update date found: 2019-01-08 15:10:00
+Last database udpate: 2019-01-08 15:10:00
+Refresh finished!
+Starting refresh...
+Getting csv at: http://data.swissmetnet-display.ch/VQJA15.LSSW.csv
+Response ok [200]
+No update needed!
+Next update date found: 2019-01-08 15:10:00
+Last database udpate: 2019-01-08 15:10:00
+Refresh finished!
 Starting refresh...
 Getting csv at: http://data.swissmetnet-display.ch/VQJA15.LSSW.csv
 Response ok [200]
 Database must be updated!
-Next update date found: 2019-01-04 07:50:00
-Last database udpate: 2018-12-28 06:50:00
-res : Illuminate\Database\Query\Expression Object
-(
-    [value:protected] => SELECT now()
-)
-
-
-                                                                           
-  [Symfony\Component\Debug\Exception\FatalThrowableError]                  
-  Cannot use object of type Illuminate\Database\Query\Expression as array  
-                                                                           
-
+Next update date found: 2019-01-08 15:20:00
+Last database udpate: 2019-01-08 15:10:00
+add tae : 2019-01-08 13:10:00
+Start : 130
+first113
+add com : 2019-01-08 13:10:00
+Start : 130
+first116
+add abo : 2019-01-08 13:10:00
+Start : 130
+first116
+add aig : 2019-01-08 13:10:00
+Start : 130
+first116
+add alt : 2019-01-08 13:10:00
+Start : 130
+first116
+add arh : 2019-01-08 13:10:00
+Start : 130
+first0
+add and : 2019-01-08 13:10:00
+Start : 130
+first125
+add ant : 2019-01-08 13:10:00
+Start : 130
+first0
+add aro : 2019-01-08 13:10:00
+Start : 130
+first0
+add rag : 2019-01-08 13:10:00
+Start : 130
+first125
+add ban : 2019-01-08 13:10:00
+Start : 130
+first0
+add bas : 2019-01-08 13:10:00
+Start : 130
+first125
+add lat : 2019-01-08 13:10:00
+Start : 130
+first0
+add ber : 2019-01-08 13:10:00
+Start : 130
+first125
+add bez : 2019-01-08 13:10:00
+Start : 130
+first125
+add bia : 2019-01-08 13:10:00
+Start : 130
+first0
+add bin : 2019-01-08 13:10:00
+Start : 130
+first0
+add biz : 2019-01-08 13:10:00
+Start : 130
+first125
+add biv : 2019-01-08 13:10:00
+Start : 130
+first0
+add bie : 2019-01-08 13:10:00
+Start : 130
+first125
+add bla : 2019-01-08 13:10:00
+Start : 130
+first0
+add bol : 2019-01-08 13:10:00
+Start : 130
+first125
+add bou : 2019-01-08 13:10:00
+Start : 130
+first125
+add brz : 2019-01-08 13:10:00
+Start : 130
+first125
+add bus : 2019-01-08 13:10:00
+Start : 130
+first125
+add buf : 2019-01-08 13:10:00
+Start : 130
+first125
+add fre : 2019-01-08 13:10:00
+Start : 130
+first125
+add cev : 2019-01-08 13:10:00
+Start : 130
+first0
+add chz : 2019-01-08 13:10:00
+Start : 130
+first0
+add cha : 2019-01-08 13:10:00
+Start : 130
+first125
+add chm : 2019-01-08 13:10:00
+Start : 130
+first0
+add chu : 2019-01-08 13:10:00
+Start : 130
+first125
+add chd : 2019-01-08 13:10:00
+Start : 130
+first125
+add cim : 2019-01-08 13:10:00
+Start : 130
+first125
+add cdm : 2019-01-08 13:10:00
+Start : 130
+first0
+add gsb : 2019-01-08 13:10:00
+Start : 130
+first125
+add coy : 2019-01-08 13:10:00
+Start : 130
+first0
+add cma : 2019-01-08 13:10:00
+Start : 130
+first125
+add crm : 2019-01-08 13:10:00
+Start : 130
+first125
+add dav : 2019-01-08 13:10:00
+Start : 130
+first125
+add dem : 2019-01-08 13:10:00
+Start : 130
+first125
+add dis : 2019-01-08 13:10:00
+Start : 130
+first125
+add ebk : 2019-01-08 13:10:00
+Start : 130
+first125
+add egh : 2019-01-08 13:10:00
+Start : 130
+first125
+add ego : 2019-01-08 13:10:00
+Start : 130
+first125
+add ein : 2019-01-08 13:10:00
+Start : 130
+first125
+add elm : 2019-01-08 13:10:00
+Start : 130
+first125
+add eng : 2019-01-08 13:10:00
+Start : 130
+first125
+add evi : 2019-01-08 13:10:00
+Start : 130
+first0
+add evo : 2019-01-08 13:10:00
+Start : 130
+first125
+add fah : 2019-01-08 13:10:00
+Start : 130
+first125
+add flu : 2019-01-08 13:10:00
+Start : 130
+first0
+add gra : 2019-01-08 13:10:00
+Start : 130
+first125
+add fru : 2019-01-08 13:10:00
+Start : 130
+first0
+add gve : 2019-01-08 13:10:00
+Start : 130
+first125
+add ges : 2019-01-08 13:10:00
+Start : 130
+first0
+add gih : 2019-01-08 13:10:00
+Start : 130
+first125
+add gla : 2019-01-08 13:10:00
+Start : 130
+first125
+add gor : 2019-01-08 13:10:00
+Start : 130
+first125
+add gre : 2019-01-08 13:10:00
+Start : 130
+first125
+add grh : 2019-01-08 13:10:00
+Start : 130
+first125
+add gro : 2019-01-08 13:10:00
+Start : 130
+first125
+add grc : 2019-01-08 13:10:00
+Start : 130
+first0
+add gos : 2019-01-08 13:10:00
+Start : 130
+first0
+add goe : 2019-01-08 13:10:00
+Start : 130
+first125
+add gue : 2019-01-08 13:10:00
+Start : 130
+first125
+add gut : 2019-01-08 13:10:00
+Start : 130
+first125
+add hll : 2019-01-08 13:10:00
+Start : 130
+first125
+add hoe : 2019-01-08 13:10:00
+Start : 130
+first125
+add ilz : 2019-01-08 13:10:00
+Start : 130
+first0
+add int : 2019-01-08 13:10:00
+Start : 130
+first125
+add jun : 2019-01-08 13:10:00
+Start : 130
+first125
+add kop : 2019-01-08 13:10:00
+Start : 130
+first125
+add brl : 2019-01-08 13:10:00
+Start : 130
+first125
+add cdf : 2019-01-08 13:10:00
+Start : 130
+first125
+add dol : 2019-01-08 13:10:00
+Start : 130
+first125
+add lac : 2019-01-08 13:10:00
+Start : 130
+first0
+add lag : 2019-01-08 13:10:00
+Start : 130
+first125
+add mls : 2019-01-08 13:10:00
+Start : 130
+first125
+add lei : 2019-01-08 13:10:00
+Start : 130
+first125
+add att : 2019-01-08 13:10:00
+Start : 130
+first125
+add chb : 2019-01-08 13:10:00
+Start : 130
+first0
+add dia : 2019-01-08 13:10:00
+Start : 130
+first0
+add mar : 2019-01-08 13:10:00
+Start : 130
+first0
+add otl : 2019-01-08 13:10:00
+Start : 130
+first125
+add lug : 2019-01-08 13:10:00
+Start : 130
+first125
+add luz : 2019-01-08 13:10:00
+Start : 130
+first125
+add lae : 2019-01-08 13:10:00
+Start : 130
+first125
+add mag : 2019-01-08 13:10:00
+Start : 130
+first125
+add mas : 2019-01-08 13:10:00
+Start : 130
+first125
+add mah : 2019-01-08 13:10:00
+Start : 130
+first0
+add mtr : 2019-01-08 13:10:00
+Start : 130
+first0
+add mer : 2019-01-08 13:10:00
+Start : 130
+first125
+add mob : 2019-01-08 13:10:00
+Start : 130
+first0
+add mve : 2019-01-08 13:10:00
+Start : 130
+first125
+add gen : 2019-01-08 13:10:00
+Start : 130
+first125
+add mrp : 2019-01-08 13:10:00
+Start : 130
+first125
+add moa : 2019-01-08 13:10:00
+Start : 130
+first125
+add mte : 2019-01-08 13:10:00
+Start : 130
+first0
+add moe : 2019-01-08 13:10:00
+Start : 130
+first125
+add mub : 2019-01-08 13:10:00
+Start : 130
+first125
+add msk : 2019-01-08 13:10:00
+Start : 130
+first0
+add nas : 2019-01-08 13:10:00
+Start : 130
+first125
+add nap : 2019-01-08 13:10:00
+Start : 130
+first125
+add neu : 2019-01-08 13:10:00
+Start : 130
+first125
+add cgi : 2019-01-08 13:10:00
+Start : 130
+first125
+add obr : 2019-01-08 13:10:00
+Start : 130
+first0
+add aeg : 2019-01-08 13:10:00
+Start : 130
+first0
+add oro : 2019-01-08 13:10:00
+Start : 130
+first125
+add beh : 2019-01-08 13:10:00
+Start : 130
+first0
+add pay : 2019-01-08 13:10:00
+Start : 130
+first125
+add pil : 2019-01-08 13:10:00
+Start : 130
+first125
+add pio : 2019-01-08 13:10:00
+Start : 130
+first125
+add cov : 2019-01-08 13:10:00
+Start : 130
+first125
+add pma : 2019-01-08 13:10:00
+Start : 130
+first125
+add plf : 2019-01-08 13:10:00
+Start : 130
+first125
+add rob : 2019-01-08 13:10:00
+Start : 130
+first125
+add puy : 2019-01-08 13:10:00
+Start : 130
+first125
+add qui : 2019-01-08 13:10:00
+Start : 130
+first125
+add roe : 2019-01-08 13:10:00
+Start : 130
+first125
+add rue : 2019-01-08 13:10:00
+Start : 130
+first125
+add sbe : 2019-01-08 13:10:00
+Start : 130
+first125
+add hai : 2019-01-08 13:10:00
+Start : 130
+first125
+add sam : 2019-01-08 13:10:00
+Start : 130
+first125
+add sag : 2019-01-08 13:10:00
+Start : 130
+first0
+add sha : 2019-01-08 13:10:00
+Start : 130
+first125
+add srs : 2019-01-08 13:10:00
+Start : 130
+first0
+add scm : 2019-01-08 13:10:00
+Start : 130
+first125
+add spf : 2019-01-08 13:10:00
+Start : 130
+first125
+add scu : 2019-01-08 13:10:00
+Start : 130
+first125
+add sia : 2019-01-08 13:10:00
+Start : 130
+first0
+add sim : 2019-01-08 13:10:00
+Start : 130
+first0
+add sio : 2019-01-08 13:10:00
+Start : 130
+first125
+add pre : 2019-01-08 13:10:00
+Start : 130
+first125
+add stc : 2019-01-08 13:10:00
+Start : 130
+first0
+add stg : 2019-01-08 13:10:00
+Start : 130
+first125
+add smm : 2019-01-08 13:10:00
+Start : 130
+first125
+add sbo : 2019-01-08 13:10:00
+Start : 130
+first125
+add stk : 2019-01-08 13:10:00
+Start : 130
+first125
+add sae : 2019-01-08 13:10:00
+Start : 130
+first125
+add thu : 2019-01-08 13:10:00
+Start : 130
+first125
+add tit : 2019-01-08 13:10:00
+Start : 130
+first125
+add ueb : 2019-01-08 13:10:00
+Start : 130
+first0
+add ulr : 2019-01-08 13:10:00
+Start : 130
+first125
+add vad : 2019-01-08 13:10:00
+Start : 130
+first125
+add vab : 2019-01-08 13:10:00
+Start : 130
+first125
+add vls : 2019-01-08 13:10:00
+Start : 130
+first0
+add vev : 2019-01-08 13:10:00
+Start : 130
+first0
+add vio : 2019-01-08 13:10:00
+Start : 130
+first0
+add vit : 2019-01-08 13:10:00
+Start : 130
+first0
+add vis : 2019-01-08 13:10:00
+Start : 130
+first125
+add wfj : 2019-01-08 13:10:00
+Start : 130
+first125
+add wyn : 2019-01-08 13:10:00
+Start : 130
+first125
+add wae : 2019-01-08 13:10:00
+Start : 130
+first125
+add psi : 2019-01-08 13:10:00
+Start : 130
+first0
+add zer : 2019-01-08 13:10:00
+Start : 130
+first125
+add reh : 2019-01-08 13:10:00
+Start : 130
+first125
+add sma : 2019-01-08 13:10:00
+Start : 130
+first125
+add klo : 2019-01-08 13:10:00
+Start : 130
+first125
+Refresh finished!
+Starting refresh...
+Getting csv at: http://data.swissmetnet-display.ch/VQJA15.LSSW.csv
+Response ok [200]
+Database must be updated!
+Next update date found: 2019-01-08 15:30:00
+Last database udpate: 2019-01-08 15:20:00
+add tae : 2019-01-08 13:20:00
+Start : 130
+first112
+add com : 2019-01-08 13:20:00
+Start : 130
+first115
+add abo : 2019-01-08 13:20:00
+Start : 130
+first115
+add aig : 2019-01-08 13:20:00
+Start : 130
+first115
+add alt : 2019-01-08 13:20:00
+Start : 130
+first115
+add arh : 2019-01-08 13:20:00
+Start : 130
+first0
+add and : 2019-01-08 13:20:00
+Start : 130
+first124
+add ant : 2019-01-08 13:20:00
+Start : 130
+first0
+add aro : 2019-01-08 13:20:00
+Start : 130
+first0
+add rag : 2019-01-08 13:20:00
+Start : 130
+first124
+add ban : 2019-01-08 13:20:00
+Start : 130
+first0
+add bas : 2019-01-08 13:20:00
+Start : 130
+first124
+add lat : 2019-01-08 13:20:00
+Start : 130
+first0
+add ber : 2019-01-08 13:20:00
+Start : 130
+first124
+add bez : 2019-01-08 13:20:00
+Start : 130
+first124
+add bia : 2019-01-08 13:20:00
+Start : 130
+first0
+add bin : 2019-01-08 13:20:00
+Start : 130
+first0
+add biz : 2019-01-08 13:20:00
+Start : 130
+first124
+add biv : 2019-01-08 13:20:00
+Start : 130
+first0
+add bie : 2019-01-08 13:20:00
+Start : 130
+first124
+add bla : 2019-01-08 13:20:00
+Start : 130
+first0
+add bol : 2019-01-08 13:20:00
+Start : 130
+first124
+add bou : 2019-01-08 13:20:00
+Start : 130
+first124
+add brz : 2019-01-08 13:20:00
+Start : 130
+first124
+add bus : 2019-01-08 13:20:00
+Start : 130
+first124
+add buf : 2019-01-08 13:20:00
+Start : 130
+first124
+add fre : 2019-01-08 13:20:00
+Start : 130
+first124
+add cev : 2019-01-08 13:20:00
+Start : 130
+first0
+add chz : 2019-01-08 13:20:00
+Start : 130
+first0
+add cha : 2019-01-08 13:20:00
+Start : 130
+first124
+add chm : 2019-01-08 13:20:00
+Start : 130
+first0
+add chu : 2019-01-08 13:20:00
+Start : 130
+first124
+add chd : 2019-01-08 13:20:00
+Start : 130
+first124
+add cim : 2019-01-08 13:20:00
+Start : 130
+first124
+add cdm : 2019-01-08 13:20:00
+Start : 130
+first0
+add gsb : 2019-01-08 13:20:00
+Start : 130
+first124
+add coy : 2019-01-08 13:20:00
+Start : 130
+first0
+add cma : 2019-01-08 13:20:00
+Start : 130
+first124
+add crm : 2019-01-08 13:20:00
+Start : 130
+first124
+add dav : 2019-01-08 13:20:00
+Start : 130
+first124
+add dem : 2019-01-08 13:20:00
+Start : 130
+first124
+add dis : 2019-01-08 13:20:00
+Start : 130
+first124
+add ebk : 2019-01-08 13:20:00
+Start : 130
+first124
+add egh : 2019-01-08 13:20:00
+Start : 130
+first124
+add ego : 2019-01-08 13:20:00
+Start : 130
+first124
+add ein : 2019-01-08 13:20:00
+Start : 130
+first124
+add elm : 2019-01-08 13:20:00
+Start : 130
+first124
+add eng : 2019-01-08 13:20:00
+Start : 130
+first124
+add evi : 2019-01-08 13:20:00
+Start : 130
+first0
+add evo : 2019-01-08 13:20:00
+Start : 130
+first124
+add fah : 2019-01-08 13:20:00
+Start : 130
+first124
+add flu : 2019-01-08 13:20:00
+Start : 130
+first0
+add gra : 2019-01-08 13:20:00
+Start : 130
+first124
+add fru : 2019-01-08 13:20:00
+Start : 130
+first0
+add gve : 2019-01-08 13:20:00
+Start : 130
+first124
+add ges : 2019-01-08 13:20:00
+Start : 130
+first0
+add gih : 2019-01-08 13:20:00
+Start : 130
+first124
+add gla : 2019-01-08 13:20:00
+Start : 130
+first124
+add gor : 2019-01-08 13:20:00
+Start : 130
+first124
+add gre : 2019-01-08 13:20:00
+Start : 130
+first124
+add grh : 2019-01-08 13:20:00
+Start : 130
+first124
+add gro : 2019-01-08 13:20:00
+Start : 130
+first124
+add grc : 2019-01-08 13:20:00
+Start : 130
+first0
+add gos : 2019-01-08 13:20:00
+Start : 130
+first0
+add goe : 2019-01-08 13:20:00
+Start : 130
+first124
+add gue : 2019-01-08 13:20:00
+Start : 130
+first124
+add gut : 2019-01-08 13:20:00
+Start : 130
+first124
+add hll : 2019-01-08 13:20:00
+Start : 130
+first124
+add hoe : 2019-01-08 13:20:00
+Start : 130
+first124
+add ilz : 2019-01-08 13:20:00
+Start : 130
+first0
+add int : 2019-01-08 13:20:00
+Start : 130
+first124
+add jun : 2019-01-08 13:20:00
+Start : 130
+first124
+add kop : 2019-01-08 13:20:00
+Start : 130
+first124
+add brl : 2019-01-08 13:20:00
+Start : 130
+first124
+add cdf : 2019-01-08 13:20:00
+Start : 130
+first124
+add dol : 2019-01-08 13:20:00
+Start : 130
+first124
+add lac : 2019-01-08 13:20:00
+Start : 130
+first0
+add lag : 2019-01-08 13:20:00
+Start : 130
+first124
+add mls : 2019-01-08 13:20:00
+Start : 130
+first124
+add lei : 2019-01-08 13:20:00
+Start : 130
+first124
+add att : 2019-01-08 13:20:00
+Start : 130
+first124
+add chb : 2019-01-08 13:20:00
+Start : 130
+first0
+add dia : 2019-01-08 13:20:00
+Start : 130
+first0
+add mar : 2019-01-08 13:20:00
+Start : 130
+first0
+add otl : 2019-01-08 13:20:00
+Start : 130
+first124
+add lug : 2019-01-08 13:20:00
+Start : 130
+first124
+add luz : 2019-01-08 13:20:00
+Start : 130
+first124
+add lae : 2019-01-08 13:20:00
+Start : 130
+first124
+add mag : 2019-01-08 13:20:00
+Start : 130
+first124
+add mas : 2019-01-08 13:20:00
+Start : 130
+first124
+add mah : 2019-01-08 13:20:00
+Start : 130
+first0
+add mtr : 2019-01-08 13:20:00
+Start : 130
+first0
+add mer : 2019-01-08 13:20:00
+Start : 130
+first124
+add mob : 2019-01-08 13:20:00
+Start : 130
+first0
+add mve : 2019-01-08 13:20:00
+Start : 130
+first124
+add gen : 2019-01-08 13:20:00
+Start : 130
+first124
+add mrp : 2019-01-08 13:20:00
+Start : 130
+first124
+add moa : 2019-01-08 13:20:00
+Start : 130
+first124
+add mte : 2019-01-08 13:20:00
+Start : 130
+first0
+add moe : 2019-01-08 13:20:00
+Start : 130
+first124
+add mub : 2019-01-08 13:20:00
+Start : 130
+first124
+add msk : 2019-01-08 13:20:00
+Start : 130
+first0
+add nas : 2019-01-08 13:20:00
+Start : 130
+first124
+add nap : 2019-01-08 13:20:00
+Start : 130
+first124
+add neu : 2019-01-08 13:20:00
+Start : 130
+first124
+add cgi : 2019-01-08 13:20:00
+Start : 130
+first124
+add obr : 2019-01-08 13:20:00
+Start : 130
+first0
+add aeg : 2019-01-08 13:20:00
+Start : 130
+first0
+add oro : 2019-01-08 13:20:00
+Start : 130
+first124
+add beh : 2019-01-08 13:20:00
+Start : 130
+first0
+add pay : 2019-01-08 13:20:00
+Start : 130
+first124
+add pil : 2019-01-08 13:20:00
+Start : 130
+first124
+add pio : 2019-01-08 13:20:00
+Start : 130
+first124
+add cov : 2019-01-08 13:20:00
+Start : 130
+first124
+add pma : 2019-01-08 13:20:00
+Start : 130
+first124
+add plf : 2019-01-08 13:20:00
+Start : 130
+first124
+add rob : 2019-01-08 13:20:00
+Start : 130
+first124
+add puy : 2019-01-08 13:20:00
+Start : 130
+first124
+add qui : 2019-01-08 13:20:00
+Start : 130
+first124
+add roe : 2019-01-08 13:20:00
+Start : 130
+first124
+add rue : 2019-01-08 13:20:00
+Start : 130
+first124
+add sbe : 2019-01-08 13:20:00
+Start : 130
+first124
+add hai : 2019-01-08 13:20:00
+Start : 130
+first124
+add sam : 2019-01-08 13:20:00
+Start : 130
+first124
+add sag : 2019-01-08 13:20:00
+Start : 130
+first0
+add sha : 2019-01-08 13:20:00
+Start : 130
+first124
+add srs : 2019-01-08 13:20:00
+Start : 130
+first0
+add scm : 2019-01-08 13:20:00
+Start : 130
+first124
+add spf : 2019-01-08 13:20:00
+Start : 130
+first124
+add scu : 2019-01-08 13:20:00
+Start : 130
+first124
+add sia : 2019-01-08 13:20:00
+Start : 130
+first0
+add sim : 2019-01-08 13:20:00
+Start : 130
+first0
+add sio : 2019-01-08 13:20:00
+Start : 130
+first124
+add pre : 2019-01-08 13:20:00
+Start : 130
+first124
+add stc : 2019-01-08 13:20:00
+Start : 130
+first0
+add stg : 2019-01-08 13:20:00
+Start : 130
+first124
+add smm : 2019-01-08 13:20:00
+Start : 130
+first124
+add sbo : 2019-01-08 13:20:00
+Start : 130
+first124
+add stk : 2019-01-08 13:20:00
+Start : 130
+first124
+add sae : 2019-01-08 13:20:00
+Start : 130
+first124
+add thu : 2019-01-08 13:20:00
+Start : 130
+first124
+add tit : 2019-01-08 13:20:00
+Start : 130
+first124
+add ueb : 2019-01-08 13:20:00
+Start : 130
+first0
+add ulr : 2019-01-08 13:20:00
+Start : 130
+first124
+add vad : 2019-01-08 13:20:00
+Start : 130
+first124
+add vab : 2019-01-08 13:20:00
+Start : 130
+first124
+add vls : 2019-01-08 13:20:00
+Start : 130
+first0
+add vev : 2019-01-08 13:20:00
+Start : 130
+first0
+add vio : 2019-01-08 13:20:00
+Start : 130
+first0
+add vit : 2019-01-08 13:20:00
+Start : 130
+first0
+add vis : 2019-01-08 13:20:00
+Start : 130
+first124
+add wfj : 2019-01-08 13:20:00
+Start : 130
+first124
+add wyn : 2019-01-08 13:20:00
+Start : 130
+first124
+add wae : 2019-01-08 13:20:00
+Start : 130
+first124
+add psi : 2019-01-08 13:20:00
+Start : 130
+first0
+add zer : 2019-01-08 13:20:00
+Start : 130
+first124
+add reh : 2019-01-08 13:20:00
+Start : 130
+first124
+add sma : 2019-01-08 13:20:00
+Start : 130
+first124
+add klo : 2019-01-08 13:20:00
+Start : 130
+first124
+Refresh finished!

@@ -108,13 +108,16 @@ class InsertValue
     {
       $now = Carbon::now();
 
+      $output = new \Symfony\Component\Console\Output\ConsoleOutput();
+      $output->writeln("<info>Start : ".count ($this->insertValues)."</info>");
+
       $i=0;
       $query="INSERT INTO `values` (`data_code`, `profile_stn_code`, `date`, `value`, `tag`, `created_at`, `updated_at`) VALUES ";
 
       foreach ($this->insertValues as $value) {
         if($i>15)
         {
-          DB::insert(substr($query, 0, -1).";");
+          // DB::insert(substr($query, 0, -1).";");
           $query="INSERT INTO `values` (`data_code`, `profile_stn_code`, `date`, `value`, `tag`, `created_at`, `updated_at`) VALUES ";
           $i=0;
         }
@@ -126,7 +129,7 @@ class InsertValue
       }
       if($i!=0)
       {
-        DB::insert(substr($query, 0, -1).";");
+        // DB::insert(substr($query, 0, -1).";");
       }
     }
 
@@ -139,7 +142,12 @@ class InsertValue
      */
     protected function insert()
     {
-        $this->lastValue = $this->profile->lastValue($this->data);
+        if(empty($this->insertValues)){
+          $this->lastValue = $this->profile->lastValue($this->data);
+        }
+        else {
+          $this->lastValue = $this->insertValues[sizeof($this->insertValues)-1];
+        }
 
         // A value can be set to zero, we must check
         // than the value is not equal to null

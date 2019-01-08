@@ -50,23 +50,34 @@ class CheckDisplay
      */
     public function handle(CheckConstraints $event)
     {
-        // Unpack stored data
-        $this->profile = $event->profile;
-        $this->data = $event->data;
-        $this->values = $event->values;
+      $output = new \Symfony\Component\Console\Output\ConsoleOutput();
+      $output->writeln("<info>first".count($event->values)."</info>");
 
-        $this->first = $this->values->first();
+      // Unpack stored data
+      $this->profile = $event->profile;
+      $this->data = $event->data;
+      $this->values = $event->values;
 
-        if ($this->first->isOriginal())
-        {
-            $this->originalValue();
+      if(count($event->values)>0){
+
+        $time=$this->getValueTime();
+
+        foreach ($this->values as $value) {
+          if($value->date === $time)
+          {
+            $this->first = $value;
+            if ($this->first->isOriginal())
+            {
+              $this->originalValue();
+            }
+            else
+            {
+              $this->noOriginalValue();
+            }
+          }
         }
-        else
-        {
-            $this->noOriginalValue();
-        }
+      }
     }
-
     /**
      * If an original value is present, then show
      * the data and check if the collection can be
@@ -108,5 +119,17 @@ class CheckDisplay
                 Display::hideCollection($this->data, $this->profile);
             }
         }
+    }
+
+    protected function getValueTime()
+    {
+      $time =0;
+      foreach ($this->values as $value) {
+        if($time<$value->date)
+        {
+          $time=$value->date;
+        }
+      }
+      return $time;
     }
 }
