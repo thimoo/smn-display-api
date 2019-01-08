@@ -108,9 +108,6 @@ class InsertValue
     {
       $now = Carbon::now();
 
-      $output = new \Symfony\Component\Console\Output\ConsoleOutput();
-      $output->writeln("<info>Start : ".count ($this->insertValues)."</info>");
-
       $i=0;
       $query="INSERT INTO `values` (`data_code`, `profile_stn_code`, `date`, `value`, `tag`, `created_at`, `updated_at`) VALUES ";
 
