@@ -82,7 +82,7 @@ class Importer
           $values = array();
 
           $limitTime = $this->getDatabaseTime();
-          $minutes = 12 * 10;
+          $minutes = 11 * 10;
           $limitTime = $limitTime->copy()->subMinutes($minutes);
         }
 

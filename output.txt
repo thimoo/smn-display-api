@@ -980,3 +980,10 @@ add klo : 2019-01-08 13:20:00
 Start : 130
 first124
 Refresh finished!
+Starting refresh...
+Getting csv at: http://data.swissmetnet-display.ch/VQJA15.LSSW.csv
+Response ok [200]
+Database must be updated!
+Next update date found: 2019-01-08 16:20:00
+Last database udpate: 2019-01-08 15:30:00
+Refresh finished!
