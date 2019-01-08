@@ -52,12 +52,16 @@ class RemoveOldValue
     private function getDatabaseTime()
     {
         // $res = DB::table('profiles')->min('last_update');
-        $res = DB::select("SELECT NOW();");
+        // $res = DB::select("SELECT NOW();");
+        //
+        // foreach ($res[0] as $value) {
+        //   $res=$value;
+        // }
+        //
+        // if ($res == null) return null;
+        // else return new Carbon($res);
 
-        foreach ($res[0] as $value) {
-          $res=$value;
-        }
-
+        $res = DB::table('profiles')->max('last_update');
         if ($res == null) return null;
         else return new Carbon($res);
     }
