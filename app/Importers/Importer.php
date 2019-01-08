@@ -27,6 +27,8 @@ class Importer
      */
     protected $currentProfile=null;
 
+    protected $limitTime;
+
     /**
      * Load the data set and store it
      *
@@ -82,11 +84,14 @@ class Importer
           $values = array();
 
           $limitTime = $this->getDatabaseTime();
-          $minutes = 11 * 10;
-          $limitTime = $limitTime->copy()->subMinutes($minutes);
+          $minutes = 12 * 10;
+          $this->limitTime = $limitTime->copy()->subMinutes($minutes);
+
+          $output = new \Symfony\Component\Console\Output\ConsoleOutput();
+          $output->writeln("<info>insert time :  ".$this->limitTime."</info>");
         }
 
-        if($time > $limitTime)
+        if($time > $this->limitTime)
         {
           $values[] = new Value([
               'profile_stn_code' => $profile,
@@ -112,7 +117,7 @@ class Importer
      */
     protected function beforeValuesInserted($currentProfile)
     {
-        event(new BeforeValuesInserted ($currentProfile));
+        event(new BeforeValuesInserted ($currentProfile, $this->limitTime));
 
         return $this;
     }

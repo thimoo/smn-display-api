@@ -20,16 +20,18 @@ class RemoveOldValue
     public function handle(BeforeValuesInserted $event)
     {
       // Get the current datetime in database
-      $currentTime = $this->getDatabaseTime();
+      $currentTime = $this->getDatabaseTime($event->profile);
 
       if ($currentTime)
       {
           // Compute the limit datetime to determine all
           // older values to delete
-          $minutes = 12 * 10;
-          $limitTime2h = $currentTime->copy()->subMinutes($minutes);
+          $limitTime2h = $event->time;
 
-          $minutes = 144 * 10;
+          $output = new \Symfony\Component\Console\Output\ConsoleOutput();
+          $output->writeln("<info>remove time :  ".$limitTime2h."</info>");
+
+          $minutes = 143 * 10;
           $limitTime24h = $currentTime->copy()->subMinutes($minutes);
 
           // Query the database to deletes all values that have
@@ -39,6 +41,9 @@ class RemoveOldValue
               ->where('date', '>', $limitTime2h)
               ->orWhere('date', '<', $limitTime24h)
               ->delete();
+
+
+              $output->writeln("<info>remove ".$event->profile." : ".$query."</info>");
         }
     }
 
@@ -49,7 +54,7 @@ class RemoveOldValue
      *
      * @return Carbon\Carbon or null if no profile in database
      */
-    private function getDatabaseTime()
+    private function getDatabaseTime($profile)
     {
         // $res = DB::table('profiles')->min('last_update');
         // $res = DB::select("SELECT NOW();");
@@ -61,7 +66,9 @@ class RemoveOldValue
         // if ($res == null) return null;
         // else return new Carbon($res);
 
-        $res = DB::table('profiles')->max('last_update');
+        $res = DB::table('profiles')
+                      ->where('stn_code', '=', $profile)
+                      ->max('last_update');
         if ($res == null) return null;
         else return new Carbon($res);
     }

@@ -21,13 +21,21 @@ class BeforeValuesInserted
     public $profile;
 
     /**
+     * Stores the time
+     *
+     *
+     */
+    public $time;
+
+    /**
      * Create a array new event instance with the given profile.
      * @param  string  $data
      * @return void
      */
-    public function __construct(string $data)
+    public function __construct(string $data, $time)
     {
       $this->profile = $data;
+      $this->time = $time;
     }
 
     /**
