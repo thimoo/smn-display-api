@@ -50,9 +50,6 @@ class CheckDisplay
      */
     public function handle(CheckConstraints $event)
     {
-      $output = new \Symfony\Component\Console\Output\ConsoleOutput();
-      $output->writeln("<info>first".count($event->values)."</info>");
-
       // Unpack stored data
       $this->profile = $event->profile;
       $this->data = $event->data;

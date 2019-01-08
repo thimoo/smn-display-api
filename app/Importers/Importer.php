@@ -84,9 +84,6 @@ class Importer
           $limitTime = $this->getDatabaseTime();
           $minutes = 12 * 10;
           $limitTime = $limitTime->copy()->subMinutes($minutes);
-
-          $output = new \Symfony\Component\Console\Output\ConsoleOutput();
-          $output->writeln("<info>add $this->currentProfile : ".$limitTime."</info>");
         }
 
         if($time > $limitTime)
