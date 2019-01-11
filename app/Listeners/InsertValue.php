@@ -114,6 +114,7 @@ class InsertValue
       foreach ($this->insertValues as $value) {
         if($i>15)
         {
+          $query.="('".$value->data_code."', '".$value->profile_stn_code."', '".$value->date."', ".$value->value.", '".$value->tag."', '".$now."', '".$now."'),";
           DB::insert(substr($query, 0, -1).";");
           $query="INSERT INTO `values` (`data_code`, `profile_stn_code`, `date`, `value`, `tag`, `created_at`, `updated_at`) VALUES ";
           $i=0;

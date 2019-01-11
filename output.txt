@@ -511,3 +511,1296 @@ insert time :  2019-01-08 15:20:00
 remove time :  2019-01-08 15:20:00
 remove klo : 120
 Refresh finished!
+Starting refresh...
+Getting csv at: http://data.swissmetnet-display.ch/VQJA15.LSSW.csv
+Response ok [200]
+Database must be updated!
+Next update date found: 2019-01-11 07:30:00
+Last database udpate: 2019-01-08 17:30:00
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove tae : 2696
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove com : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove abo : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove aig : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove alt : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove arh : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove and : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove ant : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove aro : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove rag : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove ban : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove bas : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove lat : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove ber : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove bez : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove bia : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove bin : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove biz : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove biv : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove bie : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove bla : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove bol : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove bou : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove brz : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove bus : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove buf : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove fre : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove cev : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove chz : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove cha : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove chm : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove chu : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove chd : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove cim : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove cdm : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove gsb : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove coy : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove cma : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove crm : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove dav : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove dem : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove dis : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove ebk : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove egh : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove ego : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove ein : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove elm : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove eng : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove evi : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove evo : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove fah : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove flu : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove gra : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove fru : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove gve : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove ges : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove gih : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove gla : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove gor : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove gre : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove grh : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove gro : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove grc : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove gos : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove goe : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove gue : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove gut : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove hll : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove hoe : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove ilz : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove int : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove jun : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove kop : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove brl : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove cdf : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove dol : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove lac : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove lag : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove mls : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove lei : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove att : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove chb : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove dia : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove mar : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove otl : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove lug : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove luz : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove lae : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove mag : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove mas : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove mah : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove mtr : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove mer : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove mob : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove mve : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove gen : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove mrp : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove moa : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove mte : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove moe : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove mub : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove msk : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove nas : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove nap : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove neu : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove cgi : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove obr : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove aeg : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove oro : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove beh : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove pay : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove pil : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove pio : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove cov : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove pma : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove plf : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove rob : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove puy : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove qui : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove roe : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove rue : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove sbe : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove hai : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove sam : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove sag : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove sha : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove srs : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove scm : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove spf : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove scu : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove sia : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove sim : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove sio : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove pre : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove stc : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove stg : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove smm : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove sbo : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove stk : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove sae : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove thu : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove tit : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove ueb : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove ulr : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove vad : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove vab : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove vls : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove vev : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove vio : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove vit : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove vis : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove wfj : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove wyn : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove wae : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove psi : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove zer : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove reh : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove sma : 1546
+insert time :  2019-01-08 15:30:00
+remove time :  2019-01-08 15:30:00
+remove klo : 1546
+Refresh finished!
+Starting refresh...
+Getting csv at: http://data.swissmetnet-display.ch/VQJA15.LSSW.csv
+Response ok [200]
+Database must be updated!
+Next update date found: 2019-01-11 07:40:00
+Last database udpate: 2019-01-11 07:30:00
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove tae : 152353
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove com : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove abo : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove aig : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove alt : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove arh : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove and : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove ant : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove aro : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove rag : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove ban : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove bas : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove lat : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove ber : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove bez : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove bia : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove bin : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove biz : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove biv : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove bie : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove bla : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove bol : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove bou : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove brz : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove bus : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove buf : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove fre : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove cev : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove chz : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove cha : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove chm : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove chu : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove chd : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove cim : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove cdm : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove gsb : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove coy : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove cma : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove crm : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove dav : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove dem : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove dis : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove ebk : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove egh : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove ego : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove ein : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove elm : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove eng : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove evi : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove evo : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove fah : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove flu : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove gra : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove fru : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove gve : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove ges : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove gih : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove gla : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove gor : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove gre : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove grh : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove gro : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove grc : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove gos : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove goe : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove gue : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove gut : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove hll : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove hoe : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove ilz : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove int : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove jun : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove kop : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove brl : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove cdf : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove dol : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove lac : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove lag : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove mls : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove lei : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove att : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove chb : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove dia : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove mar : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove otl : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove lug : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove luz : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove lae : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove mag : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove mas : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove mah : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove mtr : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove mer : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove mob : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove mve : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove gen : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove mrp : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove moa : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove mte : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove moe : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove mub : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove msk : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove nas : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove nap : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove neu : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove cgi : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove obr : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove aeg : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove oro : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove beh : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove pay : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove pil : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove pio : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove cov : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove pma : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove plf : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove rob : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove puy : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove qui : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove roe : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove rue : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove sbe : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove hai : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove sam : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove sag : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove sha : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove srs : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove scm : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove spf : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove scu : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove sia : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove sim : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove sio : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove pre : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove stc : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove stg : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove smm : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove sbo : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove stk : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove sae : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove thu : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove tit : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove ueb : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove ulr : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove vad : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove vab : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove vls : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove vev : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove vio : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove vit : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove vis : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove wfj : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove wyn : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove wae : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove psi : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove zer : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove reh : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove sma : 113
+insert time :  2019-01-11 05:30:00
+insert nb Data :  156
+remove time :  2019-01-11 05:30:00
+remove klo : 113
+Refresh finished!
+Starting refresh...
+Getting csv at: http://data.swissmetnet-display.ch/VQJA15.LSSW.csv
+Response ok [200]
+Database must be updated!
+Next update date found: 2019-01-11 07:50:00
+Last database udpate: 2019-01-11 07:40:00
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+insert nb Data :  156
+Refresh finished!

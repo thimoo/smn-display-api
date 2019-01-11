@@ -76,7 +76,7 @@ class Importer
           //Verifie que ce n'est pas le premier profile
           if($this->currentProfile!=null)
           {
-            $this->push($values);
+              $this->push($values);
           }
           //définition du profile courant
           $this->currentProfile=$profile;
@@ -86,9 +86,6 @@ class Importer
           $limitTime = $this->getDatabaseTime();
           $minutes = 12 * 10;
           $this->limitTime = $limitTime->copy()->subMinutes($minutes);
-
-          $output = new \Symfony\Component\Console\Output\ConsoleOutput();
-          $output->writeln("<info>insert time :  ".$this->limitTime."</info>");
         }
 
         if($time > $this->limitTime)

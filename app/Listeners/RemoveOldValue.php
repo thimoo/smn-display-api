@@ -28,9 +28,6 @@ class RemoveOldValue
           // older values to delete
           $limitTime2h = $event->time;
 
-          $output = new \Symfony\Component\Console\Output\ConsoleOutput();
-          $output->writeln("<info>remove time :  ".$limitTime2h."</info>");
-
           $minutes = 143 * 10;
           $limitTime24h = $currentTime->copy()->subMinutes($minutes);
 
@@ -41,9 +38,6 @@ class RemoveOldValue
               ->where('date', '>', $limitTime2h)
               ->orWhere('date', '<', $limitTime24h)
               ->delete();
-
-
-              $output->writeln("<info>remove ".$event->profile." : ".$query."</info>");
         }
     }
 
