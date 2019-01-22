@@ -85,7 +85,14 @@ class Importer
 
           $limitTime = $this->getDatabaseTime();
           $minutes = 12 * 10;
-          $this->limitTime = $limitTime->copy()->subMinutes($minutes);
+          if ($limitTime)
+          {
+            $this->limitTime = $limitTime->copy()->subMinutes($minutes);
+          }
+          else
+          {
+            $this->limitTime = 0;
+          }
         }
 
         if($time > $this->limitTime)

@@ -60,6 +60,8 @@ class RemoveOldValue
         // if ($res == null) return null;
         // else return new Carbon($res);
 
+
+
         $res = DB::table('profiles')
                       ->where('stn_code', '=', $profile)
                       ->max('last_update');
