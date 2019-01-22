@@ -93,9 +93,9 @@ class Importer
           }
           else
           {
-            $this->limitTime = 0;
+            $this->limitTime = Carbon::yesterday();
             $output = new \Symfony\Component\Console\Output\ConsoleOutput();
-            $output->writeln("<info>limitTime = 0".$profile."</info>");
+            $output->writeln("<info>limitTime = ".$this->limitTime." ".$profile."</info>");
           }
         }
 
