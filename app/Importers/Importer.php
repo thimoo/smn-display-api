@@ -85,7 +85,7 @@ class Importer
 
           $limitTime = $this->getDatabaseTime();
           $minutes = 12 * 10;
-          if ($res != null)
+          if ($limitTime != null)
           {
             $this->limitTime = $limitTime->copy()->subMinutes($minutes);
             $output = new \Symfony\Component\Console\Output\ConsoleOutput();
