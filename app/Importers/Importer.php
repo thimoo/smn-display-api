@@ -85,13 +85,17 @@ class Importer
 
           $limitTime = $this->getDatabaseTime();
           $minutes = 12 * 10;
-          if ($limitTime)
+          if ($res != null)
           {
             $this->limitTime = $limitTime->copy()->subMinutes($minutes);
+            $output = new \Symfony\Component\Console\Output\ConsoleOutput();
+            $output->writeln("<info>limitTime = ".$this->limitTime." ".$profile."</info>");
           }
           else
           {
             $this->limitTime = 0;
+            $output = new \Symfony\Component\Console\Output\ConsoleOutput();
+            $output->writeln("<info>limitTime = 0".$profile."</info>");
           }
         }
 
