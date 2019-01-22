@@ -13,6 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
+        Commands\TruncateData::class,
         Commands\RefreshDatabase::class,
         Commands\RefreshProfiles::class,
         Commands\FakeGraph::class,

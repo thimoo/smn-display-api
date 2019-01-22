@@ -10,7 +10,7 @@ return [
     | List of all external informations about SwissMetNet and the API
     |
     */
-    
+
     /**
      * API version
      */
@@ -19,7 +19,8 @@ return [
     /**
      * URI to retreive the CSV
      */
-    'csv_target_url' => 'http://data.geo.admin.ch/ch.meteoschweiz.swissmetnet/VQHA69.csv',
+    // 'csv_target_url' => 'http://data.geo.admin.ch/ch.meteoschweiz.swissmetnet/VQHA69.csv',
+    'csv_target_url' => 'http://data.swissmetnet-display.ch/VQJA15.LSSW.csv',
 
     /**
      * The max number of no-data values in a collection to show
@@ -41,7 +42,7 @@ return [
     'max_substituted_values' => 3,
 
     /**
-     * Relative path from the storage root to the profile's 
+     * Relative path from the storage root to the profile's
      * informtaion csv
      */
     'stations_infos_path' => 'csv/stations_infos.csv',

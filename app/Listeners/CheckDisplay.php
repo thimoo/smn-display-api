@@ -14,14 +14,14 @@ class CheckDisplay
 {
     /**
      * Stores the profile to work with
-     * 
+     *
      * @var App\Profile
      */
     public $profile;
 
     /**
      * Stores the data to work with
-     * 
+     *
      * @var App\Data
      */
     public $data;
@@ -29,7 +29,7 @@ class CheckDisplay
     /**
      * Stores the collection of values between the stored
      * data and the stored profile
-     * 
+     *
      * @var \Illuminate\Database\Eloquent\Collection
      */
     public $values;
@@ -37,7 +37,7 @@ class CheckDisplay
     /**
      * Store the first value of the collection, the latest
      * in time
-     * 
+     *
      * @var App\Value
      */
     protected $first;
@@ -50,34 +50,42 @@ class CheckDisplay
      */
     public function handle(CheckConstraints $event)
     {
-        // Unpack stored data
-        $this->profile = $event->profile;
-        $this->data = $event->data;
-        $this->values = $event->values;
+      // Unpack stored data
+      $this->profile = $event->profile;
+      $this->data = $event->data;
+      $this->values = $event->values;
 
-        $this->first = $this->values->first();
+      if(count($event->values)>0){
 
-        if ($this->first->isOriginal())
-        {
-            $this->originalValue();
+        $time=$this->getValueTime();
+
+        foreach ($this->values as $value) {
+          if($value->date === $time)
+          {
+            $this->first = $value;
+            if ($this->first->isOriginal())
+            {
+              $this->originalValue();
+            }
+            else
+            {
+              $this->noOriginalValue();
+            }
+          }
         }
-        else
-        {
-            $this->noOriginalValue();
-        }
+      }
     }
-
     /**
      * If an original value is present, then show
      * the data and check if the collection can be
      * show
-     * 
+     *
      * @return void
      */
     protected function originalValue()
     {
         Display::showData($this->data, $this->profile);
-        
+
         $noData = Value::countNoDataValue($this->values);
 
         $maxNoDataConstant = config('constants.max_number_no_data_to_show_collection');
@@ -92,7 +100,7 @@ class CheckDisplay
      * if the value is tagged as no-data. If yes, then
      * check if they are more than 36 continious no-data
      * value and hide the data and the collection
-     * 
+     *
      * @return void
      */
     protected function noOriginalValue()
@@ -100,7 +108,7 @@ class CheckDisplay
         if ($this->first->isNoData())
         {
             $noData = Value::countLastNoData($this->values);
-            
+
             $maxNoDataConstant = config('constants.max_number_no_data_to_hide_data');
             if ($noData > $maxNoDataConstant)
             {
@@ -108,5 +116,17 @@ class CheckDisplay
                 Display::hideCollection($this->data, $this->profile);
             }
         }
+    }
+
+    protected function getValueTime()
+    {
+      $time =0;
+      foreach ($this->values as $value) {
+        if($time<$value->date)
+        {
+          $time=$value->date;
+        }
+      }
+      return $time;
     }
 }

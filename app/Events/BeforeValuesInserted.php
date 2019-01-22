@@ -9,18 +9,33 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class ValuesInserted
+class BeforeValuesInserted
 {
     use InteractsWithSockets, SerializesModels;
 
     /**
-     * Create a new event instance.
+     * Current profile
      *
+     * @var string
+     */
+    public $profile;
+
+    /**
+     * Stores the time
+     *
+     *
+     */
+    public $time;
+
+    /**
+     * Create a array new event instance with the given profile.
+     * @param  string  $data
      * @return void
      */
-    public function __construct()
+    public function __construct(string $data, $time)
     {
-        //
+      $this->profile = $data;
+      $this->time = $time;
     }
 
     /**

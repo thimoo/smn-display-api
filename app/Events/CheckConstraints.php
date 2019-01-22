@@ -17,14 +17,14 @@ class CheckConstraints
 
     /**
      * Stores the profile
-     * 
+     *
      * @var App\Profile
      */
     public $profile;
 
     /**
      * Stores the data
-     * 
+     *
      * @var App\Data
      */
     public $data;
@@ -32,16 +32,16 @@ class CheckConstraints
     /**
      * Stores the collection of value between the data
      * and the profile
-     * 
+     *
      * @var \Illuminate\Database\Eloquent\Collection
      */
     public $values;
 
     /**
      * Create a new event instance
-     * 
-     * @param App\Profile                               $profile 
-     * @param App\Data                                  $data    
+     *
+     * @param App\Profile                               $profile
+     * @param App\Data                                  $data
      * @param \Illuminate\Database\Eloquent\Collection  $values  collection of values
      */
     public function __construct(Profile $profile, Data $data, $values)

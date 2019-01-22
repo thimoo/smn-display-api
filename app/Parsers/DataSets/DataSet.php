@@ -6,14 +6,14 @@ class DataSet
 {
     /**
      * Stores the data name
-     * 
+     *
      * @var array
      */
     protected $data = []; // ['tre200s0', 'sre000z0', 'rre150z0', ...]
 
     /**
      * Stores the profiles name
-     * 
+     *
      * @var array
      */
     protected $profiles = []; // ['cha', 'jun', 'alt', ...]
@@ -22,42 +22,49 @@ class DataSet
      * Stores an array of array of values the first
      * level represent profiles and the second represent
      * data
-     * 
+     *
      * @var array
      */
     protected $content = []; // [ [ 12, null, 56, ... ], [ ... ], ... ]
 
     /**
      * Stores the datetime of the set
-     * 
+     *
      * @var Carbon\Carbon
      */
     protected $datetime;
 
     /**
      * Stores the cursor position for the data
-     * 
+     *
      * @var integer
      */
     private static $DATA_CURSOR = 0;
 
     /**
      * Stores the cursor position for the profile
-     * 
+     *
      * @var integer
      */
     private static $PROFILE_CURSOR = 1;
 
     /**
+     * Stores the cursor position for the profile
+     *
+     * @var integer
+     */
+    private static $DATE_CURSOR = 0;
+
+    /**
      * Stores the current cursor positions
-     * 
+     *
      * @var array
      */
     private $cursors = [0, 0];
 
     /**
      * Return the datetime of the DataSet
-     * 
+     *
      * @return Carbon\Carbon the set datetime
      */
     public final function datetime()
@@ -67,16 +74,20 @@ class DataSet
 
     /**
      * Return the next value in the set
-     * 
+     *
      * @return array of profile, data, value, time
      */
     public final function getNextValue()
     {
+        if($this->getTheData()=="time")
+        {
+          $this->setNextCursors();
+        }
         $p = $this->getTheProfile();
         $d = $this->getTheData();
         $v = $this->getTheValue();
-        $t = $this->datetime;
-        
+        $t = $this->getTheDate();
+
         $this->setNextCursors();
 
         return [$p, $d, $v, $t];
@@ -84,7 +95,7 @@ class DataSet
 
     /**
      * Return the next profile in the set
-     * 
+     *
      * @return string the stn_code profile
      */
     public final function getNextProfile()
@@ -98,7 +109,7 @@ class DataSet
 
     /**
      * Return if the set has a next value
-     * 
+     *
      * @return boolean
      */
     public final function hasNextValue()
@@ -108,7 +119,7 @@ class DataSet
 
     /**
      * Return the number of values in the set
-     * 
+     *
      * @return int number of values
      */
     public final function count()
@@ -122,7 +133,7 @@ class DataSet
 
     /**
      * Return the number of data
-     * 
+     *
      * @return int number of data
      */
     public final function getNumberHeader()
@@ -132,7 +143,7 @@ class DataSet
 
     /**
      * Return the number of profiles
-     * 
+     *
      * @return int number of profiles
      */
     public final function getNumberProfile()
@@ -142,7 +153,7 @@ class DataSet
 
     /**
      * Set the datetime for the DataSet
-     * 
+     *
      * @param Carbon\Carbon $datetime the new datetime
      * @return DataSet $this
      */
@@ -155,7 +166,7 @@ class DataSet
 
     /**
      * Set the data attribute
-     * 
+     *
      * @param array $data data
      */
     public final function setData(array $data)
@@ -167,7 +178,7 @@ class DataSet
 
     /**
      * Set the profiles attribute
-     * 
+     *
      * @param array $profiles profiles
      */
     public final function setProfiles(array $profiles)
@@ -179,7 +190,7 @@ class DataSet
 
     /**
      * Set the content array
-     * 
+     *
      * @param array $content array of arrays
      */
     public final function setContent(array $content)
@@ -191,7 +202,7 @@ class DataSet
 
     /**
      * Display the complete Data set
-     * 
+     *
      * @return void
      */
     public final function display()
@@ -232,7 +243,7 @@ class DataSet
      * All values are set to null. This method is used
      * to create a empty Data set for populate the database
      * with no-data values
-     * 
+     *
      * @param  Carbon\Carbon   $date       the data set time
      * @param  Collection      $profiles   a collection of Profile
      * @param  Collection      $data       a collection of Data
@@ -251,7 +262,7 @@ class DataSet
     /**
      * Transform a collection of Profile in an array
      * that correspond to the internal format
-     * 
+     *
      * @param  collection   $profiles   a collection of Profile
      * @return void
      */
@@ -264,7 +275,7 @@ class DataSet
     /**
      * Transform a collection of Data in an array
      * that corrrespond to the internal format
-     * 
+     *
      * @param  collection  $data   a collection of Data
      * @return void
      */
@@ -275,9 +286,9 @@ class DataSet
     }
 
     /**
-     * Generate the empty content with null value 
+     * Generate the empty content with null value
      * based on the stored profiles and data
-     * 
+     *
      * @return void
      */
     private function generateEmptyContent()
@@ -311,7 +322,7 @@ class DataSet
     /**
      * Get the current profile based on the current
      * cursors state
-     * 
+     *
      * @return string the stn_code of the profile
      */
     private function getTheProfile()
@@ -322,7 +333,7 @@ class DataSet
     /**
      * Get the current data based on the current
      * cursors state
-     * 
+     *
      * @return string the smn_code of the data
      */
     private function getTheData()
@@ -333,7 +344,7 @@ class DataSet
     /**
      * Get the current value based on the current
      * cursors state
-     * 
+     *
      * @return float or null if no value
      */
     private function getTheValue()
@@ -342,9 +353,20 @@ class DataSet
     }
 
     /**
+     * Get the date value based on the current
+     * cursors state
+     *
+     * @return Carbon or null if no value
+     */
+    private function getTheDate()
+    {
+        return $this->content[$this->getProfileCursor()][self::$DATE_CURSOR];
+    }
+
+    /**
      * Return if a next profile is present in the
      * data set
-     * 
+     *
      * @return boolean
      */
     public function hasNextProfile()
@@ -355,7 +377,7 @@ class DataSet
     /**
      * Return if a next data is present in the
      * data set
-     * 
+     *
      * @return boolean
      */
     private function hasNextData()
@@ -365,7 +387,7 @@ class DataSet
 
     /**
      * Return the current index of the profile cursor
-     * 
+     *
      * @return int current position
      */
     private function getProfileCursor()
@@ -375,7 +397,7 @@ class DataSet
 
     /**
      * Return the current index of the data cursor
-     * 
+     *
      * @return int current position
      */
     private function getDataCursor()
@@ -405,7 +427,7 @@ class DataSet
 
     /**
      * Reset the data cursor to zero
-     * 
+     *
      * @return void
      */
     private function resetDataCursor()
@@ -415,7 +437,7 @@ class DataSet
 
     /**
      * Reset the profile cursor to zero
-     * 
+     *
      * @return void
      */
     private function resetProfileCursor()
@@ -425,7 +447,7 @@ class DataSet
 
     /**
      * Reset all cursors to zero
-     * 
+     *
      * @return void
      */
     public function resetCursors()

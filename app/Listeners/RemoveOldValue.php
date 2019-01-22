@@ -3,8 +3,9 @@
 namespace App\Listeners;
 
 use \DB;
+use \Log;
 use Carbon\Carbon;
-use App\Events\ValuesInserted;
+use App\Events\BeforeValuesInserted;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
@@ -13,26 +14,30 @@ class RemoveOldValue
     /**
      * Handle the event.
      *
-     * @param  ValuesInserted  $event
+     * @param  BeforeValuesInserted  $event
      * @return void
      */
-    public function handle(ValuesInserted $event)
+    public function handle(BeforeValuesInserted $event)
     {
-        // Get the current datetime in database
-        $currentTime = $this->getDatabaseTime();
+      // Get the current datetime in database
+      $currentTime = $this->getDatabaseTime($event->profile);
 
-        if ($currentTime)
-        {
-            // Compute the limit datetime to determine all
-            // older values to delete
-            $minutes = 143 * 10;
-            $limitTime = $currentTime->copy()->subMinutes($minutes);
+      if ($currentTime)
+      {
+          // Compute the limit datetime to determine all
+          // older values to delete
+          $limitTime2h = $event->time;
 
-            // Query the database to deletes all values that have
-            // a date lesser than the computed limit datetime
-            DB::table('values')
-                ->where('date', '<', $limitTime)
-                ->delete();
+          $minutes = 143 * 10;
+          $limitTime24h = $currentTime->copy()->subMinutes($minutes);
+
+          // Query the database to deletes all values that have
+          // a date lesser than the computed limit datetime
+          $query=DB::table('values')
+              ->where('profile_stn_code', '=', $event->profile)
+              ->where('date', '>', $limitTime2h)
+              ->orWhere('date', '<', $limitTime24h)
+              ->delete();
         }
     }
 
@@ -40,12 +45,24 @@ class RemoveOldValue
      * Retreive the latest update datetime from profiles
      * and set the databaseUpdateTime. If no profile was
      * found, then the databaseUpdateTime is set to null
-     * 
+     *
      * @return Carbon\Carbon or null if no profile in database
      */
-    private function getDatabaseTime()
+    private function getDatabaseTime($profile)
     {
-        $res = DB::table('profiles')->max('last_update');
+        // $res = DB::table('profiles')->min('last_update');
+        // $res = DB::select("SELECT NOW();");
+        //
+        // foreach ($res[0] as $value) {
+        //   $res=$value;
+        // }
+        //
+        // if ($res == null) return null;
+        // else return new Carbon($res);
+
+        $res = DB::table('profiles')
+                      ->where('stn_code', '=', $profile)
+                      ->max('last_update');
         if ($res == null) return null;
         else return new Carbon($res);
     }

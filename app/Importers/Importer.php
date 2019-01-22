@@ -2,25 +2,36 @@
 
 namespace App\Importers;
 
+use \DB;
 use App\Value;
 use App\Profile;
-use App\Events\NewValue;
+use Carbon\Carbon;
+use App\Events\NewValues;
 use App\Events\CheckProfiles;
-use App\Events\ValuesInserted;
 use App\Parsers\DataSets\DataSet;
+use App\Events\BeforeValuesInserted;
 
 class Importer
 {
     /**
      * Stores the data set to import
-     * 
+     *
      * @var App\Parsers\DataSets\DataSet
      */
     protected $dataSet;
 
     /**
+     * The code name of the currentProfile
+     *
+     * @var string
+     */
+    protected $currentProfile=null;
+
+    protected $limitTime;
+
+    /**
      * Load the data set and store it
-     * 
+     *
      * @param  DataSet $dataSet the data set to import
      * @return Importer         $this
      */
@@ -34,13 +45,12 @@ class Importer
     /**
      * Compute the process to insert all values prensent
      * in the data set and check all constraints attached
-     * 
+     *
      * @return Importer         $this
      */
     public function import()
     {
         $this->insertValues()
-             ->valuesInserted()
              ->checkProfiles();
 
         return $this;
@@ -50,49 +60,86 @@ class Importer
      * Browse the complete data set loaded and create
      * a new Value based on the retreived informations
      * The new value has passed to a new "NewValue" event
-     * 
+     *
      * @return Importer         $this
      */
     protected function insertValues()
     {
-        $this->dataSet->resetCursors();
-        while ($this->dataSet->hasNextValue()) 
+      $this->dataSet->resetCursors();
+      $values = array();
+      while ($this->dataSet->hasNextValue())
+      {
+        list($profile, $data, $value, $time) = $this->dataSet->getNextValue();
+
+        if($this->currentProfile!=$profile)
         {
-            list($profile, $data, $value, $time) = $this->dataSet->getNextValue();
+          //Verifie que ce n'est pas le premier profile
+          if($this->currentProfile!=null)
+          {
+              $this->push($values);
+          }
+          //définition du profile courant
+          $this->currentProfile=$profile;
+          //reset le profile.
+          $values = array();
 
-            $value = new Value([
-                'profile_stn_code' => $profile,
-                'data_code' => $data,
-                'date' => $time,
-                'value' => $value,
-                'tag' => null,
-            ]);
-
-            event(new NewValue($value));
+          $limitTime = $this->getDatabaseTime();
+          $minutes = 12 * 10;
+          $this->limitTime = $limitTime->copy()->subMinutes($minutes);
         }
 
-        return $this;
+        if($time > $this->limitTime)
+        {
+          $values[] = new Value([
+              'profile_stn_code' => $profile,
+              'data_code' => $data,
+              'date' => $time,
+              'value' => $value,
+              'tag' => null,
+          ]);
+        }
+      }
+
+      //Add the last profile
+      $this->push($values);
+
+      return $this;
     }
 
     /**
      * Call the "ValueInserterd" event to fire the
      * post checks
-     * 
+     * @param  string  $currentProfile the profile
      * @return Importer          $this
      */
-    protected function valuesInserted()
+    protected function beforeValuesInserted($currentProfile)
     {
-        event(new ValuesInserted);
+        event(new BeforeValuesInserted ($currentProfile, $this->limitTime));
 
         return $this;
     }
 
     /**
+     * Push the values
+     * @param  array  $data
+     * @return void
+     */
+    protected function push(array $data)
+    {
+      if(count($data)>0){
+        DB::beginTransaction();
+          $this->beforeValuesInserted($this->currentProfile);
+          event(new NewValues($data));
+        DB::commit();
+      }
+    }
+
+    /**
      * Browse all profiles present in the data set and
      * retreive it form the database to fire the "CheckProfiles"
-     * event. CheckProfile verify if the online field on the profile 
+     * event. CheckProfile verify if the online field on the profile
      * must be updated
-     * 
+     *
      * @return Importer           $this
      */
     protected function checkProfiles()
@@ -106,5 +153,21 @@ class Importer
         }
 
         return $this;
+    }
+
+    /**
+     * Retreive the latest update datetime from profiles
+     * and set the databaseUpdateTime. If no profile was
+     * found, then the databaseUpdateTime is set to null
+     *
+     * @return Carbon\Carbon or null if no profile in database
+     */
+    private function getDatabaseTime()
+    {
+        $res = DB::table('profiles')
+                      ->where('stn_code', '=', $this->currentProfile)
+                      ->max('last_update');
+        if ($res == null) return null;
+        else return new Carbon($res);
     }
 }
