@@ -88,14 +88,10 @@ class Importer
           if ($limitTime != null)
           {
             $this->limitTime = $limitTime->copy()->subMinutes($minutes);
-            $output = new \Symfony\Component\Console\Output\ConsoleOutput();
-            $output->writeln("<info>limitTime = ".$this->limitTime." ".$profile."</info>");
           }
           else
           {
             $this->limitTime = Carbon::yesterday();
-            $output = new \Symfony\Component\Console\Output\ConsoleOutput();
-            $output->writeln("<info>limitTime = ".$this->limitTime." ".$profile."</info>");
           }
         }
 
