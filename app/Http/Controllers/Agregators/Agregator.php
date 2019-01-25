@@ -8,21 +8,21 @@ class Agregator
 {
     /**
      * Stores the agregator name
-     * 
+     *
      * @var null
      */
     protected static $agregator = null;
 
     /**
      * List of agregator function available
-     * 
+     *
      * @var array
      */
     protected static $agregators = ['min', 'max', 'sum'];
 
     /**
      * Agregate the collection for the given value
-     * 
+     *
      * @param  Value  $value the reference value
      * @return Value         a new fictive value with the result
      */
@@ -38,7 +38,7 @@ class Agregator
 
     /**
      * Get the min value in the collection
-     * 
+     *
      * @param  Value  $value the reference value
      * @return float
      */
@@ -49,7 +49,7 @@ class Agregator
 
     /**
      * Get the max value in the collection
-     * 
+     *
      * @param  Value  $value the reference value
      * @return float
      */
@@ -60,14 +60,14 @@ class Agregator
 
     /**
      * Get the sum of all value present in the collection
-     * 
+     *
      * @param  Value  $value the reference value
      * @return float
      */
     public static function sum(Value $value)
     {
         $sum = $value->getSumString();
-        $value->value = $sum;
+        $value->value = number_format ($sum , 1);
         return $value;
     }
 }
