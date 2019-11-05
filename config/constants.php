@@ -23,6 +23,11 @@ return [
     'csv_target_url' => 'http://data.swissmetnet-display.ch/VQJA15.LSSW.csv',
 
     /**
+     * URI to retreive the CSV tower
+     */
+    'csv_target_towz_url' => 'http://data.swissmetnet-display.ch/VQJA69.LSSW.csv',
+
+    /**
      * The max number of no-data values in a collection to show
      * the collection in profile. It more no-data is present in the set,
      * then the collection is hide

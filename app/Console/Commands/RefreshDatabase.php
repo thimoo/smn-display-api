@@ -22,7 +22,7 @@ class RefreshDatabase extends Command
      *
      * @var string
      */
-    protected $signature = 'database:refresh';
+    protected $signature = 'database:refresh {--towz}';
 
     /**
      * The console command description.
@@ -81,8 +81,16 @@ class RefreshDatabase extends Command
     {
         $this->info("Starting refresh...");
 
+        $towz = $this->option('towz');
+
         // Loading the target url in the config file
-        $csvTargetUrl = config('constants.csv_target_url');
+        if($towz){
+          $csvTargetUrl = config('constants.csv_target_towz_url');
+        }
+        else {
+          $csvTargetUrl = config('constants.csv_target_url');
+        }
+
         $this->info("Getting csv at: $csvTargetUrl");
 
         // Create a new Http client and make the request
@@ -325,7 +333,7 @@ class RefreshDatabase extends Command
      */
     private function databaseMustBeUpdated($dataSet = null)
     {
-        $this->getLastUpdate();
+        $this->getLastUpdate($dataSet);
         $this->nextUpdateTime = Carbon::now();
 
         // If no last_update is found, then the database
@@ -360,11 +368,23 @@ class RefreshDatabase extends Command
      *
      * @return void
      */
-    private function getLastUpdate()
+    private function getLastUpdate($dataSet = null)
     {
-        $res = DB::table('profiles')->min('last_update');
-        if ($res === null) $this->databaseUpdateTime = null;
-        else $this->databaseUpdateTime = new Carbon($res);
+        // If a dataset is present, then retreive the
+        // datetime of the content. If the datetime of
+        // the content is greater than the database, then
+        // the database must be udpated
+        if ($dataSet !== null)
+        {
+          $res = DB::table('profiles')->where('stn_code', $dataSet->getTheFirstProfile())->min('last_update');
+          // $res = DB::table('profiles')->min('last_update');
+          if ($res === null) $this->databaseUpdateTime = null;
+          else $this->databaseUpdateTime = new Carbon($res);
+        }
+        else
+        {
+          $this->databaseUpdateTime = null;
+        }
 
     }
 }

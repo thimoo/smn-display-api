@@ -331,6 +331,16 @@ class DataSet
     }
 
     /**
+     * Get the first profile
+     *
+     * @return string the stn_code of the profile
+     */
+    public function getTheFirstProfile()
+    {
+        return $this->profiles[0];
+    }
+
+    /**
      * Get the current data based on the current
      * cursors state
      *
