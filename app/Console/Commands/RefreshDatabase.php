@@ -22,7 +22,7 @@ class RefreshDatabase extends Command
      *
      * @var string
      */
-    protected $signature = 'database:refresh {--towz}';
+    protected $signature = 'database:refresh {--towz} {--force}';
 
     /**
      * The console command description.
@@ -60,6 +60,13 @@ class RefreshDatabase extends Command
     private $parser;
 
     /**
+     * Store the force option
+     *
+     * @var boolean
+     */
+    private $force = false;
+
+    /**
      * Create a new command instance.
      *
      * @return void
@@ -83,8 +90,13 @@ class RefreshDatabase extends Command
 
         $towz = $this->option('towz');
 
+        if($this->option('force')){
+          $this->force =true;
+        }
+
         // Loading the target url in the config file
         if($towz){
+
           $csvTargetUrl = config('constants.csv_target_towz_url');
         }
         else {
@@ -185,7 +197,7 @@ class RefreshDatabase extends Command
         // Check if the database must be updated
         // based on the dataset datetime, if yes:
         // import all data
-        if ($this->databaseMustBeUpdated($dataSet))
+        if ($this->databaseMustBeUpdated($dataSet) || $this->force)
         {
             $this->info('Database must be updated!');
             $this->displayDates();
