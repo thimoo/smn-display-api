@@ -125,7 +125,7 @@ class CsvParser extends Parser
         {
             $this->lines = array_slice($this->lines, 1);
         }
-        else $this->validFormat = false;
+        // else $this->validFormat = false;
 
         return $this;
     }
