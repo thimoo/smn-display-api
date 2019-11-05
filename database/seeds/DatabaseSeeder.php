@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
 
         // Seeds all registered data
         $this->call(DatasTableSeeder::class);
-        $this->call(TowzDatasTableSeeder::class);
+        // $this->call(TowzDatasTableSeeder::class);
         // $this->call(ProfilesTableSeeder::class);
         // $this->call(DisplaysTableSeeder::class);
         // $this->call(ValuesTableSeeder::class);
