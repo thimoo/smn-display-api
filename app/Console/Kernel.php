@@ -30,6 +30,7 @@ class Kernel extends ConsoleKernel
     {
         // Check if new data is present every minute
         $schedule->command('database:refresh')->everyMinute();
+        $schedule->command('database:refresh --towz --force')->everyMinute();
 
         // Refresh profile's information every day
         $schedule->command('profiles:refresh')->daily();
