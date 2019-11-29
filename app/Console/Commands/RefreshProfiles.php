@@ -147,7 +147,7 @@ class RefreshProfiles extends Command
         $newInfo->name = $infos[self::NAME];
         $newInfo->altitude = $infos[self::ALTITUDE];
 
-        if($infos[self::ALTITUDETOWZ] !=='')
+        if(isset ($infos[self::ALTITUDETOWZ]))
         {
           $newInfo->altitudeTowz = $infos[self::ALTITUDETOWZ];
         }
