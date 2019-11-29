@@ -25,6 +25,11 @@ class RefreshProfiles extends Command
     const ALTITUDE = 2;
 
     /**
+     * Index in line for the altitude station
+     */
+    const ALTITUDETOWZ = 3;
+
+    /**
      * If true the db transaction is commit, else
      * the transaction is rollback
      *
@@ -118,8 +123,10 @@ class RefreshProfiles extends Command
         $profile = Profile::find($code);
 
         // Check if update needed
-        if ($profile && ( (! isset($profile->infos->name) && ! isset($profile->infos->altitude) )
-          || $profile->infos->name !== $line[self::NAME] ) )
+        if ($profile && ( (! isset($profile->infos->name) && ! isset($profile->infos->altitude) && ! isset($profile->infos->altitude) )
+          || $profile->infos->name !== $line[self::NAME]
+          || (isset ($line[self::ALTITUDETOWZ])
+          && (!isset ($profile->infos->altitudeTowz) || $profile->infos->altitudeTowz !== $line[self::ALTITUDETOWZ]) ) ) )
         {
             // Update needed
             $this->info("Refresh the profile '$profile->stn_code'...");
@@ -139,6 +146,11 @@ class RefreshProfiles extends Command
         $newInfo = new StdClass();
         $newInfo->name = $infos[self::NAME];
         $newInfo->altitude = $infos[self::ALTITUDE];
+
+        if($infos[self::ALTITUDETOWZ] !=='')
+        {
+          $newInfo->altitudeTowz = $infos[self::ALTITUDETOWZ];
+        }
 
         $profile->setNewInfos($newInfo);
 
