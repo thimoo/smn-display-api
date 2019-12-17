@@ -84,7 +84,7 @@ class DatasTableSeeder extends Seeder
 
         Data::create([
             'code' => 'humidity_towz',
-            'smn_code' => 'uortows0',
+            'smn_code' => 'uretows0',
         ]);
     }
 }
