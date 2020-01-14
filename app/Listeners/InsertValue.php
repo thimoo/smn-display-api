@@ -140,12 +140,7 @@ class InsertValue
      */
     protected function insert()
     {
-        if(empty($this->insertValues)){
-          $this->lastValue = $this->profile->lastValue($this->data);
-        }
-        else {
-          $this->lastValue = $this->insertValues[sizeof($this->insertValues)-1];
-        }
+        $this->lastValue = $this->profile->lastValue($this->data);
 
         // A value can be set to zero, we must check
         // than the value is not equal to null
