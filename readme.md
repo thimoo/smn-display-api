@@ -12,7 +12,7 @@ To start the server run `php artisan serve`. The server will start by default on
 
 ## Custom commands
 
-To check if new data are available in the csv run `php artisan database:refresh` or `php artisan database:refresh`. This command will download the csv and check if new data can be inserted into the database.
+To check if new data are available in the csv run `php artisan database:refresh` or `php artisan database:refresh --towz`. This command will download the csv and check if new data can be inserted into the database.
 
 
 

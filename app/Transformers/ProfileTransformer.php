@@ -12,7 +12,7 @@ class ProfileTransformer extends Transformer
 
     /**
      * List of json attributes
-     * 
+     *
      * @var array
      */
     public $attributes = [
@@ -27,7 +27,7 @@ class ProfileTransformer extends Transformer
 
     /**
      * List of renamed attributes
-     * 
+     *
      * @var array
      */
     public $morph = [
@@ -42,7 +42,7 @@ class ProfileTransformer extends Transformer
 
     /**
      * Filter the infos object
-     * 
+     *
      * @param  mixed  $model the source model
      * @param  string $key   the attrivute name
      * @return object        the pased infos object
@@ -50,11 +50,17 @@ class ProfileTransformer extends Transformer
     public function filterInfos($model, $key)
     {
         $infos = $model->$key;
-        
+
         if (isset($infos->altitude))
         {
             // Convert the altitude attribute to integer
             $infos->altitude = (int) $infos->altitude;
+        }
+
+        if (isset($infos->altitudeTowz))
+        {
+            // Convert the altitude attribute to integer
+            $infos->altitudeTowz = (int) $infos->altitudeTowz;
         }
 
         return $infos;
@@ -62,7 +68,7 @@ class ProfileTransformer extends Transformer
 
     /**
      * Filter the last update datetime to w3c format
-     * 
+     *
      * @param  mixed  $model the source model
      * @param  string $key   the attribute name
      * @return string        the date in w3c format
@@ -74,7 +80,7 @@ class ProfileTransformer extends Transformer
 
     /**
      * Filter the last time online datetime to w3c format
-     * 
+     *
      * @param  mixed  $model the source model
      * @param  string $key   the attribute name
      * @return string        the date in w3c format
@@ -87,7 +93,7 @@ class ProfileTransformer extends Transformer
 
     /**
      * Filter the online attribute. Cast in boolean
-     * 
+     *
      * @param  mixed  $model the source model
      * @param  string $key   the attribute name
      * @return boolean
@@ -100,7 +106,7 @@ class ProfileTransformer extends Transformer
     /**
      * Filter the data attribute. Transform the list of data
      * in array
-     * 
+     *
      * @param  mixed  $model the result object
      * @param  string $key   the attribute name
      * @return array
@@ -113,7 +119,7 @@ class ProfileTransformer extends Transformer
     /**
      * Filter the collections attribute. Transform the list of collection
      * in array
-     * 
+     *
      * @param  mixed  $model the result object
      * @param  string $key   the attribute name
      * @return array
@@ -126,7 +132,7 @@ class ProfileTransformer extends Transformer
     /**
      * Add a new attribute to the result object.
      * Create a link to refresh the profile
-     * 
+     *
      * @param mixed $object the result object
      * @param mixed $model  the source model
      * @return string

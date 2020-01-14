@@ -17,7 +17,7 @@ ARO;Arosa;1878
 ATT;Les Attelas;2735
 AUB;L' Auberson;1096
 AVA;Les Avants;1036
-BAN;Bantiger;942
+BAN;Bantiger;942;155
 BAS;Basel / Binningen;316
 BAW;Barmelweid;770
 BEC;Bernina / Curtinatsch;2090
@@ -135,6 +135,7 @@ LSN;Lausanne;601
 LTB;Lauterbrunnen;815
 LUG;Lugano;273
 LUZ;Luzern;454
+LUZMT;Luzern Verkehrshaus;454
 MAB;Martigny;461
 MAG;Magadino / Cadenazzo;203
 MAH;Mathod;437
@@ -152,7 +153,7 @@ MOB;Montagnier, Bagnes;839
 MOE;Möhlin;343
 MRP;Monte Rosa-Plattje;2885
 MSG;Mosogno;771
-MSK;Mühleberg / Stockeren;706
+MSK;Mühleberg / Stockeren;706;70
 MTE;Mottec;1580
 MTR;Matro;2171
 MUB;Mühleberg;480
@@ -211,7 +212,7 @@ SOG;Soglio;1086
 SPF;Schüpfheim;744
 SRS;Schiers;626
 STB;Starkenbach;897
-STC;St. Chrischona;493
+STC;St. Chrischona;493;232
 STG;St. Gallen;776
 STK;Steckborn;397
 STP;Stöckalp;1070
@@ -225,7 +226,7 @@ TIT;Titlis;3040
 TRU;Trun;834
 TST;Tschiertschen;1273
 UBB;Bözberg;536
-UEB;Uetliberg;854
+UEB;Uetliberg;854;162
 ULR;Ulrichen;1346
 UNK;Unterkulm;454
 URN;Urnäsch;825
