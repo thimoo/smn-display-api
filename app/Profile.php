@@ -140,11 +140,12 @@ class Profile extends Model
      * data parameter
      *
      * @param  Data   $data the data search
+     * @param  Carbon\Carbon   $date
      * @return App\Value    the value serached
      */
-    public function lastValue(Data $data)
+    public function lastValue(Data $data, $date)
     {
-        return $this->values($data)->orderBy('date', 'desc')->first();
+        return $this->values($data)->where('date', '<', $date)->orderBy('date', 'desc')->first();
     }
 
     /**

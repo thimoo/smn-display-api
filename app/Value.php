@@ -199,13 +199,20 @@ class Value extends Model
      * Save a value as original
      *
      * @param  App\Value    $value
-     * @return App\Value 
+     * @return App\Value
      */
     public static function insertAsOriginal(Value $value)
     {
+        $valueUpdate = Value::where('profile_stn_code', $value->profile_stn_code)
+        ->where('data_code', $value->data_code)
+        ->where('date', $value->date);
+
+        if($valueUpdate->count()){
+          $value = $valueUpdate->first();
+        }
+
         $value->tag = self::ORIGINAL;
-        // $value->save();
-        return $value;
+        $value->save();
     }
 
     /**
@@ -214,14 +221,21 @@ class Value extends Model
      *
      * @param  App\Value    $new
      * @param  App\Value    $old
-     * @return App\Value
+     * @return void
      */
     public static function insertAsSubstituted(Value $new, Value $old)
     {
-        $new->value = $old->value;
-        $new->tag = self::SUBSTITUTED;
-        // $new->save();
-        return $new;
+      $valueUpdate = Value::where('profile_stn_code', $new->profile_stn_code)
+      ->where('data_code', $new->data_code)
+      ->where('date', $new->date);
+
+      if($valueUpdate->count()){
+        $new = $valueUpdate->first();
+      }
+
+      $new->value = $old->value;
+      $new->tag = self::SUBSTITUTED;
+      $new->save();
     }
 
     /**
@@ -232,10 +246,17 @@ class Value extends Model
      */
     public static function insertAsNoData(Value $value)
     {
+      $valueUpdate = Value::where('profile_stn_code', $value->profile_stn_code)
+      ->where('data_code', $value->data_code)
+      ->where('date', $value->date);
+
+      if($valueUpdate->count()){
+        $value = $valueUpdate->first();
+      }
+
         $value->value = 0;
         $value->tag = self::NODATA;
-        // $value->save();
-        return $value;
+        $value->save();
     }
 
     /**
