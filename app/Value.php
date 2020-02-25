@@ -265,11 +265,12 @@ class Value extends Model
      *
      * @param  App\Profile  $profile
      * @param  App\Data     $data
+     * @param  Carbon\Carbon   $date
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public static function getSubstitutedLastValues(Profile $profile, Data $data)
+    public static function getSubstitutedLastValues(Profile $profile, Data $data, $date)
     {
-        $collection = $profile->values($data)->orderBy('date', 'desc')->take(3)->get();
+        $collection = $profile->values($data)->where('date', '<', $date)->orderBy('date', 'desc')->take(3)->get();
         $bool = true;
 
         $collection = $collection->filter(function ($value, $key) use (&$bool) {

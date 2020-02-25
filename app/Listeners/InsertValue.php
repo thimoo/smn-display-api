@@ -177,7 +177,7 @@ class InsertValue
             //  - retreive the last 1|2|3 last values
             //  - smooth them with the new value (and the last original before)
             //  - insert the new value as original and finish the process
-            $lastSubstitutedValues = Value::getSubstitutedLastValues($this->profile, $this->data);
+            $lastSubstitutedValues = Value::getSubstitutedLastValues($this->profile, $this->data, $this->value->date);
 
             Value::smoothSubstitutedValues($this->value, $lastSubstitutedValues);
             Value::insertAsOriginal($this->value);
@@ -280,7 +280,7 @@ class InsertValue
     {
         // Retreive the last substituted neighbour
         // as a collection of Values
-        $lastSubstitutedValues = Value::getSubstitutedLastValues($this->profile, $this->data);
+        $lastSubstitutedValues = Value::getSubstitutedLastValues($this->profile, $this->data, $this->value->date);
 
         $maxSubstitutedValues = config('constants.max_substituted_values');
         if ($lastSubstitutedValues->count() < $maxSubstitutedValues)
