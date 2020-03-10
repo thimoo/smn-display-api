@@ -35,8 +35,7 @@ class RemoveOldValue
           // a date lesser than the computed limit datetime
           $query=DB::table('values')
               ->where('profile_stn_code', '=', $event->profile)
-              ->where('date', '>', $limitTime2h)
-              ->orWhere('date', '<', $limitTime24h)
+              ->Where('date', '<', $limitTime24h)
               ->delete();
         }
     }

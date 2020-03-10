@@ -2,7 +2,6 @@
 
 namespace App\Listeners;
 
-use \DB;
 use App\Data;
 use App\Value;
 use App\Profile;
@@ -21,12 +20,6 @@ class InsertValue
      * @var App\Value
      */
     protected $value;
-
-    /**
-     *
-     * @var array
-     */
-    protected $insertValues;
 
     /**
      * The precedent value in database for the
@@ -95,40 +88,6 @@ class InsertValue
             $this->insert();
         }
       }
-
-      $this->insertall();
-    }
-
-    /**
-     * Create request for insert all datas
-     * @param int
-     * @return void
-     */
-    protected function insertall()
-    {
-      $now = Carbon::now();
-
-      $i=0;
-      $query="INSERT INTO `values` (`data_code`, `profile_stn_code`, `date`, `value`, `tag`, `created_at`, `updated_at`) VALUES ";
-
-      foreach ($this->insertValues as $value) {
-        if($i>15)
-        {
-          $query.="('".$value->data_code."', '".$value->profile_stn_code."', '".$value->date."', ".$value->value.", '".$value->tag."', '".$now."', '".$now."'),";
-          DB::insert(substr($query, 0, -1).";");
-          $query="INSERT INTO `values` (`data_code`, `profile_stn_code`, `date`, `value`, `tag`, `created_at`, `updated_at`) VALUES ";
-          $i=0;
-        }
-        else
-        {
-          $i++;
-          $query.="('".$value->data_code."', '".$value->profile_stn_code."', '".$value->date."', ".$value->value.", '".$value->tag."', '".$now."', '".$now."'),";
-        }
-      }
-      if($i!=0)
-      {
-        DB::insert(substr($query, 0, -1).";");
-      }
     }
 
     /**
@@ -140,7 +99,7 @@ class InsertValue
      */
     protected function insert()
     {
-        $this->lastValue = $this->profile->lastValue($this->data);
+        $this->lastValue = $this->profile->lastValue($this->data,$this->value->date);
 
         // A value can be set to zero, we must check
         // than the value is not equal to null
@@ -155,6 +114,7 @@ class InsertValue
         }
         else
         {
+
             // A value is not present in the CSV
             // for the given profile and the given
             // data. Check the last value(s) to determine
@@ -184,7 +144,7 @@ class InsertValue
             // No older value is present with
             // the new one. Insert the new value
             // as original and finish the process
-            $this->insertValues[]=Value::insertAsOriginal($this->value);
+            Value::insertAsOriginal($this->value);
         }
         else
         {
@@ -209,7 +169,7 @@ class InsertValue
             // value, then it can be a original or no-data
             // In both case we can insert the new data as
             // original and finish the process
-            $this->insertValues[]=Value::insertAsOriginal($this->value);
+            Value::insertAsOriginal($this->value);
         }
         else
         {
@@ -217,9 +177,10 @@ class InsertValue
             //  - retreive the last 1|2|3 last values
             //  - smooth them with the new value (and the last original before)
             //  - insert the new value as original and finish the process
-            $lastSubstitutedValues = Value::getSubstitutedLastValues($this->profile, $this->data);
+            $lastSubstitutedValues = Value::getSubstitutedLastValues($this->profile, $this->data, $this->value->date);
+
             Value::smoothSubstitutedValues($this->value, $lastSubstitutedValues);
-            $this->insertValues[]=Value::insertAsOriginal($this->value);
+            Value::insertAsOriginal($this->value);
         }
     }
 
@@ -239,7 +200,7 @@ class InsertValue
             // and last value is not present in db,
             // then insert a value zero as no-data
             // and finish the process$
-            $this->insertValues[]=Value::insertAsNoData($this->value);
+            Value::insertAsNoData($this->value);
         }
         else
         {
@@ -268,7 +229,7 @@ class InsertValue
             // the last value is original, then
             // the new value is substituted and
             // the process is finish
-            $this->insertValues[]=Value::insertAsSubstituted($this->value, $this->lastValue);
+            Value::insertAsSubstituted($this->value, $this->lastValue);
         }
         else
         {
@@ -302,7 +263,7 @@ class InsertValue
             // is tagged as no-data, then the new value
             // is inserted as no-data with a zero value
             // and finish the process
-            $this->insertValues[]=Value::insertAsNoData($this->value);
+            Value::insertAsNoData($this->value);
         }
     }
 
@@ -319,7 +280,7 @@ class InsertValue
     {
         // Retreive the last substituted neighbour
         // as a collection of Values
-        $lastSubstitutedValues = Value::getSubstitutedLastValues($this->profile, $this->data);
+        $lastSubstitutedValues = Value::getSubstitutedLastValues($this->profile, $this->data, $this->value->date);
 
         $maxSubstitutedValues = config('constants.max_substituted_values');
         if ($lastSubstitutedValues->count() < $maxSubstitutedValues)
@@ -328,7 +289,7 @@ class InsertValue
             // lesser than 3 the substitution can
             // be performed with the new value
             // and finish the process
-            $this->insertValues[]=Value::insertAsSubstituted($this->value, $this->lastValue);
+            Value::insertAsSubstituted($this->value, $this->lastValue);
         }
         else
         {
