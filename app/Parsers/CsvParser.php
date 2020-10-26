@@ -142,6 +142,17 @@ class CsvParser extends Parser
     }
 
     /**
+     * Check if the first line contains the word "MeteoSuisse"
+     *
+     * @return bool true if contains
+     */
+    protected function checkInfos()
+    {
+        $title = $this->lines[1];
+        return preg_match("/(min|km)/", $title) > 0;
+    }
+
+    /**
      * Check if data headers are present, if not the validation
      * failed. Else, exctract headers and update lines array by
      * removing the first line of headers
@@ -153,7 +164,13 @@ class CsvParser extends Parser
         if ($this->checkDataHeader())
         {
             $this->header = $this->formatHeader($this->lines[0]);
-            $this->lines = array_slice($this->lines, 2);
+            if ($this->checkInfos())
+            {
+                $this->lines = array_slice($this->lines, 2);
+            }
+            else {
+              $this->lines = array_slice($this->lines, 1);
+            }
         }
         else $this->validFormat = false;
 
@@ -185,7 +202,7 @@ class CsvParser extends Parser
     protected function checkDataHeader()
     {
         $title = $this->lines[0];
-        return preg_match("/(stn|time)/", $title) > 0;
+        return preg_match("/(stn|time|Station|Date)/", $title) > 0;
     }
 
     /**
