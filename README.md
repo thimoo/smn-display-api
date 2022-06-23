@@ -2,6 +2,9 @@
 
 The SwissMetNet Display API is a web service for retrieving public weather information from a network of Swiss stations. The service stops the information every ten minutes over 24 hours and offers an API to consume them.
 
+- Laravel: `6`
+- PHP requirement: `≥ 7.2 and ≤ 8.0`
+
 ## Data source
 
 The data stored into the service come from the url stores in `csv_target_url` in the `config/constants.php` file.
@@ -22,11 +25,12 @@ Custom commands are registered with the scheduler. To execute it every minute yo
 
 ## Installation
 
-To install the project on a development or a production server run :
+To install the project on a development or a production server run:
 
 ```
 php composer install
 php artisan migrate
+php artisan key:generate
 php artisan db:seed
 php artisan event:cache
 ```
@@ -39,7 +43,7 @@ Some constraint values are stored in the `config/constants.php` file. It's possi
 
 ### Environment file
 
-A .env file is required to define the configuration of the database and the environment (development or production). This file must have these lines at least :
+A .env file is required to define the configuration of the database and the environment (development or production). This file must have these lines at least:
 
 ```
 APP_ENV=...
