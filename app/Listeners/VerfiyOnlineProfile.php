@@ -11,7 +11,7 @@ class VerfiyOnlineProfile
 {
     /**
      * Stores the profile
-     * 
+     *
      * @var App\Profile
      */
     protected $profile;
@@ -32,12 +32,12 @@ class VerfiyOnlineProfile
     /**
      * Check if the profile must be set online or
      * offline
-     * 
+     *
      * @return void
      */
     protected function check()
     {
-        if ($this->profile->isOnline()) 
+        if ($this->profile->isOnline())
         {
             $this->checkToSetOffline();
         }
@@ -47,7 +47,7 @@ class VerfiyOnlineProfile
     /**
      * Check if the profile displays no data. If yes,
      * then the profile is set offline
-     * 
+     *
      * @return void
      */
     protected function checkToSetOffline()
@@ -61,7 +61,7 @@ class VerfiyOnlineProfile
     /**
      * Check if the profile displays data. If yes,
      * then the profile is set to online
-     * 
+     *
      * @return void
      */
     protected function checkToSetOnline()

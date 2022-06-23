@@ -56,9 +56,9 @@ class Value extends Model
     protected $fillable = [
         'data_code',
         'profile_stn_code',
-      	'date',
-      	'value',
-      	'tag',
+        'date',
+        'value',
+        'tag',
     ];
 
     /**

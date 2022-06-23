@@ -79,6 +79,7 @@ class RefreshProfiles extends Command
      */
     private function parse()
     {
+        $this->info('Start profiles refresh...');
         // Load the file and
         // parse the csv format
         $path = storage_path(config('constants.stations_infos_path'));
@@ -87,6 +88,7 @@ class RefreshProfiles extends Command
         {
             DB::beginTransaction();
             $first = true;
+            $this->info('Parsing CSV profiles...');
             while (($line = fgetcsv($pointer, 0, ';')))
             {
                 // Ignore the first header line
@@ -100,10 +102,12 @@ class RefreshProfiles extends Command
 
             if ($this->commit)
             {
+                $this->info('Done. Saving changes...');
                 DB::commit();
             }
             else
             {
+                $this->info('Error, rollback changes!');
                 DB::rollBack();
             }
         }

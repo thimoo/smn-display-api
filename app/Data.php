@@ -15,7 +15,7 @@ class Data extends Model
 
     /**
      * The name of the table in database
-     * 
+     *
      * @var string
      */
     protected $table = "data";
@@ -43,16 +43,16 @@ class Data extends Model
 
 
     /**
-     * Get the profiles attached to the data 
-     * 
+     * Get the profiles attached to the data
+     *
      * @return Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function profiles()
     {
         return $this->belongsToMany(
-                        Profile::class, 
-                        'displays', 
-                        'data_code', 
+                        Profile::class,
+                        'displays',
+                        'data_code',
                         'profile_stn_code'
                     )
                     ->withPivot('data', 'collection')
@@ -61,7 +61,7 @@ class Data extends Model
 
     /**
      * Get the displays attach between the data and the given profile
-     * 
+     *
      * @param  App\Profile
      * @return Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -73,7 +73,7 @@ class Data extends Model
 
     /**
      * Get the values attach between the data and the given profile
-     * 
+     *
      * @param  App\Profile
      * @return Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -85,7 +85,7 @@ class Data extends Model
 
     /**
      * Return the full URI to retreive the data or the collections
-     * 
+     *
      * @param  string $profile_code the stn_code
      * @param  string $data_code    the internal data code
      * @param  string $type         [data|collections], default data
@@ -96,14 +96,14 @@ class Data extends Model
         $route = 'profiles.' . $type;
 
         return route($route, [
-            'profile' => $profile_code, 
+            'profile' => $profile_code,
             'data' => $data_code,
         ]);
     }
 
     /**
      * Create a new instance and return the full URI
-     * 
+     *
      * @param  string $profile_code the stn_code
      * @param  string $data_code    the internal data code
      * @param  string $type         [data|collections], default data

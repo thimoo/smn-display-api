@@ -49,7 +49,7 @@ class ListNoData extends Command
 
         $profiles->each(function ($profile, $key) use ($data, &$table) {
             $data->each(function ($d, $k) use ($profile, $data, &$table) {
-                if ($profile->lastValue($d)->isNoData()) 
+                if ($profile->lastValue($d)->isNoData())
                 {
                     $values = $profile->values($d)->orderBy('date', 'desc')->get();
                     $count = Value::countLastNoData($values);
@@ -57,7 +57,7 @@ class ListNoData extends Command
                     {
                         $table[] = [$profile->stn_code, $d->code, $count, ''];
                     }
-                    if ($count < config('constants.max_number_no_data_to_hide_data') 
+                    if ($count < config('constants.max_number_no_data_to_hide_data')
                         && $count > config('constants.max_substituted_values'))
                     {
                         $table[] = [$profile->stn_code, $d->code, $count, '✔'];
@@ -68,9 +68,9 @@ class ListNoData extends Command
 
         if (count($table) > 0)
         {
-            $this->table(['profile', 'data', 'no-data', 'displayed'], $table);            
+            $this->table(['profile', 'data', 'no-data', 'displayed'], $table);
         }
-        else 
+        else
         {
             $this->comment('No no-data are currently displayed!');
         }
