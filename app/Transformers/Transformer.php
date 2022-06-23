@@ -7,11 +7,11 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
 
-class Transformer 
+class Transformer
 {
     /**
      * Stored the data response
-     * 
+     *
      * @var StdClass
      */
     protected $response;
@@ -19,7 +19,7 @@ class Transformer
     /**
      * Stores the attributes array used by the filter
      * method
-     * 
+     *
      * @var array
      */
     public $attributes = [];
@@ -27,7 +27,7 @@ class Transformer
     /**
      * Store the key value array to morph model attribute
      * keys
-     * 
+     *
      * @var array
      */
     public $morph = [];
@@ -42,7 +42,7 @@ class Transformer
 
     /**
      * Transform the given model in a JsonResponse
-     * 
+     *
      * @param  Model                        $model the eloquent model to transform
      * @return Illuminate\Http\JsonResponse        the response
      */
@@ -53,7 +53,7 @@ class Transformer
 
     /**
      * Transform a collection of model in a JsonResponse
-     * 
+     *
      * @param  Collection                    $models the eloquent collection
      * @return Illuminate\Http\JsonResponse          the response
      */
@@ -68,7 +68,7 @@ class Transformer
 
     /**
      * Wrap the result in a laravel JsonResponse
-     * 
+     *
      * @param  mixed        $output the content to wrape
      * @return JsonResponse         the response container
      */
@@ -80,14 +80,14 @@ class Transformer
     /**
      * Parse the input model and check if attributes must
      * be display in the response object
-     * 
+     *
      * @param  Illuminate\Database\Eloquent\Model $model model to filter
      * @return StdClass                                  response class
      */
     protected function filter($model)
     {
         $o = new StdClass;
-        foreach($model->getAttributes() as $key => $value) 
+        foreach($model->getAttributes() as $key => $value)
         {
             if (in_array($key, $this->attributes))
             {
@@ -100,10 +100,10 @@ class Transformer
 
     /**
      * Check if a filter function is available for the current
-     * key. If yes, then return the result of the called function 
+     * key. If yes, then return the result of the called function
      * with model and key. Else return the result directly from the
      * model
-     * 
+     *
      * @param  Illuminate\Database\Eloquent\Model $model the model
      * @param  string                             $key   key property
      * @return mixed                                     the content
@@ -120,7 +120,7 @@ class Transformer
 
     /**
      * Get the filter function name based on the morphed key property
-     * 
+     *
      * @param  string $key the property name ex: last_update
      * @return string      ex: filterLastUpdate
      */
@@ -132,7 +132,7 @@ class Transformer
     /**
      * Return the new key if present in the morph array, else
      * return the same key
-     * 
+     *
      * @param  string $key key to morph
      * @return string      the new key value
      */
@@ -147,7 +147,7 @@ class Transformer
 
     /**
      * Set the data attribute in the response object
-     * 
+     *
      * @param  StdClass $data any filtered model
      * @return Importer $this
      */
@@ -160,7 +160,7 @@ class Transformer
 
     /**
      * Set an error message for the response
-     * 
+     *
      * @param string  $message "An error occured, please retry later!"
      * @param integer $code    422
      */
@@ -173,7 +173,7 @@ class Transformer
     /**
      * Return a new JsonResponse with the data setup
      * into the Standard class store in response attribute
-     * 
+     *
      * @return Illuminate\Http\JsonResponse      a Laravel Json response
      */
     protected function respond()

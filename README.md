@@ -14,8 +14,6 @@ To start the server run `php artisan serve`. The server will start by default on
 
 To check if new data are available in the csv run `php artisan database:refresh` or `php artisan database:refresh --towz`. This command will download the csv and check if new data can be inserted into the database.
 
-
-
 To update the station information the command `php artisan profiles:refresh` can be run. The information is stored in the file `storage/csv/stations_infos.csv`.
 
 ## Register the Scheduler
@@ -30,6 +28,7 @@ To install the project on a development or a production server run :
 php composer install
 php artisan migrate
 php artisan db:seed
+php artisan event:cache
 ```
 
 ## Configuration

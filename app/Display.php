@@ -12,10 +12,10 @@ class Display extends Model
      * @var array
      */
     protected $primaryKey = ['data_code', 'profile_stn_code'];
-    
+
     /**
      * The name of the table in database
-     * 
+     *
      * @var string
      */
     protected $table = "displays";
@@ -36,7 +36,7 @@ class Display extends Model
 
     /**
      * Get the profile that owns the display
-     * 
+     *
      * @return Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function profile()
@@ -46,7 +46,7 @@ class Display extends Model
 
     /**
      * Get the data that owns the display
-     * 
+     *
      * @return Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function data()
@@ -55,10 +55,10 @@ class Display extends Model
     }
 
     /**
-     * Sync the relation between the given data and 
+     * Sync the relation between the given data and
      * the given profile to set the data attribute to
      * true
-     * 
+     *
      * @param  Data    $data    the data to sync with
      * @param  Profile $profile the profile to sync with
      * @return void
@@ -75,7 +75,7 @@ class Display extends Model
      * Sync the relation between the given data and
      * the given profile to set the collection attribute
      * to true
-     * 
+     *
      * @param  Data    $data    the data to sync with
      * @param  Profile $profile the profile to sync with
      * @return void
@@ -91,7 +91,7 @@ class Display extends Model
      * Sync the relation between the given data and
      * the given profile to set the data attrivute to
      * false
-     * 
+     *
      * @param  Data    $data    the data to sync with
      * @param  Profile $profile the profile to sync with
      * @return void
@@ -107,7 +107,7 @@ class Display extends Model
      * Sync the relation between the given data and
      * the given profile to set the collection attribute
      * to false
-     * 
+     *
      * @param  Data    $data    the data to sync with
      * @param  Profile $profile the profile to sync with
      * @return void
@@ -125,7 +125,7 @@ class Display extends Model
      * the given profile already exist. If not, then the
      * relation is created with default data and collection
      * value to false
-     * 
+     *
      * @param  Data    $data    the data to sync with
      * @param  Profile $profile the profile to sync with
      * @return void
@@ -144,7 +144,7 @@ class Display extends Model
         if ($count == 0)
         {
             $profile->data()->save($data, [
-                'data' => false, 
+                'data' => false,
                 'collection' => false
             ]);
         }

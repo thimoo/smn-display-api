@@ -3,6 +3,7 @@
 namespace App\Importers;
 
 use \DB;
+use \Log;
 use App\Value;
 use App\Profile;
 use Carbon\Carbon;
@@ -38,6 +39,7 @@ class Importer
     public function load(DataSet $dataSet)
     {
         $this->dataSet = $dataSet;
+        Log::debug("Dataset loaded");
 
         return $this;
     }
@@ -50,9 +52,11 @@ class Importer
      */
     public function import()
     {
+        Log::info("Starting import");
         $this->insertValues()
              ->checkProfiles();
 
+        Log::info("Import done!");
         return $this;
     }
 
@@ -65,57 +69,63 @@ class Importer
      */
     protected function insertValues()
     {
-      $this->dataSet->resetCursors();
-      $values = array();
-      while ($this->dataSet->hasNextValue())
-      {
-        list($profile, $data, $value, $time) = $this->dataSet->getNextValue();
+        Log::debug("Starting insertion");
+        $this->dataSet->resetCursors();
+        $values = [];
 
-        if($this->currentProfile!=$profile)
+        while ($this->dataSet->hasNextValue())
         {
-          //Verifie que ce n'est pas le premier profile
-          if($this->currentProfile!=null)
-          {
-              $this->push($values);
-          }
-          //définition du profile courant
-          $this->currentProfile=$profile;
-          //reset le profile.
-          $values = array();
+            list($profile, $data, $value, $time) = $this->dataSet->getNextValue();
+            //Log::debug("Working on next value: $profile, $data, $value, $time");
 
-          $limitTime = $this->getDatabaseTime();
-          $minutes = 12 * 10;
-          if ($limitTime != null)
-          {
-            $this->limitTime = $limitTime->copy()->subMinutes($minutes);
-          }
-          else
-          {
-            $this->limitTime = Carbon::yesterday();
-          }
+            if ($this->currentProfile != $profile)
+            {
+                // Verifie que ce n'est pas le premier profile
+                if ($this->currentProfile != null)
+                {
+                    $this->push($values);
+                }
+                // définition du profile courant
+                $this->currentProfile=$profile;
+                // reset le profile.
+                $values = [];
+
+                $limitTime = $this->getDatabaseTime();
+                $minutes = 12 * 10;
+
+                if ($limitTime != null)
+                {
+                    $this->limitTime = $limitTime->copy()->subMinutes($minutes);
+                }
+                else
+                {
+                    $this->limitTime = Carbon::yesterday();
+                }
+            }
+
+            if ($time > $this->limitTime)
+            {
+                $values[] = new Value([
+                    'profile_stn_code' => $profile,
+                    'data_code' => $data,
+                    'date' => $time,
+                    'value' => $value,
+                    'tag' => null,
+                ]);
+            }
         }
 
-        if($time > $this->limitTime)
-        {
-          $values[] = new Value([
-              'profile_stn_code' => $profile,
-              'data_code' => $data,
-              'date' => $time,
-              'value' => $value,
-              'tag' => null,
-          ]);
-        }
-      }
+        // Add the last profile
+        $this->push($values);
 
-      //Add the last profile
-      $this->push($values);
-
-      return $this;
+        Log::debug("Insertion done");
+        return $this;
     }
 
     /**
      * Call the "ValueInserterd" event to fire the
      * post checks
+     *
      * @param  string  $currentProfile the profile
      * @return Importer          $this
      */
@@ -128,17 +138,22 @@ class Importer
 
     /**
      * Push the values
+     *
      * @param  array  $data
      * @return void
      */
     protected function push(array $data)
     {
-      if(count($data)>0){
-        DB::beginTransaction();
-          $this->beforeValuesInserted($this->currentProfile);
-          event(new NewValues($data));
-        DB::commit();
-      }
+        Log::debug("Pushing values with NewValues events for [$this->currentProfile]");
+
+        if (count($data) > 0)
+        {
+            DB::beginTransaction();
+            $this->beforeValuesInserted($this->currentProfile);
+            event(new NewValues($data));
+            DB::commit();
+        }
+        Log::debug("Pushing done");
     }
 
     /**
@@ -151,6 +166,7 @@ class Importer
      */
     protected function checkProfiles()
     {
+        Log::debug("Checking profiles");
         $this->dataSet->resetCursors();
         while ($this->dataSet->hasNextProfile())
         {
@@ -159,6 +175,7 @@ class Importer
             event(new CheckProfiles($profile));
         }
 
+        Log::debug("Checking profiles done!");
         return $this;
     }
 

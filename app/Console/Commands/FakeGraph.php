@@ -15,7 +15,7 @@ class FakeGraph extends Command
      *
      * @var string
      */
-    protected $signature = 'fake:graph 
+    protected $signature = 'fake:graph
                             {profile : The stn_code of the profile}
                             {data : The code of the data}
                             {noData? : The number of no-data}
@@ -32,28 +32,28 @@ class FakeGraph extends Command
 
     /**
      * Define the default number of continious no-data value in the graph
-     * 
+     *
      * @var integer
      */
     protected $noDataNumber = 6;
 
     /**
      * Defines the minimum value for starting the graph
-     * 
+     *
      * @var integer
      */
     protected $min = -20;
 
     /**
      * Defines the maximum value for starting the graph
-     * 
+     *
      * @var integer
      */
     protected $max = 30;
 
     /**
      * Defines if values is for a line graph or a bar graph
-     * 
+     *
      * @var boolean
      */
     protected $barMode = false;
@@ -77,7 +77,7 @@ class FakeGraph extends Command
     {
         $stnCode = $this->argument('profile');
         $code = $this->argument('data');
-        
+
         $this->min = ($this->argument('min') === null) ? $this->min : (int) $this->argument('min');
         $this->max = ($this->argument('max') === null) ? $this->max : (int) $this->argument('max');
 
@@ -103,13 +103,13 @@ class FakeGraph extends Command
             Value::where('profile_stn_code', $stnCode)
                     ->where('data_code', $code)
                     ->delete();
-            
+
             $date = new Carbon();
             $date->subSeconds($date->second);
             $date->subMinutes($date->minute % 10);
             $date->subHours(24);
 
-            for ($i=0; $i < 144; $i++) { 
+            for ($i=0; $i < 144; $i++) {
 
                 $date = new Carbon($date);
 
@@ -142,7 +142,7 @@ class FakeGraph extends Command
 
     /**
      * Use to generate random and uniform values
-     * 
+     *
      * @return array the value and the tag
      */
     protected function getRandomValue(Value $prev = null)
@@ -171,7 +171,7 @@ class FakeGraph extends Command
                         $tab = [0, Value::NODATA];
                         $this->noDataNumber--;
                     }
-                    else 
+                    else
                     {
                         $nextValue = rand($this->min, $this->max);
                         $tab = [$nextValue, Value::ORIGINAL];
@@ -179,19 +179,19 @@ class FakeGraph extends Command
                     break;
 
                 default:
-                    if ($this->noDataNumber > 0 && rand(0, 99) >= 95) 
+                    if ($this->noDataNumber > 0 && rand(0, 99) >= 95)
                     {
                         $tab = [0, Value::NODATA];
                         $this->noDataNumber--;
                     }
-                    else 
+                    else
                     {
                         $tab = [$nextValue, Value::ORIGINAL];
                     }
                     break;
             }
         }
-        else 
+        else
         {
             $tab = [rand($this->min, $this->max), Value::ORIGINAL];
         }

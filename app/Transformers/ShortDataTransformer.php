@@ -11,7 +11,7 @@ class ShortDataTransformer extends Transformer
 
     /**
      * List of json attributes
-     * 
+     *
      * @var array
      */
     public $attributes = [
@@ -20,7 +20,7 @@ class ShortDataTransformer extends Transformer
 
     /**
      * List of renamed attributes
-     * 
+     *
      * @var array
      */
     public $morph = [
@@ -30,7 +30,7 @@ class ShortDataTransformer extends Transformer
     /**
      * Add a new attribute to the result object.
      * Create a link to refresh the data
-     * 
+     *
      * @param mixed $object the result object
      * @param mixed $model  the source model
      * @return string

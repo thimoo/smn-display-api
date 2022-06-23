@@ -40,10 +40,10 @@ class TruncateData extends Command
     public function handle()
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-  		  DB::table('values')->truncate();
+        DB::table('values')->truncate();
 
         $this->info(Value::count());
-  		  DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-  		return true;
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        return true;
     }
 }

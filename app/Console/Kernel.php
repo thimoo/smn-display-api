@@ -28,9 +28,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // Check if new data is present every minute
-        $schedule->command('database:refresh')->everyMinute();
-        $schedule->command('database:refresh --towz --force')->everyMinute();
+        // Check if new data is present every 4 minutes
+        $schedule->command('database:refresh')->cron('*/4 * * * *');
+        $schedule->command('database:refresh --towz --force')->cron('*/4 * * * *');
 
         // Refresh profile's information every day
         $schedule->command('profiles:refresh')->daily();
@@ -44,5 +44,6 @@ class Kernel extends ConsoleKernel
     protected function commands()
     {
         require base_path('routes/console.php');
+        $this->load(__DIR__.'/Commands');
     }
 }
