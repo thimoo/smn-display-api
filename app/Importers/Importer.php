@@ -72,6 +72,7 @@ class Importer
         Log::info("Starting insertion");
         $this->dataSet->resetCursors();
         $values = [];
+
         while ($this->dataSet->hasNextValue())
         {
             list($profile, $data, $value, $time) = $this->dataSet->getNextValue();
@@ -143,7 +144,7 @@ class Importer
      */
     protected function push(array $data)
     {
-        Log::info("Pushing values with NewValues events");
+        Log::info("Pushing values with NewValues events for [$this->currentProfile]");
 
         if (count($data) > 0)
         {
@@ -152,6 +153,7 @@ class Importer
             event(new NewValues($data));
             DB::commit();
         }
+        Log::info("Pushing done");
     }
 
     /**
