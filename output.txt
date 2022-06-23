@@ -1,2 +1,0 @@
-Running scheduled command: '/opt/php7.1/bin/php' 'artisan' database:refresh > '/dev/null' 2>&1 &
-Running scheduled command: '/opt/php7.1/bin/php' 'artisan' database:refresh --towz --force > '/dev/null' 2>&1 &
