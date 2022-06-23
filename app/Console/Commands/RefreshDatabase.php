@@ -96,7 +96,6 @@ class RefreshDatabase extends Command
 
         // Loading the target url in the config file
         if($towz){
-
           $csvTargetUrl = config('constants.csv_target_towz_url');
         }
         else {
@@ -214,8 +213,6 @@ class RefreshDatabase extends Command
         $this->info('Inserting no-data values...');
         $this->displayDates();
 
-        $this->info("No-data date: $forDate");
-
         // Retreive all profiles
         $forProfiles = Profile::all();
 
@@ -225,6 +222,7 @@ class RefreshDatabase extends Command
         // No data must be imported in the database with
         // the current time rounded
         $forDate = $this->computeNowDate();
+        $this->info("No-data date: $forDate");
 
         // Generate a new DataSet with no-data
         // values for the date, profiles and data
