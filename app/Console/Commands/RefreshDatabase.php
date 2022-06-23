@@ -201,6 +201,7 @@ class RefreshDatabase extends Command
             $this->info('Database must be updated!');
             $this->displayDates();
             $this->importer->load($dataSet)->import();
+            $this->info('Data imported!');
         }
         else
         {
@@ -386,15 +387,15 @@ class RefreshDatabase extends Command
         // the database must be udpated
         if ($dataSet !== null)
         {
-          $res = DB::table('profiles')->where('stn_code', $dataSet->getTheFirstProfile())->min('last_update');
-          // $res = DB::table('profiles')->min('last_update');
-          if ($res === null) $this->databaseUpdateTime = null;
-          else $this->databaseUpdateTime = new Carbon($res);
+            $res = DB::table('profiles')
+                ->where('stn_code', $dataSet->getTheFirstProfile())
+                ->min('last_update');
+            if ($res === null) $this->databaseUpdateTime = null;
+            else $this->databaseUpdateTime = new Carbon($res);
         }
         else
         {
-          $this->databaseUpdateTime = null;
+            $this->databaseUpdateTime = null;
         }
-
     }
 }

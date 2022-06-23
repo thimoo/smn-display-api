@@ -79,10 +79,11 @@ class DataSet
      */
     public final function getNextValue()
     {
-        if($this->getTheData()=="time")
+        if ($this->getTheData() == "time")
         {
-          $this->setNextCursors();
+            $this->setNextCursors();
         }
+
         $p = $this->getTheProfile();
         $d = $this->getTheData();
         $v = $this->getTheValue();

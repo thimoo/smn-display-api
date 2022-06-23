@@ -28,6 +28,7 @@ To install the project on a development or a production server run :
 php composer install
 php artisan migrate
 php artisan db:seed
+php artisan event:cache
 ```
 
 ## Configuration

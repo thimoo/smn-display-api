@@ -48,46 +48,47 @@ class InsertValue
      * Retreive all informations required,
      * create the profile if not present,
      * and call the insert process.
+     *
      * @param  $event
      * @return void
      */
     public function handle($event)
     {
-      foreach ($event->values as $v) {
-        // Unpack the value given in the event message
-        // and store it in the current object
-        $this->value = $v;
-
-        // Get the profile and the data attach to the
-        // new value given
-        $this->profile = Profile::find($this->value->profile_stn_code);
-        $this->data = Data::where('smn_code', $this->value->data_code)->first();
-
-        if ($this->profile === null)
-        {
-            // If the profile does not already exists,
-            // then create the profile with default values
+        foreach ($event->values as $v) {
+            // Unpack the value given in the event message
             // and store it in the current object
-            $this->profile = Profile::newDefault($this->value->profile_stn_code);
-        }
+            $this->value = $v;
 
-        // If the data is null, then the data is not
-        // present in database and the value must be
-        // ignored
-        if ($this->data)
-        {
-            // The value created by the importer
-            // as the data_code set to the smn_code
-            // we must replace the data_code by the
-            // right data code
-            $this->value->data_code = $this->data->code;
+            // Get the profile and the data attach to the
+            // new value given
+            $this->profile = Profile::find($this->value->profile_stn_code);
+            $this->data = Data::where('smn_code', $this->value->data_code)->first();
 
-            // Start the process to determine
-            // the new value tag and if older
-            // values must be updated and how
-            $this->insert();
+            if ($this->profile === null)
+            {
+                // If the profile does not already exists,
+                // then create the profile with default values
+                // and store it in the current object
+                $this->profile = Profile::newDefault($this->value->profile_stn_code);
+            }
+
+            // If the data is null, then the data is not
+            // present in database and the value must be
+            // ignored
+            if ($this->data)
+            {
+                // The value created by the importer
+                // as the data_code set to the smn_code
+                // we must replace the data_code by the
+                // right data code
+                $this->value->data_code = $this->data->code;
+
+                // Start the process to determine
+                // the new value tag and if older
+                // values must be updated and how
+                $this->insert();
+            }
         }
-      }
     }
 
     /**
@@ -99,7 +100,7 @@ class InsertValue
      */
     protected function insert()
     {
-        $this->lastValue = $this->profile->lastValue($this->data,$this->value->date);
+        $this->lastValue = $this->profile->lastValue($this->data, $this->value->date);
 
         // A value can be set to zero, we must check
         // than the value is not equal to null
