@@ -52,9 +52,11 @@ class Importer
      */
     public function import()
     {
+        Log::info("Starting import");
         $this->insertValues()
              ->checkProfiles();
 
+        Log::info("Import done!");
         return $this;
     }
 
@@ -73,7 +75,7 @@ class Importer
         while ($this->dataSet->hasNextValue())
         {
             list($profile, $data, $value, $time) = $this->dataSet->getNextValue();
-            Log::info("Working on next value: $profile, $data, $value, $time");
+            //Log::info("Working on next value: $profile, $data, $value, $time");
 
             if ($this->currentProfile != $profile)
             {
@@ -115,6 +117,7 @@ class Importer
         // Add the last profile
         $this->push($values);
 
+        Log::info("Insertion done");
         return $this;
     }
 
@@ -161,6 +164,7 @@ class Importer
      */
     protected function checkProfiles()
     {
+        Log::info("Checking profiles");
         $this->dataSet->resetCursors();
         while ($this->dataSet->hasNextProfile())
         {
@@ -169,6 +173,7 @@ class Importer
             event(new CheckProfiles($profile));
         }
 
+        Log::info("Checking profiles done!");
         return $this;
     }
 
