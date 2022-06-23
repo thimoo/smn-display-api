@@ -52,7 +52,7 @@ class Importer
      */
     public function import()
     {
-        Log::info("Starting import");
+        Log::debug("Starting import");
         $this->insertValues()
              ->checkProfiles();
 
