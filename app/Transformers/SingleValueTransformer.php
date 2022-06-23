@@ -13,7 +13,7 @@ class SingleValueTransformer extends Transformer
 
     /**
      * List of json attributes
-     * 
+     *
      * @var array
      */
     public $attributes = [
@@ -27,7 +27,7 @@ class SingleValueTransformer extends Transformer
 
     /**
      * List of renamed attributes
-     * 
+     *
      * @var array
      */
     public $morph = [
@@ -37,7 +37,7 @@ class SingleValueTransformer extends Transformer
 
     /**
      * Filter the value attribute. Cast in float
-     * 
+     *
      * @param  mixed  $model the result object
      * @param  string $key   the attribute name
      * @return float
@@ -49,7 +49,7 @@ class SingleValueTransformer extends Transformer
 
     /**
      * Filter the date to w3c format
-     * 
+     *
      * @param  mixed  $model the source model
      * @param  string $key   the attribute name
      * @return string        the date in w3c format
@@ -63,7 +63,7 @@ class SingleValueTransformer extends Transformer
      * Filter the original value. If a original value is
      * present in the model, transform and delete the href
      * attribute
-     * 
+     *
      * @param  mixed  $model the source model
      * @param  string $key   the attribute name
      * @return mixed
@@ -82,7 +82,7 @@ class SingleValueTransformer extends Transformer
     /**
      * Add a new attribute to the result object.
      * Create a link to refresh the single value
-     * 
+     *
      * @param mixed $object the result object
      * @param mixed $model  the source model
      * @return string

@@ -8,7 +8,7 @@ trait AddFilter
 {
     /**
      * Extend the behavior to call the add magic functions
-     * 
+     *
      * @param  Model $model an eloquent model
      * @return mixed        a data object
      */
@@ -22,7 +22,7 @@ trait AddFilter
     /**
      * Browe all class methods and check if the method is
      * a magic add method to call
-     * 
+     *
      * @param  mixed $object the result object
      * @param  Model $model  an eloquent model
      * @return void
@@ -41,7 +41,7 @@ trait AddFilter
     /**
      * Call the magic add method and store the result in
      * the result object
-     * 
+     *
      * @param  object $object the result object
      * @param  Model  $model  an eloquent model
      * @param  string $method the magic add method name
@@ -59,7 +59,7 @@ trait AddFilter
     /**
      * Return the name of the new field added. Morph the
      * result name to implement the morph process
-     * 
+     *
      * @param  string $method the magic add method name
      * @return string         the final field name
      */

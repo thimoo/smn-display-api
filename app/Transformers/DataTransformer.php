@@ -11,7 +11,7 @@ class DataTransformer extends Transformer
 
     /**
      * List of json attributes
-     * 
+     *
      * @var array
      */
     public $attributes = [

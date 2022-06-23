@@ -6,7 +6,7 @@ trait Accessors
 {
     /**
      * Return the content transformed into a JsonResponse
-     * 
+     *
      * @param  Model                        $input the model to transform
      * @return Illuminate\Http\JsonResponse        the response
      */
@@ -17,7 +17,7 @@ trait Accessors
 
     /**
      * Return the collection transformed into a JsonResponse
-     * 
+     *
      * @param  Collection              $collection the collection to transform
      * @return Illuminate\Http\JsonResponse        the response
      */
@@ -28,7 +28,7 @@ trait Accessors
 
     /**
      * Return the transformed content
-     * 
+     *
      * @param  Model   $input eloquent model
      * @return object         the response
      */
@@ -39,7 +39,7 @@ trait Accessors
 
     /**
      * Return the transformed collection
-     * 
+     *
      * @param  Collection $collection eloquent collection
      * @return array                  the response
      */
