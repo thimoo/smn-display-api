@@ -166,7 +166,7 @@ class Importer
      */
     protected function checkProfiles()
     {
-        Log::info("Checking profiles");
+        Log::debug("Checking profiles");
         $this->dataSet->resetCursors();
         while ($this->dataSet->hasNextProfile())
         {
@@ -175,7 +175,7 @@ class Importer
             event(new CheckProfiles($profile));
         }
 
-        Log::info("Checking profiles done!");
+        Log::debug("Checking profiles done!");
         return $this;
     }
 
