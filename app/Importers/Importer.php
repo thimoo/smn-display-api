@@ -39,7 +39,7 @@ class Importer
     public function load(DataSet $dataSet)
     {
         $this->dataSet = $dataSet;
-        Log::info("Dataset loaded");
+        Log::debug("Dataset loaded");
 
         return $this;
     }
@@ -69,14 +69,14 @@ class Importer
      */
     protected function insertValues()
     {
-        Log::info("Starting insertion");
+        Log::debug("Starting insertion");
         $this->dataSet->resetCursors();
         $values = [];
 
         while ($this->dataSet->hasNextValue())
         {
             list($profile, $data, $value, $time) = $this->dataSet->getNextValue();
-            //Log::info("Working on next value: $profile, $data, $value, $time");
+            //Log::debug("Working on next value: $profile, $data, $value, $time");
 
             if ($this->currentProfile != $profile)
             {
@@ -118,7 +118,7 @@ class Importer
         // Add the last profile
         $this->push($values);
 
-        Log::info("Insertion done");
+        Log::debug("Insertion done");
         return $this;
     }
 
@@ -144,7 +144,7 @@ class Importer
      */
     protected function push(array $data)
     {
-        Log::info("Pushing values with NewValues events for [$this->currentProfile]");
+        Log::debug("Pushing values with NewValues events for [$this->currentProfile]");
 
         if (count($data) > 0)
         {
@@ -153,7 +153,7 @@ class Importer
             event(new NewValues($data));
             DB::commit();
         }
-        Log::info("Pushing done");
+        Log::debug("Pushing done");
     }
 
     /**
@@ -166,7 +166,7 @@ class Importer
      */
     protected function checkProfiles()
     {
-        Log::info("Checking profiles");
+        Log::debug("Checking profiles");
         $this->dataSet->resetCursors();
         while ($this->dataSet->hasNextProfile())
         {
@@ -175,7 +175,7 @@ class Importer
             event(new CheckProfiles($profile));
         }
 
-        Log::info("Checking profiles done!");
+        Log::debug("Checking profiles done!");
         return $this;
     }
 
